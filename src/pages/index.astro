@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SocialStats from '../components/SocialStats.astro';
+---
+
+<Layout title="Home">
+    <section class="hero">
+        <h1>Hi, I'm James Nguyen</h1>
+        <p class="subtitle">Data Scientist & Machine Learning Engineer</p>
+        <p class="description">
+            I specialize in building machine learning models and analyzing complex datasets 
+            to solve real-world problems.
+        </p>
+    </section>
+    <SocialStats />
+</Layout>
+
+<style>
+    .hero {
+        margin: 4rem 0;
+        max-width: 800px;
+    }
+    h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+    }
+    .subtitle {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        margin-bottom: 1.5rem;
+    }
+    .description {
+        font-size: 1.2rem;
+        line-height: 1.6;
+    }
+</style>

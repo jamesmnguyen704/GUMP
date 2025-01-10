@@ -1,0 +1,61 @@
+---
+interface Props {
+    title: string;
+    date: string;
+    readTime: string;
+    category: string;
+    author: string;
+}
+
+const { title, date, readTime, category, author } = Astro.props;
+---
+
+<article class="blog-post">
+    <header class="post-header">
+        <div class="meta">
+            <span class="category">{category}</span>
+            <span class="date">{date}</span>
+            <span class="read-time">{readTime}</span>
+        </div>
+        <h1 class="title">{title}</h1>
+        <p class="author">By {author}</p>
+    </header>
+    <div class="content">
+        <slot />
+    </div>
+</article>
+
+<style>
+    .blog-post {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .post-header {
+        margin-bottom: 3rem;
+    }
+    .meta {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        color: var(--accent-color);
+    }
+    .title {
+        font-size: 3rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+    .author {
+        color: var(--accent-color);
+    }
+    .content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    .content :global(h2) {
+        font-size: 1.8rem;
+        margin: 2rem 0 1rem;
+    }
+    .content :global(p) {
+        margin-bottom: 1.5rem;
+    }
+</style>

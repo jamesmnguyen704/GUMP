@@ -1,0 +1,165 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    technologies: string[];
+    githubUrl: string;
+    metrics?: {
+        accuracy?: string;
+        impact?: string;
+        performance?: string;
+    };
+}
+
+const { title, description, technologies, githubUrl, metrics } = Astro.props;
+---
+
+<article class="project-card">
+    <div class="card-content">
+        <div class="front">
+            <h3 class="title">{title}</h3>
+            <div class="technologies">
+                {technologies.map(tech => <span class="tech-tag">{tech}</span>)}
+            </div>
+        </div>
+        
+        <div class="back">
+            <p class="description">{description}</p>
+            {metrics && (
+                <div class="metrics">
+                    {metrics.accuracy && <div class="metric">
+                        <span class="metric-label">Accuracy:</span>
+                        <span class="metric-value">{metrics.accuracy}</span>
+                    </div>}
+                    {metrics.impact && <div class="metric">
+                        <span class="metric-label">Impact:</span>
+                        <span class="metric-value">{metrics.impact}</span>
+                    </div>}
+                    {metrics.performance && <div class="metric">
+                        <span class="metric-label">Performance:</span>
+                        <span class="metric-value">{metrics.performance}</span>
+                    </div>}
+                </div>
+            )}
+        </div>
+    </div>
+    
+    <div class="links">
+        <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="github-link">
+            View on GitHub →
+        </a>
+    </div>
+</article>
+
+<style>
+    .project-card {
+        background: #1a1a1a;
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: transform 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #333;
+    }
+
+    .project-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .card-content {
+        position: relative;
+        min-height: 200px;
+    }
+
+    .front, .back {
+        transition: opacity 0.3s ease;
+    }
+
+    .back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .project-card:hover .back {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .project-card:hover .front {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #ffffff;
+    }
+
+    .description {
+        color: #cccccc;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        font-size: 1.25rem; /* Increased from 1.1rem to 1.25rem */
+        font-weight: 400;
+        letter-spacing: 0.3px; /* Slightly increased for better readability */
+    }
+
+    .technologies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tech-tag {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.875rem;
+    }
+
+    .metrics {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        font-size: 1.15rem; /* Increased from 1.05rem to 1.15rem */
+    }
+
+    .metric {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+    }
+
+    .metric-label {
+        color: #888;
+    }
+
+    .metric-value {
+        color: #ffffff;
+        font-weight: 500;
+    }
+
+    .links {
+        margin-top: 1rem;
+        text-align: right;
+    }
+
+    .github-link {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.2s ease;
+    }
+
+    .github-link:hover {
+        color: #64ffda;
+    }
+</style>

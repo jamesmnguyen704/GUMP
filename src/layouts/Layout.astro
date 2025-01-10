@@ -1,0 +1,145 @@
+---
+import Logo from '../components/Logo.astro';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Personal Blog" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<div class="logo">
+					<Logo initials="JN" fullName="jamesnguyen" />
+				</div>
+				<div class="nav-links">
+					<a href="/">Home</a>
+					<a href="/about">About</a>
+					<a href="/work">Work</a>
+					<a href="/projects">Projects</a>
+					<a href="/blog">Blog</a>
+					<div class="contact-container">
+						<a href="/contact" class="contact-btn">Contact</a>
+						<div class="contact-info">
+							<p class="email-link">
+								<svg class="outlook-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M22 8.608v8.142a3.25 3.25 0 0 1-3.066 3.245L19 20H5a3.25 3.25 0 0 1-3.245-3.066L1.75 16.75V8.608l9.652 5.056a1.25 1.25 0 0 0 1.196 0L22 8.608ZM5 4.75h14a3.25 3.25 0 0 1 3.245 3.066L22.25 8v.142l-9.652 5.056a1.25 1.25 0 0 1-1.196 0L1.75 8.142V8a3.25 3.25 0 0 1 3.066-3.245L5 4.75Z" fill="currentColor"/>
+								</svg>
+								jamesmnguyen704@outlook.com
+							</p>
+							<p>
+								<a href="https://discord.com/users/363377684203438092" target="_blank" class="discord-link">
+									<svg class="discord-icon" viewBox="0 -28.5 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+										<path d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z" fill="currentColor"></path>
+									</svg>
+									Discord
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<main>
+			<slot />
+		</main>
+	</body>
+</html>
+<style is:global>
+	:root {
+		--text-color: #ffffff;
+		--bg-color: #000000;
+		--accent-color: #666666;
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background: var(--bg-color);
+		color: var(--text-color);
+	}
+	body {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+	header {
+		padding: 2rem 0;
+	}
+	nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.nav-links {
+		display: flex;
+		gap: 2rem;
+		align-items: center;
+	}
+	.nav-links a {
+		color: var(--text-color);
+		text-decoration: none;
+		font-size: 1rem;
+	}
+	.contact-container {
+		position: relative;
+	}
+	.contact-btn {
+		border: 1px solid var(--text-color);
+		padding: 0.5rem 1rem;
+		border-radius: 4px;
+	}
+	.contact-info {
+		position: absolute;
+		top: 100%;
+		right: 0;
+		background-color: var(--bg-color);
+		border: 1px solid var(--text-color);
+		padding: 1rem;
+		border-radius: 4px;
+		margin-top: 0.5rem;
+		display: none;
+		white-space: nowrap;
+		z-index: 10;
+	}
+	.contact-info p {
+		margin: 0.5rem 0;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+	.contact-container:hover .contact-info {
+		display: block;
+	}
+	.outlook-icon, .discord-icon {
+		width: 20px;
+		height: 20px;
+	}
+	.outlook-icon {
+		color: #0078D4;
+	}
+	.discord-link {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--text-color) !important;
+	}
+	main {
+		padding: 2rem 0;
+	}
+</style>

@@ -1,0 +1,197 @@
+---
+interface WorkItem {
+    company: string;
+    position: string;
+    duration: string;
+    location: string;
+    responsibilities: string[];
+    skills?: string[];
+    type: string;
+}
+
+const experiences: WorkItem[] = [
+    {
+        company: "Curtiss-Wright Corporation",
+        position: "Staff Accountant",
+        duration: "Nov 2022 - Aug 2023 · 10 mos",
+        location: "Charlotte, North Carolina, United States · Hybrid",
+        type: "Full-time",
+        responsibilities: [
+            "Managed general ledgers and performed analytical problem solving",
+            "Handled fixed assets accounting and documentation",
+            "Conducted research and implemented problem-solving strategies",
+            "Maintained accurate financial records and reports"
+        ],
+        skills: ["General Ledgers", "Analytic Problem Solving", "Fixed Assets", "Research Skills", "Problem Solving"]
+    },
+    {
+        company: "Robert Half",
+        position: "Professional Consultant",
+        duration: "Oct 2021 - Jul 2022 · 10 mos",
+        location: "Charlotte, North Carolina, United States",
+        type: "Full-time",
+        responsibilities: [
+            "Performed cash reconciliation and month-end closing procedures",
+            "Managed journal entries and bank reconciliation processes",
+            "Handled 401K and bonus compensation calculations",
+            "Conducted audits and managed commission calculations"
+        ],
+        skills: ["General Ledger Reconciliations", "General Ledgers", "Analytic Problem Solving", "Fixed Assets", "Account Reconciliation", "Research Skills", "Bank Reconciliation", "Problem Solving"]
+    },
+    {
+        company: "NTT",
+        position: "Reconciliation Analyst",
+        duration: "May 2019 - Sep 2021 · 2 yrs 5 mos",
+        location: "Charlotte, North Carolina Area",
+        type: "Full-time",
+        responsibilities: [
+            "Processed and reconciled statements for multiple vendors, handling millions of dollars in daily invoices",
+            "Managed complex projects including credits, debit memos, and partials",
+            "Researched and documented credit discrepancies using SAP, Oracle, and cloud-based systems",
+            "Coordinated with procurement, receiving, credit, ICM, buyers, and sales teams",
+            "Served as backup for payment processing, handling vendor payments for 11 vendors weekly"
+        ],
+        skills: ["Accounts Receivable (AR)", "Journal Entries (Accounting)", "Analytic Problem Solving", "Account Reconciliation", "Research Skills", "Accounts Payable", "Problem Solving"]
+    },
+    {
+        company: "Wells Fargo",
+        position: "Trading Service Representatives",
+        duration: "Jan 2019 - Mar 2019 · 3 mos",
+        location: "Charlotte, North Carolina",
+        type: "Contract",
+        responsibilities: [
+            "Participated in sponsorship program for SIE, Series 7, and Series 63 licensing",
+            "Studied AML, Fraud, and financial regulations",
+            "Learned about retirement plans and customer account management",
+            "Gained experience in trading-related operations"
+        ]
+    },
+    {
+        company: "Walmart eCommerce",
+        position: "Accounts Payable Associate for Hayneedle",
+        duration: "May 2018 - Jan 2019 · 9 mos",
+        location: "Charlotte, North Carolina Area",
+        type: "Full-time",
+        responsibilities: [
+            "Processed and managed invoices for over 800 vendors",
+            "Generated employee expense reports, debit memos, and handled check processing",
+            "Maintained relationships with vendors, buyers, and various department managers",
+            "Assisted with month-end closing and managed outstanding liabilities",
+            "Trained specialist III, IV, and V roles and developed training materials",
+            "Operated multiple accounting systems including Oracle, Medius, and Readsoft",
+            "Managed bank accounts and monitored records for potential disputes"
+        ],
+        skills: ["Problem Solving"]
+    }
+];
+---
+
+<div class="work-experience">
+    {experiences.map((exp) => (
+        <div class="experience-item">
+            <div class="company-header">
+                <h3>{exp.position}</h3>
+                <span class="company">{exp.company} · {exp.type}</span>
+                <span class="duration">{exp.duration}</span>
+                <span class="location">{exp.location}</span>
+            </div>
+            
+            <ul class="responsibilities">
+                {exp.responsibilities.map(item => (
+                    <li>{item}</li>
+                ))}
+            </ul>
+            
+            {exp.skills && exp.skills.length > 0 && (
+                <div class="skills">
+                    <span class="skills-label">Skills:</span>
+                    <div class="skill-tags">
+                        {exp.skills.map(skill => (
+                            <span class="skill-tag">{skill}</span>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    ))}
+</div>
+
+<style>
+    .work-experience {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .experience-item {
+        border-left: 2px solid var(--accent-color);
+        padding-left: 1.5rem;
+        position: relative;
+    }
+
+    .experience-item::before {
+        content: '';
+        position: absolute;
+        left: -5px;
+        top: 0;
+        width: 8px;
+        height: 8px;
+        background-color: var(--accent-color);
+        border-radius: 50%;
+    }
+
+    .company-header {
+        margin-bottom: 1rem;
+    }
+
+    .company-header h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .company {
+        display: block;
+        color: var(--accent-color);
+        margin-bottom: 0.25rem;
+    }
+
+    .duration, .location {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--accent-color);
+        margin-bottom: 0.25rem;
+    }
+
+    .responsibilities {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+    }
+
+    .responsibilities li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+
+    .skills {
+        margin-top: 1rem;
+    }
+
+    .skills-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--accent-color);
+    }
+
+    .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .skill-tag {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.875rem;
+    }
+</style>

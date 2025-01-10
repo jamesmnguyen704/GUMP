@@ -1,0 +1,54 @@
+---
+interface Props {
+	title: string;
+	date: string;
+	readTime: string;
+	category: string;
+	excerpt: string;
+	slug: string;
+}
+
+const { title, date, readTime, category, excerpt, slug } = Astro.props;
+---
+
+<article class="blog-post">
+	<div class="meta">
+		<span class="read-time">{readTime}</span>
+		<span class="date">{date}</span>
+	</div>
+	<h2 class="title">{title}</h2>
+	<p class="category">{category}</p>
+	<p class="excerpt">{excerpt}</p>
+	<a href={`/blog/${slug}`} class="learn-more">Learn More</a>
+</article>
+
+<style>
+	.blog-post {
+		margin-bottom: 4rem;
+	}
+	.meta {
+		display: flex;
+		gap: 1rem;
+		color: var(--accent-color);
+		margin-bottom: 0.5rem;
+	}
+	.title {
+		font-size: 2rem;
+		margin-bottom: 0.5rem;
+	}
+	.category {
+		color: var(--accent-color);
+		text-transform: uppercase;
+		font-size: 0.9rem;
+		margin-bottom: 1rem;
+	}
+	.excerpt {
+		margin-bottom: 1rem;
+		line-height: 1.6;
+	}
+	.learn-more {
+		color: var(--text-color);
+		text-decoration: none;
+		border-bottom: 1px solid var(--text-color);
+	}
+</style>

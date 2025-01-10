@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlogPost from '../components/BlogPost.astro';
+
+const posts = [
+    {
+        title: "Website Improvements - January 2025",
+        date: "09 Jan 2025",
+        readTime: "5 Mins Read",
+        category: "Development",
+        excerpt: "A detailed look at recent improvements to my portfolio website, including enhanced project cards, contact features, and expanded about section.",
+        slug: "website-improvements-jan-2024"
+    },
+    {
+        title: "From Accounting to Data Science: My Career Transition Journey",
+        date: "05 Dec 2023",
+        readTime: "8 Mins Read",
+        category: "Career",
+        excerpt: "My personal journey of transitioning from a certified accountant to a data scientist, and the lessons learned along the way.",
+        slug: "from-accounting-to-data-science"
+    },
+    {
+        title: "Introduction to Machine Learning",
+        date: "03 Dec 2023",
+        readTime: "10 Mins Read",
+        category: "Machine Learning",
+        excerpt: "A comprehensive guide to understanding the basics of machine learning and its applications.",
+        slug: "intro-to-ml"
+    },
+    {
+        title: "Data Visualization Best Practices",
+        date: "01 Dec 2023",
+        readTime: "8 Mins Read",
+        category: "Data Science",
+        excerpt: "Learn how to create effective and insightful data visualizations for your projects.",
+        slug: "data-viz-best-practices"
+    }
+];
+---
+
+<Layout title="Blog">
+    <section class="blog-header">
+        <h1>Blog</h1>
+        <p>Thoughts and insights about data science, machine learning, and technology.</p>
+    </section>
+
+    <section class="posts">
+        {posts.map(post => <BlogPost {...post} />)}
+    </section>
+</Layout>
+
+<style>
+    .blog-header {
+        margin: 4rem 0;
+    }
+    .blog-header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    .blog-header p {
+        color: var(--accent-color);
+        font-size: 1.2rem;
+        max-width: 600px;
+    }
+    .posts {
+        margin: 2rem 0;
+    }
+</style>

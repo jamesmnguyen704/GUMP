@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = [
+    {
+        title: "Project 01: Music Preferences Analysis",
+        description: "Analyzed and compared music preferences between two different cities to identify patterns and trends in listening habits.",
+        technologies: ["Python", "pandas"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 02: Credit Scoring Analysis",
+        description: "Evaluated various metrics to predict the likelihood of a customer defaulting on a loan, helping financial institutions make informed lending decisions.",
+        technologies: ["Python", "pandas"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 03: Vehicle Price Analysis",
+        description: "Investigated factors influencing vehicle prices by analyzing classified ads data to assist in better pricing strategies.",
+        technologies: ["Python", "pandas", "numpy", "matplotlib"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 04: Cell Plans Analysis",
+        description: "Examined client behavior and identified which telecom packages generate the most income, providing insights for marketing and sales strategies.",
+        technologies: ["Python", "pandas", "numpy", "matplotlib", "math", "scipy"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 05: Video Games Analysis",
+        description: "Tested hypothesis regarding video game users and critics to determine promising projects and plan effective advertising campaigns.",
+        technologies: ["Python", "pandas", "numpy", "scipy", "matplotlib"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 06: Taxi Trip Analysis",
+        description: "Analyzed taxi trip durations in relation to weather conditions to test and validate hypotheses, aiding in optimizing taxi services.",
+        technologies: ["Python", "pandas", "numpy", "scipy", "matplotlib"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 07: Cell Phone Plans Prediction",
+        description: "Developed a classification model to help clients select the best cell phone plan, achieving a performance metric of at least 0.75.",
+        technologies: ["Python", "pandas", "sklearn", "Decision Tree", "Random Forest", "Logistic Regression"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 08: Client Retention Prediction",
+        description: "Created a prediction model for client retention with an F1 score of at least 0.59, helping businesses improve their customer retention strategies.",
+        technologies: ["Python", "pandas", "matplotlib", "sklearn", "Decision Tree", "Random Forest", "Logistic Regression"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 09: Oil Well Location Prediction",
+        description: "Validated oil reserve volume prediction models and calculated profits and risks for different regions, aiding in strategic decision-making for OilGiant's operations.",
+        technologies: ["Python", "pandas", "numpy", "scipy", "matplotlib", "sklearn", "Random Forest", "Linear Regression"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 10: Gold Production Modeling",
+        description: "Modeled the production process in the gold mining industry to improve efficiency and developed a prototype machine learning model for industrial applications.",
+        technologies: ["Python", "pandas", "numpy", "matplotlib", "sklearn", "Linear Regression", "Decision Tree", "Random Forest"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 11: Insurance Modeling",
+        description: "Identified similar customers and predicted insurance benefit amounts while ensuring data privacy, enhancing customer service and risk management in insurance.",
+        technologies: ["Python", "numpy", "pandas", "seaborn", "matplotlib", "sklearn", "math", "K-Nearest Neighbors"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 12: Car Price Prediction",
+        description: "Built a model to determine market value of cars with an emphasis on prediction quality and speed, supporting automotive market analysis.",
+        technologies: ["Python", "numpy", "pandas", "matplotlib", "sklearn", "catboost", "LightGBM", "XGBoost", "Decision Tree", "Random Forest", "Linear Regression"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 13: Taxi Orders Prediction",
+        description: "Predicted the number of taxi orders in the next hour with a RECM metric not exceeding 48, helping optimize taxi fleet management.",
+        technologies: ["Python", "numpy", "pandas", "statsmodels", "sklearn", "Decision Tree", "Random Forest", "Linear Regression", "LGBM"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 14: Movie Reviews Categorization",
+        description: "Trained models to automatically detect negative movie reviews, aiding in sentiment analysis and customer feedback management.",
+        technologies: ["Python", "numpy", "re", "pandas", "seaborn", "matplotlib", "nltk", "transformers", "tqdm", "spacy", "sklearn", "Logistic Regression", "LGBM"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 15: Face Identification",
+        description: "Built and evaluated a neural network regression model to estimate age based on photographs, supporting biometric analysis applications.",
+        technologies: ["Python", "pandas", "numpy", "matplotlib", "PIL", "tensorflow.keras", "CNN", "Sequential", "GlobalAveragePooling2D", "Dense", "Dropout"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    },
+    {
+        title: "Project 16: Customer Retention Prediction",
+        description: "Developed a model predicting contract cancellations with an AUC-ROC greater than or equal to 0.75, helping businesses reduce churn rates.",
+        technologies: ["Python", "numpy", "pandas", "matplotlib", "tensorflow", "sklearn", "Logistic Regression", "Decision Tree", "Random Forest", "CNN"],
+        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+    }
+];
+---
+
+<Layout title="Data Science Projects">
+    <section class="projects-header">
+        <h1>Data Science Projects</h1>
+        <p>A comprehensive portfolio of data science and machine learning projects, showcasing various techniques and technologies.</p>
+    </section>
+
+    <section class="projects-grid">
+        {projects.map(project => <ProjectCard {...project} />)}
+    </section>
+</Layout>
+
+<style>
+    .projects-header {
+        margin: 4rem 0;
+    }
+
+    .projects-header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .projects-header p {
+        color: var(--accent-color);
+        font-size: 1.2rem;
+        max-width: 600px;
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+</style>

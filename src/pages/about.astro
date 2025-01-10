@@ -1,0 +1,256 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const skills = {
+    programming: [
+        "Python",
+        "Pandas",
+        "NumPy", 
+        "Matplotlib",
+        "Scikit-learn",
+        "Plotly",
+        "Seaborn",
+        "SQL"
+    ],
+    machineLearning: [
+        "Supervised ML",
+        "Tree-based Models",
+        "Unsupervised ML",
+        "Clustering",
+        "NLP",
+        "XGBoost",
+        "LightGBM"
+    ],
+    dataScience: [
+        "Time Series Analysis",
+        "Anomaly Detection",
+        "A/B Testing",
+        "Experimental Design",
+        "Data Preprocessing",
+        "Model Evaluation"
+    ],
+    accounting: [
+        "Journal Entries",
+        "General Ledgers",
+        "Bank Reconciliation",
+        "Fixed Assets"
+    ],
+    software: [
+        "SAP",
+        "Oracle",
+        "Microsoft Excel",
+        "Microsoft Outlook"
+    ],
+    interpersonal: [
+        "Strong Communication",
+        "Stakeholder Management",
+        "Problem Resolution",
+        "Team Collaboration",
+        "Customer Focus",
+        "Detail Oriented",
+        "Adaptability",
+        "Continuous Learning"
+    ]
+};
+---
+
+<Layout title="About Me">
+    <section class="about-header">
+        <h1>About Me</h1>
+        <p class="intro">
+            A Data Scientist with five years of accounting experience, I bring a unique blend of 
+            financial expertise and technical skills to the field of data science. My journey from 
+            certified accountant to data scientist has equipped me with both business acumen and 
+            analytical capabilities.
+        </p>
+    </section>
+
+    <section class="career-transition">
+        <h2>My Journey</h2>
+        <p>
+            During my time as an accountant, I discovered patterns in financial data that could 
+            predict business trends. This sparked my passion for data science and led me to 
+            transition into this field. My accounting background proved invaluable—providing me 
+            with a deep understanding of business processes, financial modeling, and the 
+            importance of accurate data analysis.
+        </p>
+        <p>
+            My first data science project involved analyzing financial statements to predict 
+            company performance, allowing me to bridge the gap between financial expertise and 
+            data science techniques. Today, I specialize in financial analytics, where my 
+            combined experience gives me a unique advantage in understanding business problems 
+            and communicating solutions to stakeholders.
+        </p>
+    </section>
+
+    <section class="interpersonal-section">
+        <h2>Interpersonal Skills</h2>
+        <div class="interpersonal-grid">
+            {skills.interpersonal.map(skill => (
+                <div class="skill-pill">{skill}</div>
+            ))}
+        </div>
+    </section>
+
+    <section class="skills-section">
+        <h2>Skills & Expertise</h2>
+        
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Programming</h3>
+                <div class="skills-list">
+                    {skills.programming.map(skill => <span class="skill-pill">{skill}</span>)}
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Machine Learning</h3>
+                <div class="skills-list">
+                    {skills.machineLearning.map(skill => <span class="skill-pill">{skill}</span>)}
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Data Science</h3>
+                <div class="skills-list">
+                    {skills.dataScience.map(skill => <span class="skill-pill">{skill}</span>)}
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Accounting</h3>
+                <div class="skills-list">
+                    {skills.accounting.map(skill => <span class="skill-pill">{skill}</span>)}
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Software</h3>
+                <div class="skills-list">
+                    {skills.software.map(skill => <span class="skill-pill">{skill}</span>)}
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .about-header {
+        margin: 4rem 0;
+    }
+
+    .about-header h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .intro {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        max-width: 800px;
+        color: var(--accent-color);
+    }
+
+    .career-transition {
+        margin: 4rem 0;
+        max-width: 800px;
+    }
+
+    .career-transition h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .career-transition p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+    }
+
+    .interpersonal-section {
+        margin: 4rem 0;
+    }
+
+    .interpersonal-section h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .interpersonal-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .skills-section {
+        margin: 4rem 0;
+    }
+
+    .skills-section h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .skill-category {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .skill-category h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: var(--accent-color);
+    }
+
+    .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .skill-pill {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+        padding: 0.4rem 0.8rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+
+    .skill-pill:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 1024px) {
+        .interpersonal-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .interpersonal-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .interpersonal-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

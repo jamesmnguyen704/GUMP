@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WorkExperience from '../components/WorkExperience.astro';
+---
+
+<Layout title="Work Experience">
+    <section class="work-header">
+        <h1>Work Experience</h1>
+        <p>A detailed overview of my professional journey and accomplishments.</p>
+    </section>
+
+    <section class="work-content">
+        <WorkExperience />
+    </section>
+</Layout>
+
+<style>
+    .work-header {
+        margin: 4rem 0;
+    }
+
+    .work-header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .work-header p {
+        color: var(--accent-color);
+        font-size: 1.2rem;
+        max-width: 600px;
+    }
+
+    .work-content {
+        margin: 2rem 0;
+    }
+</style>

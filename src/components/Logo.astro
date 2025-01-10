@@ -1,0 +1,53 @@
+---
+interface Props {
+    initials?: string;
+    fullName?: string;
+}
+
+const { initials = "JN", fullName = "jamesnguyen" } = Astro.props;
+---
+
+<a href="/" class="logo-container">
+    <div class="logo">
+        <span class="initials">{initials}</span>
+    </div>
+    <span class="full-name">{fullName}</span>
+</a>
+
+<style>
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+    }
+
+    .logo-container:hover {
+        opacity: 0.8;
+    }
+
+    .logo {
+        background-color: #ffffff;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .initials {
+        color: #000000;
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .full-name {
+        font-size: 1.1rem;
+        color: var(--text-color);
+        text-transform: lowercase;
+    }
+</style>

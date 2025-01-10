@@ -1,0 +1,127 @@
+---
+const stats = [
+    { number: "5+", label: "Years Experience" },
+    { number: "50+", label: "Projects Completed" },
+    { number: "3", label: "Industry Certifications" }
+];
+
+const socialLinks = [
+    { name: "INSTAGRAM", url: "https://www.instagram.com/cyberyam704/" },
+    { name: "LINKEDIN", url: "https://www.linkedin.com/in/jamesmnguyen704/" },
+    { name: "GITHUB", url: "https://github.com/jamesmnguyen704" }
+];
+
+const contactEmail = "jamesmnguyen704@outlook.com";
+---
+
+<section class="stats-section">
+    <div class="stats-grid">
+        {stats.map(stat => (
+            <div class="stat-item">
+                <h2>{stat.number}</h2>
+                <p>{stat.label}</p>
+            </div>
+        ))}
+    </div>
+</section>
+
+<section class="social-section">
+    <div class="social-container">
+        <div class="social-links">
+            <h3>Follow me.</h3>
+            <div class="links">
+                {socialLinks.map(link => (
+                    <a href={link.url} target="_blank" rel="noopener noreferrer">
+                        {link.name} <span>↗</span>
+                    </a>
+                ))}
+            </div>
+        </div>
+        <div class="newsletter">
+            <h3>Stay connected w/ me.</h3>
+            <div class="email-input">
+                <input type="email" placeholder={contactEmail} readonly />
+                <button type="button" onclick={`navigator.clipboard.writeText('${contactEmail}')`} title="Copy email">→</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .stats-section {
+        margin: 3rem 0;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    .stat-item h2 {
+        font-size: 3.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-item p {
+        color: var(--accent-color);
+    }
+
+    .social-section {
+        margin: 3rem 0;
+    }
+
+    .social-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+
+    .social-links h3,
+    .newsletter h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .links a {
+        color: var(--text-color);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .email-input {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .email-input input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--text-color);
+        color: var(--text-color);
+        padding: 0.5rem 0;
+        font-size: 1rem;
+        cursor: default;
+    }
+
+    .email-input input:focus {
+        outline: none;
+    }
+
+    .email-input button {
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0 0.5rem;
+    }
+</style>
