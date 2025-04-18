@@ -1,0 +1,165 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlogPost from '../components/BlogPost.astro';
+
+const courses = [
+    {
+        title: "Bachelor's Degree in Accounting",
+        provider: "Belmont Abbey College",
+        status: "Completed",
+        completion: "2012",
+        description: "Comprehensive accounting program covering financial accounting, managerial accounting, auditing, and business principles.",
+        skills: ["Financial Accounting", "Managerial Accounting", "Business Law", "Taxation", "Auditing", "Cost Accounting", "Excel", "Business Ethics"]
+    },
+    {
+        title: "Triple Ten Data Science Bootcamp",
+        provider: "Triple Ten",
+        status: "Completed",
+        completion: "2024",
+        description: "Comprehensive data science program covering Python, machine learning, and statistical analysis.",
+        skills: ["Python", "Machine Learning", "Data Analysis", "Statistics", "Neural Networks"]
+    }
+];
+
+const tutorials = [
+    {
+        title: "Updating My Site Using Bolt, VS Code, and GitHub",
+        date: "17 Apr 2025",
+        readTime: "8 Mins Read",
+        category: "Development",
+        excerpt: "A detailed guide on my workflow for updating my personal website using Bolt, VS Code, and GitHub, ensuring smooth development and version control.",
+        slug: "updating-bolt-vscode-github"
+    }
+];
+---
+
+<Layout title="Learning & Development">
+    <section class="learning-header">
+        <h1>Learning & Development</h1>
+        <p>Continuous education and professional development journey.</p>
+    </section>
+
+    <section class="courses">
+        <h2>Education</h2>
+        {courses.map(course => (
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>{course.title}</h3>
+                    <span class={`status ${course.status.toLowerCase()}`}>{course.status}</span>
+                </div>
+                <div class="provider-info">
+                    <span class="provider">{course.provider}</span>
+                    <span class="completion">{course.completion}</span>
+                </div>
+                <p class="description">{course.description}</p>
+                <div class="skills">
+                    {course.skills.map(skill => (
+                        <span class="skill-tag">{skill}</span>
+                    ))}
+                </div>
+            </div>
+        ))}
+    </section>
+
+    <section class="tutorials">
+        <h2>Tutorials & Guides</h2>
+        {tutorials.map(post => <BlogPost {...post} />)}
+    </section>
+</Layout>
+
+<style>
+    .learning-header {
+        margin: 4rem 0;
+    }
+
+    .learning-header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .learning-header p {
+        color: var(--accent-color);
+        font-size: 1.2rem;
+        max-width: 600px;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin: 3rem 0 2rem;
+    }
+
+    .courses {
+        display: grid;
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+
+    .course-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .course-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .course-header h3 {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    .status {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+    }
+
+    .status.completed {
+        background: rgba(0, 255, 0, 0.1);
+        color: #4CAF50;
+    }
+
+    .status.in.progress {
+        background: rgba(255, 166, 0, 0.1);
+        color: #FFA726;
+    }
+
+    .status.planned {
+        background: rgba(33, 150, 243, 0.1);
+        color: #2196F3;
+    }
+
+    .provider-info {
+        display: flex;
+        justify-content: space-between;
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+    }
+
+    .description {
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .skill-tag {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.875rem;
+    }
+
+    .tutorials {
+        margin: 4rem 0;
+    }
+</style>

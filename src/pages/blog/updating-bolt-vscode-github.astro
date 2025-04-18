@@ -1,0 +1,90 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FullBlogPost from '../../components/FullBlogPost.astro';
+---
+
+<Layout title="Updating My Site Using Bolt, VS Code, and GitHub">
+    <FullBlogPost
+        title="Updating My Site Using Bolt, VS Code, and GitHub"
+        date="17 Apr 2025"
+        readTime="8 mins read"
+        category="Development"
+        author="James Nguyen"
+    >
+        <h2>Introduction</h2>
+        <p>
+            Today, I'll share my workflow for updating my personal website using Bolt, VS Code, and GitHub. This process ensures smooth development and version control while maintaining a professional web presence.
+        </p>
+
+        <h2>1. Content Creation and Updates</h2>
+        <ul>
+            <li>Created and edited content locally</li>
+            <li>Organized content in structured formats (Markdown, JSON, HTML)</li>
+        </ul>
+
+        <h2>2. Using Bolt for Design and Generation</h2>
+        <ul>
+            <li>Accessed Bolt at <a href="https://bolt.new" target="_blank">bolt.new</a></li>
+            <li>Imported content and code</li>
+            <li>Previewed and formatted site appearance</li>
+            <li>Generated and downloaded site files</li>
+        </ul>
+
+        <h2>3. Local Project Integration</h2>
+        <ul>
+            <li>Located downloaded Bolt folder (Gump Folder)</li>
+            <li>Opened GitHub-linked project in VS Code</li>
+            <li>Carefully copied updated site files (particularly src/ directory)</li>
+            <li>Preserved .git directory for version control</li>
+        </ul>
+
+        <h2>4. Version Control with Git</h2>
+        <p>
+            After opening VS Code and checking Git status, I followed these steps for version control:
+        </p>
+        <pre><code>git status
+git add .
+git commit -m "Updated site with latest Bolt export (April 17)"</code></pre>
+
+        <h2>5. Branch Management and Push</h2>
+        <p>
+            When pushing changes, I encountered and resolved a branch naming issue:
+        </p>
+        <pre><code># Initial attempt
+git push origin main
+
+# Error received
+error: src refspec main does not match any
+
+# Checked current branch
+git branch
+* master
+
+# Successfully pushed to correct branch
+git push origin master</code></pre>
+
+        <h2>6. GitHub Verification</h2>
+        <ul>
+            <li>Verified updates on <a href="https://github.com/jamesmnguyen704/GUMP" target="_blank">GitHub repository</a></li>
+            <li>Confirmed commit message and file updates</li>
+            <li>Checked src/ directory modifications</li>
+        </ul>
+
+        <h2>7. Deployment Options</h2>
+        <p>
+            For public access, the site can be deployed via:
+        </p>
+        <ul>
+            <li>GitHub Pages at <a href="https://jamesmnguyen704.github.io/GUMP/" target="_blank">jamesmnguyen704.github.io/GUMP/</a></li>
+            <li>Alternative hosting platforms like Netlify or Vercel</li>
+        </ul>
+
+        <h2>Pro Tips</h2>
+        <ul>
+            <li>Always verify correct file copying into Git-tracked directories</li>
+            <li>Use git status frequently to monitor changes</li>
+            <li>Maintain clear, dated commit messages for change tracking</li>
+            <li>Double-check branch names before pushing changes</li>
+        </ul>
+    </FullBlogPost>
+</Layout>
