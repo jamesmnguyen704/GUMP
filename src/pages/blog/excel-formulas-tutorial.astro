@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FullBlogPost from '../../components/FullBlogPost.astro';
+---
+
+<Layout title="Excel Formulas for Data Migration Validation">
+    <FullBlogPost
+        title="Excel Formulas for Data Migration Validation"
+        date="19 Apr 2025"
+        readTime="6 mins read"
+        category="Data Analysis"
+        author="James Nguyen"
+    >
+        <h2>Introduction to Data Migration Validation</h2>
+        <p>
+            When working with data migration projects, it's crucial to validate data accuracy and consistency. Here's a detailed look at some advanced Excel formulas I've developed for data validation during migration processes. This example i got the help of copilot to use some IFERRORS, DATEVALUE, VLOOKUPS within one cell =IF(D18 + F18 = 0, "Not In SAGE", IF(D18 <> 0, DATEVALUE(VLOOKUP(C18, 'Sage AR Acct Date'!N:P, 3, FALSE)), IF(E18 <> 0, VLOOKUP(C18, 'SAGE Retainage Aging'!A:K, 11, FALSE), "")))
+        </p>
+
+        <h2>Reconciliation Formula Examples</h2>
+        <p>
+            For the 'Reconciliation vDMB' tab, we use several complex formulas to validate data:
+        </p>
+
+        <h3>Column 'U' Validation</h3>
+        <pre><code>IF(D + F = 0, "Not In SAGE",
+IF(D > 0, VLOOKUP('SAGE Trade AR Aging' tab column 'K',
+IF(E <> 0, VLOOKUP('Sage AR Acct Date' tab)))</code></pre>
+
+        <p>This formula checks for:</p>
+        <ul>
+            <li>Zero values in columns D and F</li>
+            <li>Positive values in column D</li>
+            <li>Non-zero values in column E</li>
+        </ul>
+
+        <h3>Column 'u' Complex Formula</h3>
+        <pre><code>=IF(D18 + F18 = 0, "Not In SAGE",
+IF(D18 <> 0, VLOOKUP(C18, 'SAGE Trade AR Aging'!A:K, 11, FALSE),
+IF(E18 <> 0, DATEVALUE(VLOOKUP(C18, 'Sage AR Acct Date'!N:O, 4, FALSE)), "")))</code></pre>
+
+        <h3>Column 'Q' Validation</h3>
+        <pre><code>IF(D + F = 0, "Not In SAGE",
+IF(D <>0, VLOOKUP('Sage AR Acct Date' tab,
+IF(E<>0, VLOOKUP('SAGE Retainage Aging' tab column 'K')))</code></pre>
+
+        <h3>Column 'q' Complex Formula</h3>
+        <pre><code>=IF(D18 + F18 = 0, "Not In SAGE",
+IF(D18 <> 0, DATEVALUE(VLOOKUP(C18, 'Sage AR Acct Date'!N:P, 3, FALSE)),
+IF(E18 <> 0, VLOOKUP(C18, 'SAGE Retainage Aging'!A:K, 11, FALSE), "")))</code></pre>
+
+        <h2>Best Practices</h2>
+        <ul>
+            <li>Always validate source data before applying formulas</li>
+            <li>Use error handling in formulas to catch unexpected data</li>
+            <li>Document complex formulas with comments</li>
+            <li>Test formulas with sample data before applying to full dataset</li>
+        </ul>
+
+        <h2>Implementation Tips</h2>
+        <p>
+            When implementing these formulas:
+        </p>
+        <ul>
+            <li>Break down complex formulas into smaller parts for testing</li>
+            <li>Use named ranges to make formulas more readable</li>
+            <li>Add data validation rules to prevent incorrect data entry</li>
+            <li>Create a test worksheet to verify formula results</li>
+        </ul>
+    </FullBlogPost>
+</Layout>

@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FullBlogPost from '../../components/FullBlogPost.astro';
+---
+
+<Layout title="Hypothesis Testing: Correlation Analysis">
+    <FullBlogPost
+        title="Correlation Analysis: Drinks and Snoring"
+        date="21 Apr 2025"
+        readTime="5 mins read"
+        category="Data Analysis"
+        author="James Nguyen"
+    >
+        <h2>Introduction</h2>
+        <p>
+            In this analysis, we explore the correlation between the number of brown drinks consumed and snoring frequency. Using Python's pandas and matplotlib libraries, we visualize this relationship to test our hypothesis.
+        </p>
+
+        <h2>The Code</h2>
+        <p>Here's the Python code used for the analysis:</p>
+        <pre><code>import pandas as pd
+from matplotlib import pyplot as plt
+
+# Create the DataFrame
+data = {'Brown Drinks with Coke': [1, 2, 3, 4, 5], 
+        'Snores per Minute': [5, 10, 15, 20, 30]}
+df = pd.DataFrame(data)
+
+# Plot the data
+df.plot(title='Correlation between Drinks and Snores For Colby',
+        x='Brown Drinks with Coke',
+        y='Snores per Minute',
+        style='-',
+        xlim=[0, 6],
+        ylim=[0, 35],
+        figsize=[5, 5],
+        color='blue',
+        xlabel='Number of Drinks',
+        ylabel='Snores per Minute')</code></pre>
+
+        <h2>Analysis</h2>
+        <p>
+            The visualization shows a clear positive correlation between the number of brown drinks consumed and snoring frequency. As the number of drinks increases, there's a proportional increase in snores per minute.
+        </p>
+
+        <h2>Key Observations</h2>
+        <ul>
+            <li>Linear relationship between variables</li>
+            <li>Consistent increase in snoring with each additional drink</li>
+            <li>Range: 5-30 snores per minute</li>
+            <li>Drink consumption: 1-5 units</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+            The data suggests a strong positive correlation between brown drink consumption and snoring frequency. This relationship appears to be linear, with each additional drink corresponding to an increase of approximately 5-7 snores per minute.
+        </p>
+    </FullBlogPost>
+</Layout>
