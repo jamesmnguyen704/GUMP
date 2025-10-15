@@ -41,7 +41,11 @@ const contactEmail = "jamesmnguyen704@outlook.com";
             <h3>Stay connected w/ me.</h3>
             <div class="email-input">
                 <input type="email" placeholder={contactEmail} readonly />
-                <button type="button" onclick={`navigator.clipboard.writeText('${contactEmail}')`} title="Copy email">→</button>
+                <button 
+                    type="button" 
+                    onclick="navigator.clipboard.writeText('jamesmnguyen704@outlook.com')"
+                    title="Copy email"
+                >→</button>
             </div>
         </div>
     </div>

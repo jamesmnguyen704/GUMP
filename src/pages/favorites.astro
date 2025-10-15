@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FavoriteLink from '../components/FavoriteLink.astro';
+
+const favorites = [
+    {
+        title: "Python Package Index",
+        url: "https://pypi.org/",
+        description: "The official repository for Python software packages. Find, install and publish Python packages with ease.",
+        category: "Development"
+    }
+];
+---
+
+<Layout title="Favorite Links">
+    <section class="favorites-header">
+        <h1>Favorite Links</h1>
+        <p>A curated collection of useful resources and tools.</p>
+    </section>
+
+    <section class="favorites-grid">
+        {favorites.map(favorite => <FavoriteLink {...favorite} />)}
+    </section>
+</Layout>
+
+<style>
+    .favorites-header {
+        margin: 4rem 0;
+    }
+
+    .favorites-header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .favorites-header p {
+        color: var(--accent-color);
+        font-size: 1.2rem;
+        max-width: 600px;
+    }
+
+    .favorites-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+</style>

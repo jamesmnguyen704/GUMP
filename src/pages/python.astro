@@ -1,0 +1,355 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pythonContent = {
+    introduction: {
+        title: "Python Programming Journey",
+        description: "A comprehensive overview of Python fundamentals and advanced concepts from the TripleTen bootcamp."
+    },
+    sprints: [
+        {
+            title: "Sprint 1: Python Fundamentals",
+            topics: [
+                {
+                    name: "Dictionaries",
+                    concepts: [
+                        "Dictionary creation and manipulation",
+                        "Key-value pair operations",
+                        "Dictionary methods and iteration"
+                    ]
+                },
+                {
+                    name: "Functions",
+                    concepts: [
+                        "Function syntax and definition",
+                        "Arguments and parameters",
+                        "Positional and keyword arguments",
+                        "Return values and scope"
+                    ]
+                },
+                {
+                    name: "Pandas Basics",
+                    concepts: [
+                        "DataFrame indexing and selection",
+                        "Package importing and management",
+                        "Logical indexing and filtering",
+                        "Series object manipulation",
+                        "Column renaming and reorganization",
+                        "Handling missing values",
+                        "Duplicate value management",
+                        "Grouping and sorting operations",
+                        "Descriptive statistics"
+                    ]
+                }
+            ],
+            project: {
+                name: "Data Analysis Project",
+                skills: ["Data manipulation", "Statistical analysis", "Python programming"]
+            }
+        },
+        {
+            title: "Sprint 2: Data Loading and Processing",
+            topics: [
+                {
+                    name: "File Operations",
+                    concepts: [
+                        "Reading CSV files with read_csv()",
+                        "Loading Excel files with read_excel()",
+                        "Handling different separators with sep parameter",
+                        "Managing headers and column names",
+                        "Working with multiple Excel sheets",
+                        "Understanding decimal formats",
+                        "File encoding and error handling"
+                    ]
+                },
+                {
+                    name: "Data Exploration",
+                    concepts: [
+                        "Using describe() for statistical summary",
+                        "Checking data info with info()",
+                        "Sampling data with sample()",
+                        "Viewing data with head() and tail()",
+                        "Including specific data types",
+                        "Renaming columns efficiently",
+                        "Detecting missing values with isna().sum()",
+                        "Analyzing value distributions with value_counts()",
+                        "Finding duplicates with duplicated() method",
+                        "Understanding variable types (Quantitative vs Categorical)",
+                        "Data type conversion with astype()",
+                        "Error handling in type conversion (raise, coerce, ignore)"
+                    ]
+                },
+                {
+                    name: "Missing Data Handling",
+                    concepts: [
+                        "Basic imputation with fillna()",
+                        "Statistical imputation (mean, median)",
+                        "Understanding median's robustness to outliers",
+                        "Advanced imputation techniques:",
+                        "- Regression imputation",
+                        "- K-nearest neighbor (KNN)",
+                        "- Iterative imputation (MICE)"
+                    ]
+                },
+                {
+                    name: "Data Visualization",
+                    concepts: [
+                        "Working with Matplotlib, Seaborn, and Plotly",
+                        "Creating scatter plots and line plots",
+                        "Customizing plot elements:",
+                        "- Titles and labels (title, xlabel, ylabel)",
+                        "- Axis limits (xlim, ylim)",
+                        "- Figure size and style",
+                        "- Grid and legend",
+                        "Creating histograms with hist()",
+                        "Correlation analysis with corr()",
+                        "Using scatter_matrix for multivariate analysis",
+                        "Saving plots with savefig()",
+                        "Plot customization with style parameters",
+                        "Rotation options with rot parameter"
+                    ]
+                },
+                {
+                    name: "Advanced Data Operations",
+                    concepts: [
+                        "DateTime operations with .dt accessor",
+                        "Timezone handling (tz_localize, tz_convert)",
+                        "Feature engineering techniques",
+                        "Boolean column generation",
+                        "Category creation with apply()",
+                        "Aggregating grouped data with agg()",
+                        "Split-apply-combine methodology",
+                        "Creating pivot tables with pivot_table()",
+                        "Combining data with concat() and merge()",
+                        "Row and column removal with drop()",
+                        "Advanced filtering with isin() and query()",
+                        "Data transformation with where() and replace()"
+                    ]
+                }
+            ],
+            project: {
+                name: "Data Processing Project",
+                skills: ["Data loading", "File handling", "Data exploration", "Missing data imputation", "Data visualization"]
+            }
+        },
+        {
+            title: "Sprint 3: Statistical Analysis and Probability",
+            topics: [
+                {
+                    name: "Variable Types and Distributions",
+                    concepts: [
+                        "Continuous vs. Discrete Variables",
+                        "Frequency Histograms",
+                        "Density Histograms",
+                        "Measures of Location (Mean, Median)",
+                        "Data Distribution Shapes",
+                        "Positive and Negative Skew",
+                        "Normal Distribution (Bell Curve)",
+                        "Three-Sigma Rule"
+                    ]
+                },
+                {
+                    name: "Measures of Dispersion",
+                    concepts: [
+                        "Distance from Mean Calculations",
+                        "Variance Calculation",
+                        "Standard Deviation using NumPy std()",
+                        "Understanding Sigma Squared",
+                        "Covariance Concepts",
+                        "Mathematical Formulas:",
+                        "- Mean Distance Formula",
+                        "- Variance Formula",
+                        "- Covariance Formula"
+                    ]
+                },
+                {
+                    name: "Probability Theory",
+                    concepts: [
+                        "Sample Space and Elementary Outcomes",
+                        "Event Probability Calculations",
+                        "Law of Large Numbers",
+                        "Mutually Exclusive Events",
+                        "Independent vs. Dependent Events",
+                        "Venn Diagrams",
+                        "Random Variables (Discrete and Continuous)",
+                        "Expected Value and Variance",
+                        "Binomial Experiments (Bernoulli)",
+                        "Probability Density Plots",
+                        "Normal Distribution Functions:",
+                        "- scipy.stats.norm.cdf()",
+                        "- scipy.stats.norm.ppf()",
+                        "Normal Approximation to Binomial"
+                    ]
+                },
+                {
+                    name: "Statistical Testing",
+                    concepts: [
+                        "Random Sampling Methods",
+                        "Statistical Population Analysis",
+                        "Stratified Sampling Techniques",
+                        "Sampling Distribution Concepts",
+                        "Standard Error Calculations",
+                        "Hypothesis Testing:",
+                        "- Two-Tailed Hypotheses",
+                        "- One-Tailed Hypotheses",
+                        "- Null Hypothesis (H₀)",
+                        "Statistical Tests:",
+                        "- scipy.stats.ttest_1samp",
+                        "- scipy.stats.ttest_rel",
+                        "Paired Sample Analysis",
+                        "Interpreting Test Results"
+                    ]
+                }
+            ],
+            project: {
+                name: "Statistical Analysis Project",
+                skills: ["Probability Calculations", "Distribution Analysis", "Statistical Testing", "Data Visualization"]
+            }
+        }
+    ]
+};
+---
+
+<Layout title="Python Learning Journey">
+    <section class="python-header">
+        <h1>{pythonContent.introduction.title}</h1>
+        <p>{pythonContent.introduction.description}</p>
+    </section>
+
+    <section class="sprints">
+        {pythonContent.sprints.map((sprint) => (
+            <div class="sprint-section">
+                <h2>{sprint.title}</h2>
+                <div class="topics">
+                    {sprint.topics.map((topic) => (
+                        <div class="topic">
+                            <h3>{topic.name}</h3>
+                            <ul>
+                                {topic.concepts.map((concept) => (
+                                    <li>{concept}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+                <div class="project">
+                    <h3>Project: {sprint.project.name}</h3>
+                    <div class="skills">
+                        {sprint.project.skills.map((skill) => (
+                            <span class="skill-tag">{skill}</span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        ))}
+    </section>
+</Layout>
+
+<style>
+    .python-header {
+        margin: 4rem 0;
+    }
+
+    .python-header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .python-header p {
+        color: var(--accent-color);
+        font-size: 1.2rem;
+        max-width: 800px;
+        line-height: 1.6;
+    }
+
+    .sprints {
+        margin: 2rem 0;
+    }
+
+    .sprint-section {
+        margin-bottom: 4rem;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .sprint-section h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: #4CAF50;
+    }
+
+    .topics {
+        display: grid;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .topic {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .topic h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--accent-color);
+    }
+
+    .topic ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .topic li {
+        margin-bottom: 0.5rem;
+        padding-left: 1.5rem;
+        position: relative;
+        line-height: 1.6;
+    }
+
+    .topic li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--accent-color);
+    }
+
+    .project {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .project h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .skill-tag {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.875rem;
+    }
+
+    @media (min-width: 768px) {
+        .topics {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .topics {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+</style>
