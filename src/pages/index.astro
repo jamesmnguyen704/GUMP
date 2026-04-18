@@ -1,36 +1,333 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SocialStats from '../components/SocialStats.astro';
+
+const sections = [
+    { title: "About", href: "/about", body: "Background, how I work, and the skills tiered by real experience." },
+    { title: "Work", href: "/work", body: "Ten years of finance and data — reconciliation at enterprise scale, now building systems that replace it." },
+    { title: "Projects", href: "/projects", body: "Systems I'm shipping at Day & Night Solar, capstones, and the TripleTen ML portfolio." },
+    { title: "Python", href: "/python", body: "Sprint-by-sprint notes from the TripleTen DS program." },
+    { title: "Learning", href: "/learning", body: "Tutorial series built with Claude — finance automation, AI orchestration, full-stack scaffolding — plus credentials." },
+    { title: "Blog", href: "/blog", body: "Writing on finance, data, AI orchestration, and career transitions." },
+    { title: "Favorites", href: "/favorites", body: "Books, tools, and links worth returning to." },
+];
+
+const currentlyBuilding = [
+    {
+        title: "Finance Platform",
+        description: "Python/FastAPI + SQLAlchemy service layer designed for Postgres migration. Replaces a spreadsheet-centric close process with a query-able operational database.",
+        stack: "FastAPI · SQLAlchemy · Alembic · Postgres",
+    },
+    {
+        title: "QuickBooks Automation",
+        description: "Programmatic IIF generation for customers, POs, invoices, and deposits — with anti-duplicate safety checks against tens of thousands of historical transactions.",
+        stack: "Python · QuickBooks Enterprise · IIF",
+        outcome: "Eliminated 90%+ of manual QB entry",
+    },
+    {
+        title: "Bank Reconciliation Engine",
+        description: "Progressive fuzzy-match engine across 5 bank accounts. Tier-priority confidence scoring with review queues for ambiguous matches — surfaces discrepancies before month-end, not after.",
+        stack: "Python · pandas · rule-based matching",
+    },
+    {
+        title: "Executive Dashboards",
+        description: "pandas + openpyxl pipeline covering P&L, cash flow, billing, margin, and schedule. Auto-regenerates — CFO reads the same data leadership does.",
+        stack: "pandas · openpyxl · HTML",
+    },
+    {
+        title: "AI Orchestration Layer",
+        description: "Multi-agent framework on Claude Code — reusable skill definitions, a three-stage code-quality pipeline (implement → review → resolve), tiered model routing across cloud + local LLMs.",
+        stack: "Claude Code · Anthropic SDK · MCP · Ollama",
+    },
+    {
+        title: "Document Intelligence",
+        description: "OCR + classification + auto-routing for hundreds of incoming vendor docs, bank statements, and internal cost models. Outlook forensics pipeline builds defensive timelines for dispute prep.",
+        stack: "EasyOCR · PyPDF2 · Python",
+    },
+];
+
+const featuredProjects = [
+    {
+        title: "Project Waffles",
+        tagline: "Solar-industry operations and BI platform — in active development.",
+        stack: "Python · SQL · SQLite · Pandas",
+    },
+    {
+        title: "Cinemetrics",
+        tagline: "Full-stack SPA capstone — real-time movie data from the TMDB API.",
+        stack: "JavaScript · Node · Express · MongoDB",
+    },
+    {
+        title: "Age Detection (TripleTen)",
+        tagline: "Computer-vision regression model for alcohol-sales compliance.",
+        stack: "Python · TensorFlow · Keras · CNN",
+    },
+];
+
+const description = "Data & AI engineer from a 10+ year finance background. I turn messy operations into intelligent systems — reconciliation, automation, and AI-integrated back-office tooling.";
 ---
 
-<Layout title="Home">
+<Layout title="Home" description={description}>
     <section class="hero">
-        <h1>Hi, I'm James Nguyen</h1>
-        <p class="subtitle">Accountant/Data Scientist & pursuing FullStack Developer</p>
+        <p class="eyebrow">Data &amp; AI Engineer · Finance &amp; Operations Analyst</p>
+        <h1>Turning messy operations into intelligent systems.</h1>
         <p class="description">
-            I specialize in building machine learning models and analyzing complex datasets 
-            to solve real-world problems, while learning to build websites
+            I'm James — ten years in accounting, a TripleTen Data Science certification, and a SavvyCoders Full Stack cert.
+            These days I build internal operating systems where finance, data engineering, and AI orchestration meet.
+            Currently rebuilding back-office ops at Day &amp; Night Solar across 170+ commercial projects in 15 states.
         </p>
+        <div class="hero-cta">
+            <a href="/work" class="cta-primary">See the work <span aria-hidden="true">&rarr;</span></a>
+            <a href="/projects" class="cta-secondary">Projects</a>
+            <a href="mailto:jamesmnguyen704@outlook.com" class="cta-secondary">Get in touch</a>
+        </div>
     </section>
-    <SocialStats />
+
+    <section class="building">
+        <div class="section-head">
+            <h2>Currently building</h2>
+            <p class="section-sub">
+                Six systems that make up the internal operations platform at Day &amp; Night Solar.
+                Each one replaces a spreadsheet, a folder of PDFs, or a manual QuickBooks workflow.
+            </p>
+        </div>
+        <ul class="systems-grid">
+            {currentlyBuilding.map(system => (
+                <li class="system-card">
+                    <h3>{system.title}</h3>
+                    <p>{system.description}</p>
+                    {system.outcome && <p class="outcome">{system.outcome}</p>}
+                    <p class="stack">{system.stack}</p>
+                </li>
+            ))}
+        </ul>
+    </section>
+
+    <section class="featured">
+        <div class="section-head">
+            <h2>Featured projects</h2>
+            <p class="section-sub">
+                <a href="/projects" class="inline-link">See all projects <span aria-hidden="true">&rarr;</span></a>
+            </p>
+        </div>
+        <ul class="featured-grid">
+            {featuredProjects.map(p => (
+                <li class="featured-card">
+                    <h3>{p.title}</h3>
+                    <p>{p.tagline}</p>
+                    <p class="stack">{p.stack}</p>
+                </li>
+            ))}
+        </ul>
+    </section>
+
+    <section class="explore">
+        <h2>Explore</h2>
+        <ul class="card-grid">
+            {sections.map(section => (
+                <li class="card">
+                    <a href={section.href}>
+                        <h3>
+                            {section.title}
+                            <span aria-hidden="true">&rarr;</span>
+                        </h3>
+                        <p>{section.body}</p>
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </section>
+
+    <section class="contact">
+        <h2>Let's connect</h2>
+        <p>
+            Open to Data Analyst, Junior Software Engineer, and Finance/Operations roles where accounting, data, and code intersect.
+        </p>
+        <ul class="links-inline">
+            <li><a href="mailto:jamesmnguyen704@outlook.com">jamesmnguyen704@outlook.com</a></li>
+            <li><a href="https://github.com/jamesmnguyen704" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/jamesmnguyen704/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+    </section>
 </Layout>
 
 <style>
     .hero {
-        margin: 4rem 0;
-        max-width: 800px;
+        margin: 4rem 0 5rem;
+        max-width: 820px;
     }
-    h1 {
-        font-size: 4rem;
+    .eyebrow {
+        color: #8aa;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.78rem;
         margin-bottom: 1rem;
     }
-    .subtitle {
-        font-size: 1.5rem;
-        color: var(--accent-color);
+    .hero h1 {
+        font-size: clamp(2.25rem, 5vw, 3.75rem);
+        line-height: 1.1;
         margin-bottom: 1.5rem;
+        letter-spacing: -0.02em;
     }
     .description {
-        font-size: 1.2rem;
-        line-height: 1.6;
+        font-size: 1.15rem;
+        line-height: 1.65;
+        color: #ccc;
+        max-width: 720px;
+        margin-bottom: 2rem;
     }
+    .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    .cta-primary,
+    .cta-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.7rem 1.25rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .cta-primary {
+        background: #fff;
+        color: #000;
+        border: 1px solid #fff;
+    }
+    .cta-primary:hover { background: #ddd; border-color: #ddd; }
+    .cta-secondary {
+        color: #eee;
+        border: 1px solid #333;
+    }
+    .cta-secondary:hover { border-color: #fff; }
+
+    section {
+        margin: 4rem 0;
+    }
+    .section-head { margin-bottom: 1.5rem; }
+    .section-head h2 {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+    }
+    .section-sub {
+        color: #aaa;
+        font-size: 0.95rem;
+        max-width: 720px;
+        line-height: 1.55;
+    }
+    .inline-link {
+        color: #aaa;
+        text-decoration: none;
+        border-bottom: 1px solid #333;
+    }
+    .inline-link:hover { color: #fff; border-color: #fff; }
+
+    .systems-grid {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+    }
+    .system-card {
+        background: #0d0d0d;
+        border: 1px solid #222;
+        border-radius: 10px;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+    .system-card h3 {
+        font-size: 1.05rem;
+        margin: 0;
+    }
+    .system-card p {
+        color: #bbb;
+        line-height: 1.55;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+    .system-card .outcome {
+        color: #7fc995;
+        font-size: 0.82rem;
+        font-weight: 500;
+    }
+    .system-card .stack {
+        color: #777;
+        font-size: 0.78rem;
+        margin-top: auto;
+        letter-spacing: 0.01em;
+    }
+
+    .featured-grid {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+    }
+    .featured-card {
+        border: 1px solid #2a2a2a;
+        border-radius: 10px;
+        padding: 1.25rem;
+        background: #111;
+    }
+    .featured-card h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
+    .featured-card p { color: #bbb; line-height: 1.55; font-size: 0.9rem; margin: 0; }
+    .featured-card .stack { color: #777; font-size: 0.78rem; margin-top: 0.75rem; }
+
+    .explore h2 { font-size: 1.6rem; margin-bottom: 1.5rem; }
+    .card-grid {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+    }
+    .card {
+        border: 1px solid #2a2a2a;
+        border-radius: 8px;
+        background: #111;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .card:hover { border-color: #fff; transform: translateY(-2px); }
+    .card a {
+        display: block;
+        padding: 1.25rem;
+        color: #eee;
+        text-decoration: none;
+    }
+    .card h3 {
+        font-size: 1.05rem;
+        margin: 0 0 0.4rem;
+        display: flex;
+        justify-content: space-between;
+    }
+    .card h3 span { color: #666; transition: transform 0.2s, color 0.2s; }
+    .card:hover h3 span { transform: translateX(3px); color: #fff; }
+    .card p { margin: 0; color: #999; font-size: 0.9rem; line-height: 1.55; }
+
+    .contact h2 { font-size: 1.4rem; margin-bottom: 0.75rem; }
+    .contact p { color: #bbb; line-height: 1.6; margin-bottom: 1rem; max-width: 720px; }
+    .links-inline {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+    }
+    .links-inline a {
+        color: #ddd;
+        text-decoration: none;
+        border-bottom: 1px solid #333;
+        padding-bottom: 2px;
+    }
+    .links-inline a:hover { color: #fff; border-color: #fff; }
 </style>

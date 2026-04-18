@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FullBlogPost from '../../components/FullBlogPost.astro';
+---
+
+<Layout title="ERP Data Migration: A SQL + Excel Playbook">
+    <FullBlogPost
+        title="ERP Data Migration: A SQL + Excel Playbook"
+        date="Coming soon"
+        readTime="10 mins read"
+        category="Data · SQL"
+        author="James Nguyen"
+    >
+        <p class="lede">
+            Lessons from a SAGE CRE 300 → CMiC ERP migration at Keeley Companies — how to
+            extract, validate, and reconcile large datasets with SQL, VS Code, and advanced
+            Excel when you don't own the ETL pipeline.
+        </p>
+
+        <h2>The problem</h2>
+        <p>
+            An ERP migration that's already in flight is a different animal than a greenfield
+            one. You're reconciling against someone else's ETL decisions, finding discrepancies
+            after the fact, and the "source of truth" keeps moving. This is the playbook I wish
+            I'd had on day one.
+        </p>
+
+        <h2>What you'll build</h2>
+        <ul>
+            <li>A repeatable extract-validate-compare workflow in SQL + Excel</li>
+            <li>Row-count and hash-based reconciliation between old and new systems</li>
+            <li>A discrepancy report your ETL team can actually act on</li>
+        </ul>
+
+        <h2>Prerequisites</h2>
+        <ul>
+            <li>Read access to both source and target databases</li>
+            <li>SQL comfort — joins, window functions, basic aggregates</li>
+            <li>Advanced Excel: XLOOKUP, INDEX/MATCH, IFERROR, SUMIFS, TRIM</li>
+        </ul>
+
+        <h2>1. Scoping what to reconcile</h2>
+        <p><em>Coming soon — the tables that matter vs. the ones that don't; how to read a migration spec skeptically.</em></p>
+
+        <h2>2. Extracting comparable snapshots</h2>
+        <p><em>Coming soon — SQL query patterns I used to pull matching slices from both systems.</em></p>
+
+        <h2>3. The Excel validation layer</h2>
+        <p><em>Coming soon — why Excel is still the fastest audit tool, and the formulas that do the heavy lifting.</em></p>
+
+        <h2>4. Writing discrepancy reports that get fixed</h2>
+        <p><em>Coming soon — the format the ETL team at Keeley actually responded to.</em></p>
+
+        <h2>Wrap-up</h2>
+        <p><em>Coming soon — what I'd automate next time.</em></p>
+    </FullBlogPost>
+</Layout>
+
+<style>
+    .lede {
+        font-size: 1.2rem;
+        color: #ddd;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+        padding-left: 1rem;
+        border-left: 2px solid #3a5;
+    }
+</style>

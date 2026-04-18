@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FullBlogPost from '../../components/FullBlogPost.astro';
+---
+
+<Layout title="Building a Bank Reconciliation Engine with Fuzzy Matching">
+    <FullBlogPost
+        title="Building a Bank Reconciliation Engine with Fuzzy Matching"
+        date="Coming soon"
+        readTime="15 mins read"
+        category="Automation · Finance"
+        author="James Nguyen"
+    >
+        <p class="lede">
+            How I built a progressive fuzzy-match reconciliation engine across 5 bank accounts —
+            tier-priority confidence scoring, review queues for ambiguous matches, and discrepancies
+            that surface before month-end, not after.
+        </p>
+
+        <h2>The problem</h2>
+        <p>
+            Traditional bank rec tools assume perfect data. Real life is messy — memos change,
+            amounts split across multiple posts, dates drift by a day, and descriptions shift
+            between banks. A pure exact-match engine breaks on the first edge case.
+        </p>
+
+        <h2>What you'll build</h2>
+        <ul>
+            <li>A multi-tier match engine (exact → date-adjusted → fuzzy-memo → amount-split)</li>
+            <li>Confidence scoring so you know which matches to trust</li>
+            <li>A review queue that surfaces only what a human needs to look at</li>
+            <li>Audit logs that make every match reversible</li>
+        </ul>
+
+        <h2>Prerequisites</h2>
+        <ul>
+            <li>Python 3.11+ with pandas and rapidfuzz</li>
+            <li>Sample bank statements and a GL/AP export</li>
+            <li>Basic comfort with SQL and dataframe joins</li>
+        </ul>
+
+        <h2>1. Designing the match pipeline</h2>
+        <p><em>Coming soon — why progressive matching beats a single pass, and the tier order I use.</em></p>
+
+        <h2>2. Writing the match tiers</h2>
+        <p><em>Coming soon — exact, date-window, fuzzy-memo, and amount-split matchers — with code.</em></p>
+
+        <h2>3. Confidence scoring</h2>
+        <p><em>Coming soon — how I weight each signal and set a threshold for "auto" vs. "review."</em></p>
+
+        <h2>4. The review queue</h2>
+        <p><em>Coming soon — the minimal UI I render as HTML + the audit log that survives re-runs.</em></p>
+
+        <h2>Wrap-up</h2>
+        <p><em>Coming soon — what went wrong on the first version and how I fixed it.</em></p>
+    </FullBlogPost>
+</Layout>
+
+<style>
+    .lede {
+        font-size: 1.2rem;
+        color: #ddd;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+        padding-left: 1rem;
+        border-left: 2px solid #3a5;
+    }
+</style>
