@@ -57,24 +57,7 @@ const certifications: Credential[] = [
     },
 ];
 
-const inProgress: Credential[] = [
-    {
-        title: "NABCEP PV Associate",
-        provider: "NABCEP",
-        status: "In Progress",
-        completion: "2026",
-        description: "Entry-level photovoltaic credential covering PV system fundamentals, safety, and the installation process — direct alignment with my solar-operations work at Day & Night Solar.",
-        skills: ["PV Systems", "Solar Safety", "NEC Code Basics"],
-    },
-    {
-        title: "NABCEP PV Installation Professional",
-        provider: "NABCEP",
-        status: "In Progress",
-        completion: "2026+",
-        description: "Advanced PV installation credential — the industry gold standard for PV installers and systems professionals.",
-        skills: ["PV Design", "Installation Best Practices", "Commissioning", "Troubleshooting"],
-    },
-];
+const inProgress: Credential[] = [];
 
 const tutorials = [
     {
@@ -113,25 +96,27 @@ const tutorials = [
         </p>
     </section>
 
-    <section class="credentials">
-        <h2>In progress</h2>
-        {inProgress.map(course => (
-            <article class="course-card in-progress">
-                <div class="course-header">
-                    <h3>{course.title}</h3>
-                    <span class="status status-inprogress">In Progress</span>
-                </div>
-                <div class="provider-info">
-                    <span class="provider">{course.provider}</span>
-                    <span class="completion">target {course.completion}</span>
-                </div>
-                <p class="description">{course.description}</p>
-                <div class="skills">
-                    {course.skills.map(skill => <span class="skill-tag">{skill}</span>)}
-                </div>
-            </article>
-        ))}
-    </section>
+    {inProgress.length > 0 && (
+        <section class="credentials">
+            <h2>In progress</h2>
+            {inProgress.map(course => (
+                <article class="course-card in-progress">
+                    <div class="course-header">
+                        <h3>{course.title}</h3>
+                        <span class="status status-inprogress">In Progress</span>
+                    </div>
+                    <div class="provider-info">
+                        <span class="provider">{course.provider}</span>
+                        <span class="completion">target {course.completion}</span>
+                    </div>
+                    <p class="description">{course.description}</p>
+                    <div class="skills">
+                        {course.skills.map(skill => <span class="skill-tag">{skill}</span>)}
+                    </div>
+                </article>
+            ))}
+        </section>
+    )}
 
     <section class="credentials">
         <h2>Completed</h2>
