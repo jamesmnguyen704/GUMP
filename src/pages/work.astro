@@ -1,36 +1,60 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import WorkExperience from '../components/WorkExperience.astro';
+
+const description = "Work history of James Nguyen: Day & Night Solar, Keeley, Curtiss-Wright, Robert Half, NTT, Wells Fargo, Walmart eCommerce, and Top Nails Tech (founder).";
 ---
 
-<Layout title="Work Experience">
+<Layout title="Work" description={description}>
     <section class="work-header">
-        <h1>Work Experience</h1>
-        <p>A detailed overview of my professional journey and accomplishments.</p>
+        <h1>Work</h1>
+        <p>
+            Ten-plus years of finance and operations work — from running my own business to
+            enterprise reconciliation at NTT, Robert Half, and Curtiss-Wright, to building the
+            internal operating system at Day &amp; Night Solar. The through-line is the same: take
+            messy financial data from multiple source systems and turn it into something reliable.
+        </p>
     </section>
 
     <section class="work-content">
         <WorkExperience />
     </section>
+
+    <section class="throughline">
+        <h2>The through-line</h2>
+        <p>
+            Every role has been about reconciling high-volume financial data across messy source
+            systems. First as a business owner running my own P&amp;L, then inside enterprise ERPs,
+            then modeling the data with ML. Now I build the systems that replace the manual work —
+            with a CPA-grade mindset for controls, audit trails, and safety.
+        </p>
+    </section>
 </Layout>
 
 <style>
-    .work-header {
-        margin: 4rem 0;
-    }
-
-    .work-header h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-    }
-
+    .work-header { margin: 4rem 0 2rem; max-width: 780px; }
+    .work-header h1 { font-size: 3rem; margin-bottom: 1rem; }
     .work-header p {
-        color: var(--accent-color);
-        font-size: 1.2rem;
-        max-width: 600px;
+        color: #ccc;
+        font-size: 1.1rem;
+        line-height: 1.7;
     }
-
-    .work-content {
-        margin: 2rem 0;
+    .work-content { margin: 2rem 0 4rem; }
+    .throughline {
+        margin: 4rem 0;
+        padding: 1.5rem 1.75rem;
+        border-left: 2px solid #3a5;
+        background: rgba(58, 170, 85, 0.04);
+        max-width: 780px;
+    }
+    .throughline h2 {
+        font-size: 1.2rem;
+        margin: 0 0 0.75rem;
+        color: #eee;
+    }
+    .throughline p {
+        color: #ccc;
+        line-height: 1.7;
+        margin: 0;
     }
 </style>

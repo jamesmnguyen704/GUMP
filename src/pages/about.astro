@@ -11,22 +11,43 @@ type SkillGroup = {
 
 const groups: SkillGroup[] = [
     {
-        title: "Data & Python",
-        blurb: "The tools I reach for first when a dataset lands on my desk.",
+        title: "Programming & AI",
+        blurb: "Where I spend most of my build time right now.",
         skills: [
             { name: "Python", tier: "Core" },
+            { name: "SQL", tier: "Core" },
+            { name: "JavaScript", tier: "Working" },
+            { name: "TypeScript", tier: "Exploring" },
+            { name: "Claude Code", tier: "Core" },
+            { name: "Anthropic SDK", tier: "Working" },
+            { name: "MCP", tier: "Working" },
+            { name: "Prompt Engineering", tier: "Working" },
+            { name: "LLM Orchestration", tier: "Working" },
+            { name: "Ollama (local LLMs)", tier: "Working" },
+            { name: "n8n", tier: "Exploring" },
+        ],
+    },
+    {
+        title: "Data & Engineering",
+        blurb: "Turning messy source systems into something you can actually query.",
+        skills: [
             { name: "pandas", tier: "Core" },
             { name: "NumPy", tier: "Core" },
-            { name: "SQL", tier: "Core" },
-            { name: "Matplotlib", tier: "Core" },
-            { name: "Seaborn", tier: "Working" },
-            { name: "Plotly", tier: "Working" },
-            { name: "SciPy / statsmodels", tier: "Working" },
+            { name: "FastAPI", tier: "Working" },
+            { name: "SQLAlchemy", tier: "Working" },
+            { name: "Alembic", tier: "Working" },
+            { name: "PostgreSQL", tier: "Working" },
+            { name: "SQLite", tier: "Working" },
+            { name: "DuckDB", tier: "Exploring" },
+            { name: "Database Schema Design", tier: "Working" },
+            { name: "ETL", tier: "Working" },
+            { name: "Data Scraping", tier: "Working" },
+            { name: "openpyxl", tier: "Working" },
         ],
     },
     {
         title: "Machine Learning",
-        blurb: "Classical ML where I've shipped measurable results, and the newer stuff I'm building on.",
+        blurb: "Classical ML where I've shipped measurable results, plus what I'm building toward.",
         skills: [
             { name: "scikit-learn", tier: "Core" },
             { name: "Decision Trees / Random Forest", tier: "Core" },
@@ -38,65 +59,74 @@ const groups: SkillGroup[] = [
             { name: "TensorFlow / Keras (CNNs)", tier: "Working" },
             { name: "Time Series Forecasting", tier: "Working" },
             { name: "PyTorch", tier: "Exploring" },
-            { name: "LLMs / embeddings", tier: "Exploring" },
         ],
     },
     {
-        title: "Statistics & Experimentation",
-        blurb: "The stats muscle behind the models.",
+        title: "Full-Stack Web",
+        blurb: "The SavvyCoders stack — built a real capstone in it.",
         skills: [
-            { name: "Hypothesis Testing", tier: "Core" },
-            { name: "A/B Testing", tier: "Working" },
-            { name: "Experimental Design", tier: "Working" },
-            { name: "Bootstrap / Resampling", tier: "Working" },
-            { name: "Anomaly Detection", tier: "Working" },
-        ],
-    },
-    {
-        title: "Web & Dev Tooling",
-        blurb: "Where I'm rebuilding as a full-stack developer.",
-        skills: [
+            { name: "Node.js", tier: "Working" },
+            { name: "Express", tier: "Working" },
+            { name: "MongoDB", tier: "Working" },
+            { name: "Mongoose", tier: "Working" },
+            { name: "REST APIs", tier: "Working" },
             { name: "HTML / CSS", tier: "Working" },
-            { name: "JavaScript", tier: "Working" },
-            { name: "Git & GitHub", tier: "Working" },
             { name: "Astro", tier: "Working" },
+            { name: "Git / GitHub", tier: "Core" },
             { name: "VS Code", tier: "Core" },
             { name: "Netlify", tier: "Working" },
-            { name: "TypeScript", tier: "Exploring" },
-            { name: "React", tier: "Exploring" },
-            { name: "Node.js", tier: "Exploring" },
+            { name: "Docker", tier: "Exploring" },
         ],
     },
     {
-        title: "Finance & Accounting",
-        blurb: "The background I don't want to hide — it still shapes how I frame problems.",
+        title: "Finance & Enterprise Systems",
+        blurb: "The foundation — still shapes how I think about controls, audit trails, and data integrity.",
         skills: [
+            { name: "Account Reconciliation", tier: "Core" },
             { name: "General Ledger", tier: "Core" },
-            { name: "Bank Reconciliation", tier: "Core" },
-            { name: "Journal Entries", tier: "Core" },
+            { name: "AP / AR", tier: "Core" },
             { name: "Fixed Assets", tier: "Core" },
+            { name: "Financial Reporting", tier: "Core" },
+            { name: "QuickBooks Enterprise", tier: "Core" },
             { name: "SAP", tier: "Working" },
             { name: "Oracle", tier: "Working" },
             { name: "Excel (advanced)", tier: "Core" },
+            { name: "Sage FAS", tier: "Working" },
+        ],
+    },
+    {
+        title: "Business Domains",
+        blurb: "Where my work has made real decisions.",
+        skills: [
+            { name: "Renewable Energy / Solar Operations", tier: "Working" },
+            { name: "Regulatory Compliance", tier: "Working" },
+            { name: "Tax Credit Research (ITC, Domestic Content)", tier: "Working" },
+            { name: "ERP Design", tier: "Working" },
+            { name: "ERP Migration", tier: "Working" },
+            { name: "Multi-state Sales Tax", tier: "Core" },
+            { name: "Period Close", tier: "Core" },
+            { name: "Audit Response", tier: "Working" },
         ],
     },
 ];
 
-const values = [
-    "Write it down — a result you can't explain isn't a result yet.",
-    "Prefer the simple model that ships to the clever one that doesn't.",
-    "Learn in public: repos, posts, and a site that reflects the work.",
+const principles = [
+    "Build once, reuse forever. Prefer automation over repetition.",
+    "Think in systems, not tasks — then make the system legible to the next person.",
+    "A result you can't explain isn't a result yet. Write it down.",
+    "CPA-grade mindset: controls, audit trails, and reversible operations by default.",
 ];
 ---
 
-<Layout title="About" description="James Nguyen — accountant turned data scientist, currently building toward full-stack. Skills, background, and what I'm working on now.">
+<Layout title="About" description="Data & AI engineer with a 10+ year finance background. Builder of internal operating systems at the intersection of accounting, data, and automation.">
     <section class="about-header">
         <h1>About</h1>
         <p class="intro">
-            I'm James — five years in accounting, two years building machine learning models,
-            and now learning full-stack so I can ship the ideas instead of just modeling them.
-            The short version: I like finding patterns in data and turning them into something
-            someone can actually use.
+            I'm a Data Scientist and AI engineer with a background in accounting and operations
+            analysis — a blend of financial expertise, technical depth, and applied AI experience
+            focused on solving real business problems. The path from certified accountant to
+            data scientist to AI systems builder shaped how I work: with business acumen,
+            analytical capabilities, and hands-on skill at building automated, agent-driven workflows.
         </p>
     </section>
 
@@ -105,19 +135,31 @@ const values = [
         <ul class="now-list">
             <li>
                 <span class="now-label">Building</span>
-                <span class="now-value">Full-stack web skills through SavvyCoders — JavaScript, HTML/CSS, Git, and the web platform end to end.</span>
+                <span class="now-value">
+                    Internal operations platform at Day &amp; Night Solar — finance system, QuickBooks
+                    automation, reconciliation engine, document intelligence, AI-integrated workflows.
+                </span>
             </li>
             <li>
                 <span class="now-label">Shipping</span>
-                <span class="now-value">This site (Astro + Netlify) as a living portfolio and writing space.</span>
+                <span class="now-value">
+                    Cinemetrics — full-stack SavvyCoders capstone (Node · Express · MongoDB · REST APIs),
+                    deployed end-to-end.
+                </span>
             </li>
             <li>
-                <span class="now-label">Studying</span>
-                <span class="now-value">Python fundamentals review, LLM-backed applications, and tightening my ML fundamentals.</span>
+                <span class="now-label">Exploring</span>
+                <span class="now-value">
+                    Multi-agent orchestration · local LLMs (Ollama) · document forensics · Postgres migration ·
+                    reproducible finance pipelines.
+                </span>
             </li>
             <li>
                 <span class="now-label">Open to</span>
-                <span class="now-value">Data science, analytics, or full-stack roles where finance + data is a plus.</span>
+                <span class="now-value">
+                    Data Analyst, Analytics Engineer, Data Scientist, Junior Software Engineer, or
+                    Finance/Operations roles where accounting, data, and code intersect.
+                </span>
             </li>
         </ul>
     </section>
@@ -125,23 +167,31 @@ const values = [
     <section class="journey">
         <h2>The path here</h2>
         <p>
-            I spent five years as an accountant — general ledger, bank rec, fixed assets, the full cycle.
-            What hooked me was noticing that the same spreadsheets I was reconciling had signal in them
-            if you treated them like a dataset instead of a report. That led me into TripleTen's data
-            science bootcamp, where I worked through 16 end-to-end projects: churn prediction, pricing
-            models, forecasting, NLP, a CNN regression.
+            What began as pattern-finding in financial data has grown into building full data and AI
+            systems. I spent a decade in accounting — general ledger, reconciliations, fixed assets, AP/AR
+            across enterprise ERPs at NTT, Curtiss-Wright, Robert Half, and Walmart eCommerce. Before
+            that, I ran my own service business for 13 years: full P&amp;L, payroll, state compliance,
+            a team of six, and 10–12% YoY revenue growth through digital marketing.
         </p>
         <p>
-            Now I'm learning full-stack so nothing has to stop at a notebook. My goal is to build
-            data-driven products where the finance and accounting sense informs the modeling, and
-            the modeling informs the product.
+            The through-line has always been reconciling high-volume financial data across messy source
+            systems. What changed is the tools — first Excel, then Python, then ML models from the
+            TripleTen data science program (16 end-to-end projects: churn, pricing, forecasting, NLP,
+            a CNN regression), and now full-stack from SavvyCoders. Today I design AI-assisted workflows
+            and agent-based systems on Claude Code, build domain-specific databases and tooling, and
+            work at the intersection of finance, operations, and automation.
+        </p>
+        <p>
+            My current focus: using AI orchestration and data engineering to streamline complex back-office
+            operations — combining traditional analytics with agent-based systems to deliver results that
+            would otherwise require much larger teams.
         </p>
     </section>
 
-    <section class="values">
+    <section class="principles">
         <h2>How I work</h2>
-        <ul class="values-list">
-            {values.map(v => <li>{v}</li>)}
+        <ul class="principles-list">
+            {principles.map(p => <li>{p}</li>)}
         </ul>
     </section>
 
@@ -174,23 +224,16 @@ const values = [
 </Layout>
 
 <style>
-    .about-header {
-        margin: 4rem 0 2rem;
-    }
-    .about-header h1 {
-        font-size: 3rem;
-        margin-bottom: 1.5rem;
-    }
+    .about-header { margin: 4rem 0 2rem; }
+    .about-header h1 { font-size: 3rem; margin-bottom: 1.5rem; }
     .intro {
         font-size: 1.15rem;
         line-height: 1.7;
-        max-width: 760px;
+        max-width: 780px;
         color: #ddd;
     }
 
-    section {
-        margin: 3rem 0;
-    }
+    section { margin: 3rem 0; }
     section h2 {
         font-size: 1.5rem;
         margin-bottom: 1rem;
@@ -204,7 +247,7 @@ const values = [
         margin: 0;
         display: grid;
         gap: 0.75rem;
-        max-width: 760px;
+        max-width: 780px;
     }
     .now-list li {
         display: grid;
@@ -220,29 +263,20 @@ const values = [
         letter-spacing: 0.08em;
         padding-top: 0.15rem;
     }
-    .now-value {
-        color: #ddd;
-        line-height: 1.6;
-    }
+    .now-value { color: #ddd; line-height: 1.6; }
 
-    .journey {
-        max-width: 760px;
-    }
-    .journey p {
-        line-height: 1.7;
-        color: #ccc;
-        margin-bottom: 1rem;
-    }
+    .journey { max-width: 780px; }
+    .journey p { line-height: 1.7; color: #ccc; margin-bottom: 1rem; }
 
-    .values-list {
+    .principles-list {
         list-style: none;
         padding: 0;
         margin: 0;
         display: grid;
         gap: 0.5rem;
-        max-width: 760px;
+        max-width: 780px;
     }
-    .values-list li {
+    .principles-list li {
         padding: 0.75rem 1rem;
         background: rgba(255, 255, 255, 0.03);
         border-left: 2px solid #3a5;
@@ -259,10 +293,7 @@ const values = [
         align-items: center;
         gap: 0.5rem;
     }
-    .skills-key strong {
-        color: #eee;
-        font-weight: 500;
-    }
+    .skills-key strong { color: #eee; font-weight: 500; }
     .dot-sep {
         width: 3px;
         height: 3px;
@@ -292,21 +323,9 @@ const values = [
         border-radius: 10px;
         padding: 1.25rem;
     }
-    .skill-group h3 {
-        font-size: 1.1rem;
-        margin: 0 0 0.25rem;
-    }
-    .skill-group .blurb {
-        color: #888;
-        font-size: 0.85rem;
-        margin-bottom: 1rem;
-        line-height: 1.5;
-    }
-    .skill-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-    }
+    .skill-group h3 { font-size: 1.1rem; margin: 0 0 0.25rem; }
+    .skill-group .blurb { color: #888; font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.5; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .skill-pill {
         display: inline-flex;
         align-items: center;

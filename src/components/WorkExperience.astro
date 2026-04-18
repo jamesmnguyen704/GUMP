@@ -4,130 +4,178 @@ interface WorkItem {
     position: string;
     duration: string;
     location: string;
+    type: string;
+    summary?: string;
     responsibilities: string[];
     skills?: string[];
-    type: string;
+    highlight?: boolean;
 }
 
 const experiences: WorkItem[] = [
     {
+        company: "Day & Night Solar",
+        position: "Finance & Operations Analyst",
+        duration: "Oct 2025 – Present",
+        location: "Collinsville, IL · Hybrid",
+        type: "Full-time",
+        highlight: true,
+        summary: "Rebuilding internal operations from the ground up across a commercial solar portfolio — 170+ projects, 15 states. Every system I ship replaces a spreadsheet, a folder of PDFs, or a manual QuickBooks workflow.",
+        responsibilities: [
+            "Build the internal operations platform end-to-end: Python/FastAPI + SQLAlchemy service layer designed for Postgres migration, replacing a spreadsheet-centric close process",
+            "Eliminated 90%+ of manual QuickBooks entry via programmatic IIF generation for customers, POs, invoices, and deposits — with anti-duplicate safety checks against tens of thousands of historical transactions",
+            "Built a progressive fuzzy-match bank reconciliation engine across 5 bank accounts; tier-priority confidence scoring surfaces discrepancies before month-end",
+            "Ship executive dashboards (pandas + openpyxl) covering P&L, cash flow, billing, margin, and schedule — auto-regenerates so the CFO reads the same data leadership does",
+            "Built the AI orchestration layer on Claude Code — multi-agent framework with reusable skill definitions, three-stage code-quality pipeline (implement → review → resolve), tiered cloud + local LLM routing",
+            "Shipped a document intelligence pipeline (OCR + classification + auto-routing) for hundreds of vendor docs, bank statements, and cost models; Outlook .msg / .eml forensics for dispute preparation",
+            "Operational scope: payroll, multi-state sales tax compliance, period close, vendor/customer master data, AR/AP, and audit response",
+            "Research federal tax credit and domestic content compliance and translate it into practical tools the team uses day-to-day",
+        ],
+        skills: [
+            "Python", "FastAPI", "SQLAlchemy", "Alembic", "PostgreSQL", "pandas", "openpyxl",
+            "Claude Code", "Anthropic SDK", "MCP", "Ollama", "EasyOCR", "PyPDF2",
+            "QuickBooks Enterprise", "Bank Reconciliation", "Sales Tax", "Data Engineering",
+            "Process Automation", "Regulatory Research",
+        ],
+    },
+    {
         company: "Keeley Companies",
         position: "Data Analyst",
-        duration: "Apr 2025 - Present · 2 mos",
-        location: "St Louis, Missouri, United States · On-site",
+        duration: "Mar 2025 – May 2025",
+        location: "St. Louis, MO · On-site",
         type: "Contract",
+        summary: "ERP data migration from SAGE CRE 300 to CMiC — extract, validate, reconcile.",
         responsibilities: [
-            "Understanding, analyzing, interpret complex data replicated from SAGE CRE 300 for data migration project",
-            "Extracting preformatted data from CMiC and validating data to the old ERP system",
-            "Comparing old and new data meticulously, providing detailed feedback on any discrepancies to the ETL team",
-            "Handling large data sets utilizing tools and comparison logic in SQL, VSCode, and Excel to ensure data accuracy",
-            "Using advance Excel skills VLOOKUP, XLOOKUP, IFERRORS, IFSUM, TRIM, and INDEXMATCH for some of the functions with the data"
+            "Analyzed and interpreted complex data replicated from SAGE CRE 300 for an ERP migration project",
+            "Extracted preformatted data from CMiC and validated it against the old ERP",
+            "Compared old and new data meticulously, providing detailed discrepancy feedback to the ETL team",
+            "Handled large datasets with SQL, VS Code, and advanced Excel (XLOOKUP, VLOOKUP, INDEX/MATCH, IFERRORS, SUMIFS, TRIM) to ensure data accuracy",
         ],
-        skills: ["SQL", "VLOOKUP", "INDEXMATCH", "Data Analysis", "Data Validation"]
+        skills: ["SQL", "VS Code", "Excel (advanced)", "Data Validation", "ERP Migration"],
     },
     {
         company: "Curtiss-Wright Corporation",
         position: "Staff Accountant",
-        duration: "Nov 2022 - Aug 2023 · 10 mos",
-        location: "Charlotte, North Carolina, United States · Hybrid",
+        duration: "Nov 2022 – Aug 2023",
+        location: "Charlotte, NC · Hybrid",
         type: "Full-time",
+        summary: "Financial reporting and reconciliations on SAP + Oracle; began automating the manual parts.",
         responsibilities: [
-            "Managed general ledgers and performed analytical problem solving",
-            "Handled fixed assets accounting and documentation",
-            "Conducted research and implemented problem-solving strategies",
-            "Maintained accurate financial records and reports"
+            "Managed financial reporting and reconciliations and ensured accuracy of financial statements",
+            "Automated data reconciliation processes, reducing manual errors and improving close efficiency",
+            "Collaborated across cross-functional teams to streamline accounting workflows",
+            "Supported budgeting and forecasting by analyzing historical financial trends",
+            "Used SAP and Oracle for financial reporting and data management to support decision-making",
+            "Managed fixed assets on Sage FAS",
         ],
-        skills: ["General Ledgers", "Analytic Problem Solving", "Fixed Assets", "Research Skills", "Problem Solving"]
+        skills: ["SAP", "Oracle", "Sage FAS", "Account Reconciliation", "Financial Reporting", "Budgeting & Forecasting"],
     },
     {
         company: "Robert Half",
         position: "Professional Consultant",
-        duration: "Oct 2021 - Jul 2022 · 10 mos",
-        location: "Charlotte, North Carolina, United States",
+        duration: "Oct 2021 – Jul 2022",
+        location: "Charlotte, NC",
         type: "Full-time",
+        summary: "Client-side accounting and reconciliation across Elgi, Essity, and Mood Media.",
         responsibilities: [
-            "Performed cash reconciliation and month-end closing procedures",
-            "Managed journal entries and bank reconciliation processes",
-            "Handled 401K and bonus compensation calculations",
-            "Conducted audits and managed commission calculations"
+            "Provided financial analysis and reconciliation support to clients, optimizing reporting processes",
+            "Performed exploratory data analysis to identify inconsistencies",
+            "Automated data reconciliation using Excel to reduce manual cycles",
+            "Consulted at Elgi, Essity, and Mood Media across month-end close, journal entries, bank reconciliation, 401K, bonus, commissions, and audit support",
         ],
-        skills: ["General Ledger Reconciliations", "General Ledgers", "Analytic Problem Solving", "Fixed Assets", "Account Reconciliation", "Research Skills", "Bank Reconciliation", "Problem Solving"]
+        skills: ["Account Reconciliation", "Bank Reconciliation", "Journal Entries", "Month-end Close", "Excel Automation"],
     },
     {
         company: "NTT",
         position: "Reconciliation Analyst",
-        duration: "May 2019 - Sep 2021 · 2 yrs 5 mos",
-        location: "Charlotte, North Carolina Area",
+        duration: "May 2019 – Sep 2021",
+        location: "Charlotte, NC · 2 yr 5 mo",
         type: "Full-time",
+        summary: "Sales tax rebates and vendor reconciliations for enterprise tech clients, including Cisco and Dell.",
         responsibilities: [
-            "Processed and reconciled statements for multiple vendors, handling millions of dollars in daily invoices",
-            "Managed complex projects including credits, debit memos, and partials",
-            "Researched and documented credit discrepancies using SAP, Oracle, and cloud-based systems",
-            "Coordinated with procurement, receiving, credit, ICM, buyers, and sales teams",
-            "Served as backup for payment processing, handling vendor payments for 11 vendors weekly"
+            "Specialized in sales tax rebates and vendor reconciliations for enterprise tech clients (Cisco, Dell)",
+            "Processed high-volume invoices and resolved unmatched discrepancies in holding accounts on SAP and Oracle",
+            "Collaborated with procurement, credit, and sales teams to research tax credits and ensure accurate financial reporting",
+            "Compiled and verified financial data to support timely vendor disbursements; covered 11 vendors weekly as payment-processing backup",
         ],
-        skills: ["Accounts Receivable (AR)", "Journal Entries (Accounting)", "Analytic Problem Solving", "Account Reconciliation", "Research Skills", "Accounts Payable", "Problem Solving"]
+        skills: ["SAP ERP", "Oracle", "Account Reconciliation", "AP / AR", "Sales Tax", "Vendor Management"],
     },
     {
         company: "Wells Fargo",
-        position: "Trading Service Representatives",
-        duration: "Jan 2019 - Mar 2019 · 3 mos",
-        location: "Charlotte, North Carolina",
+        position: "Trading Services Representative",
+        duration: "Jan 2019 – Mar 2019",
+        location: "Charlotte, NC",
         type: "Contract",
+        summary: "Sponsorship program — studied for SIE, Series 7, and Series 63; AML, fraud, and regulatory fundamentals.",
         responsibilities: [
-            "Participated in sponsorship program for SIE, Series 7, and Series 63 licensing",
-            "Studied AML, Fraud, and financial regulations",
-            "Learned about retirement plans and customer account management",
-            "Gained experience in trading-related operations"
-        ]
+            "Sponsorship program studying for SIE, Series 7, and Series 63 securities licensing",
+            "Trained in AML, fraud detection, and financial regulations",
+            "Learned retirement-plan mechanics and customer account management",
+        ],
+        skills: ["SIE", "Series 7", "Series 63", "AML", "Financial Regulations"],
     },
     {
-        company: "Walmart eCommerce",
-        position: "Accounts Payable Associate for Hayneedle",
-        duration: "May 2018 - Jan 2019 · 9 mos",
-        location: "Charlotte, North Carolina Area",
+        company: "Walmart eCommerce (Hayneedle)",
+        position: "Accounts Payable Associate",
+        duration: "May 2018 – Jan 2019",
+        location: "Charlotte, NC",
         type: "Full-time",
+        summary: "Processed and reconciled invoices for 800+ vendors; built training programs for specialist roles.",
         responsibilities: [
-            "Processed and managed invoices for over 800 vendors",
-            "Generated employee expense reports, debit memos, and handled check processing",
-            "Maintained relationships with vendors, buyers, and various department managers",
-            "Assisted with month-end closing and managed outstanding liabilities",
-            "Trained specialist III, IV, and V roles and developed training materials",
-            "Operated multiple accounting systems including Oracle, Medius, and Readsoft",
-            "Managed bank accounts and monitored records for potential disputes"
+            "Processed and reconciled invoices for 800+ vendors on Oracle, Medius, and Readsoft",
+            "Generated employee expense reports, debit memos, and sales-tax adjustments",
+            "Maintained relationships with vendors, buyers, and department managers",
+            "Supported month-end close and managed outstanding liabilities",
+            "Built and led training programs for Specialist III, IV, and V roles; developed the training materials",
         ],
-        skills: ["Problem Solving"]
-    }
+        skills: ["Oracle", "Medius", "Readsoft", "AP", "Month-end Close", "Training"],
+    },
+    {
+        company: "Top Nails Tech",
+        position: "Founder / Business Owner",
+        duration: "Aug 2005 – Apr 2018",
+        location: "Morganton, NC · 12 yr 9 mo",
+        type: "Self-employed",
+        summary: "Founded and ran a service business generating $200K+ annual revenue. Full P&L ownership, team of six, 10–12% YoY growth.",
+        responsibilities: [
+            "Full P&L ownership: payroll, AP/AR, lease negotiation, state compliance",
+            "Led a team of six",
+            "10–12% YoY revenue growth through multi-platform digital marketing",
+            "Built repeatable operational processes from scratch — the origin of how I think about internal tooling today",
+        ],
+        skills: ["P&L Ownership", "Payroll", "Small Business Operations", "Digital Marketing", "Team Leadership"],
+    },
 ];
 ---
 
 <div class="work-experience">
     {experiences.map((exp) => (
-        <div class="experience-item">
+        <article class={`experience-item${exp.highlight ? " highlight" : ""}`}>
             <div class="company-header">
                 <h3>{exp.position}</h3>
-                <span class="company">{exp.company} · {exp.type}</span>
-                <span class="duration">{exp.duration}</span>
+                <div class="meta">
+                    <span class="company">{exp.company}</span>
+                    <span class="dot-sep" aria-hidden="true">·</span>
+                    <span class="type">{exp.type}</span>
+                    <span class="dot-sep" aria-hidden="true">·</span>
+                    <span class="duration">{exp.duration}</span>
+                </div>
                 <span class="location">{exp.location}</span>
             </div>
-            
+
+            {exp.summary && <p class="summary">{exp.summary}</p>}
+
             <ul class="responsibilities">
-                {exp.responsibilities.map(item => (
-                    <li>{item}</li>
-                ))}
+                {exp.responsibilities.map(item => <li>{item}</li>)}
             </ul>
-            
+
             {exp.skills && exp.skills.length > 0 && (
                 <div class="skills">
-                    <span class="skills-label">Skills:</span>
                     <div class="skill-tags">
-                        {exp.skills.map(skill => (
-                            <span class="skill-tag">{skill}</span>
-                        ))}
+                        {exp.skills.map(skill => <span class="skill-tag">{skill}</span>)}
                     </div>
                 </div>
             )}
-        </div>
+        </article>
     ))}
 </div>
 
@@ -139,74 +187,78 @@ const experiences: WorkItem[] = [
     }
 
     .experience-item {
-        border-left: 2px solid var(--accent-color);
+        border-left: 2px solid #333;
         padding-left: 1.5rem;
         position: relative;
     }
-
     .experience-item::before {
         content: '';
         position: absolute;
         left: -5px;
-        top: 0;
+        top: 0.4rem;
         width: 8px;
         height: 8px;
-        background-color: var(--accent-color);
+        background: #666;
         border-radius: 50%;
     }
-
-    .company-header {
-        margin-bottom: 1rem;
+    .experience-item.highlight {
+        border-left-color: #3a5;
+        background: linear-gradient(90deg, rgba(58,170,85,0.04), transparent 40%);
+        padding: 0.5rem 1rem 1rem 1.5rem;
+        border-radius: 0 8px 8px 0;
     }
+    .experience-item.highlight::before { background: #3a5; }
 
-    .company-header h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-    }
+    .company-header { margin-bottom: 0.75rem; }
+    .company-header h3 { font-size: 1.3rem; margin: 0 0 0.35rem; }
 
-    .company {
-        display: block;
-        color: var(--accent-color);
-        margin-bottom: 0.25rem;
-    }
-
-    .duration, .location {
-        display: block;
+    .meta {
+        color: #aaa;
         font-size: 0.9rem;
-        color: var(--accent-color);
-        margin-bottom: 0.25rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        align-items: center;
+    }
+    .meta .company { color: #ddd; }
+    .dot-sep { color: #555; }
+    .location {
+        display: block;
+        font-size: 0.82rem;
+        color: #888;
+        margin-top: 0.2rem;
+    }
+
+    .summary {
+        color: #ddd;
+        line-height: 1.6;
+        margin: 0.8rem 0 0.5rem;
+        font-style: italic;
     }
 
     .responsibilities {
-        margin: 1rem 0;
-        padding-left: 1.5rem;
+        margin: 0.75rem 0 1rem;
+        padding-left: 1.25rem;
     }
-
     .responsibilities li {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.4rem;
         line-height: 1.6;
+        color: #ccc;
+        font-size: 0.95rem;
     }
 
-    .skills {
-        margin-top: 1rem;
-    }
-
-    .skills-label {
-        display: block;
-        margin-bottom: 0.5rem;
-        color: var(--accent-color);
-    }
-
+    .skills { margin-top: 0.75rem; }
     .skill-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem;
+        gap: 0.4rem;
     }
-
     .skill-tag {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 0.25rem 0.75rem;
-        border-radius: 15px;
-        font-size: 0.875rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.78rem;
+        color: #ccc;
     }
 </style>

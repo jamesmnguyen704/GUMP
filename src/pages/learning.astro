@@ -2,31 +2,78 @@
 import Layout from '../layouts/Layout.astro';
 import BlogPost from '../components/BlogPost.astro';
 
-const courses = [
+type Status = "Completed" | "In Progress" | "Planned";
+
+type Credential = {
+    title: string;
+    provider: string;
+    status: Status;
+    completion: string;
+    description: string;
+    skills: string[];
+    credentialUrl?: string;
+};
+
+const certifications: Credential[] = [
+    {
+        title: "Full Stack Web Development Certificate",
+        provider: "Savvy Coders",
+        status: "Completed",
+        completion: "Dec 2025",
+        description: "12-week immersive full-stack bootcamp in a facilitated Scrum environment running in two-week sprints. Built a full-stack capstone (Cinemetrics), deployed to Netlify and Render.",
+        skills: ["JavaScript", "HTML", "CSS", "Node.js", "Express", "MongoDB", "Mongoose", "REST APIs", "Git/GitHub", "Agile / Scrum", "SPAs", "CRUD", "Thunder Client"],
+    },
+    {
+        title: "Data Science Certification",
+        provider: "TripleTen",
+        status: "Completed",
+        completion: "May 2024",
+        description: "16 end-to-end data science projects covering Python, EDA, statistical testing, classical ML, tree ensembles, NLP, time series, and a CNN regression.",
+        skills: ["Python", "pandas", "NumPy", "scikit-learn", "LightGBM", "XGBoost", "CatBoost", "TensorFlow/Keras", "spaCy", "transformers", "Hypothesis Testing", "Time Series"],
+    },
+    {
+        title: "WorkKeys Silver — National Career Readiness",
+        provider: "ACT",
+        status: "Completed",
+        completion: "Dec 2025",
+        description: "National Career Readiness Certificate at the Silver level.",
+        skills: ["Data Analysis", "Applied Math", "Workplace Documents"],
+    },
+    {
+        title: "Agile Fundamentals (ICP)",
+        provider: "ICAgile",
+        status: "Completed",
+        completion: "2024",
+        description: "ICAgile Agile Fundamentals certification.",
+        skills: ["Agile", "Scrum", "Iterative Delivery"],
+    },
     {
         title: "Bachelor's Degree in Accounting",
         provider: "Belmont Abbey College",
         status: "Completed",
         completion: "2012",
-        description: "Comprehensive accounting program covering financial accounting, managerial accounting, auditing, and business principles.",
-        skills: ["Financial Accounting", "Managerial Accounting", "Business Law", "Taxation", "Auditing", "Cost Accounting", "Excel", "Business Ethics"]
+        description: "Comprehensive accounting program covering financial accounting, managerial accounting, auditing, taxation, and business law.",
+        skills: ["Financial Accounting", "Managerial Accounting", "Auditing", "Taxation", "Business Law", "Cost Accounting"],
     },
+];
+
+const inProgress: Credential[] = [
     {
-        title: "Triple Ten Data Science Bootcamp",
-        provider: "Triple Ten",
-        status: "Completed",
-        completion: "2024",
-        description: "Comprehensive data science program covering Python, machine learning, and statistical analysis.",
-        skills: ["Python", "Machine Learning", "Data Analysis", "Statistics", "Neural Networks"]
-    },
-    {
-        title: "Full Stack Development Bootcamp",
-        provider: "SavvyCoder",
+        title: "NABCEP PV Associate",
+        provider: "NABCEP",
         status: "In Progress",
-        completion: "December 2025",
-        description: "Currently learning full stack web development through SavvyCoders, focusing on JavaScript, HTML, CSS, Git, and building responsive, interactive web applications.",
-        skills: ["JavaScript", "HTML", "CSS", "React", "Node.js", "Database Management", "API Development", "Version Control"]
-    }
+        completion: "2026",
+        description: "Entry-level photovoltaic credential covering PV system fundamentals, safety, and the installation process — direct alignment with my solar-operations work at Day & Night Solar.",
+        skills: ["PV Systems", "Solar Safety", "NEC Code Basics"],
+    },
+    {
+        title: "NABCEP PV Installation Professional",
+        provider: "NABCEP",
+        status: "In Progress",
+        completion: "2026+",
+        description: "Advanced PV installation credential — the industry gold standard for PV installers and systems professionals.",
+        skills: ["PV Design", "Installation Best Practices", "Commissioning", "Troubleshooting"],
+    },
 ];
 
 const tutorials = [
@@ -35,41 +82,64 @@ const tutorials = [
         date: "19 Apr 2025",
         readTime: "6 Mins Read",
         category: "Data Analysis",
-        excerpt: "Learn how to create advanced Excel formulas for validating data migration, including VLOOKUP, IF statements, and date validation techniques.",
-        slug: "excel-formulas-tutorial"
+        excerpt: "Advanced Excel formulas for validating data migrations — VLOOKUP/XLOOKUP, IF chains, INDEX/MATCH, and date validation.",
+        slug: "excel-formulas-tutorial",
     },
     {
         title: "Updating My Site Using Bolt, VS Code, and GitHub",
         date: "17 Apr 2025",
         readTime: "8 Mins Read",
         category: "Development",
-        excerpt: "A detailed guide on my workflow for updating my personal website using Bolt, VS Code, and GitHub, ensuring smooth development and version control.",
-        slug: "updating-bolt-vscode-github"
+        excerpt: "My workflow for editing this site across Bolt, VS Code, and GitHub, with version control.",
+        slug: "updating-bolt-vscode-github",
     },
     {
-        title: "Git Basics: Cloning Repository; Pushing to GitHub",
+        title: "Git Basics: Cloning a Repo and Pushing to GitHub",
         date: "18 Apr 2025",
         readTime: "5 Mins Read",
         category: "Development",
-        excerpt: "Learn the essential Git commands for cloning repositories and pushing changes to GitHub, with step-by-step instructions and best practices.",
-        slug: "git-basics-tutorial"
-    }
+        excerpt: "The essential Git commands for cloning repositories and pushing changes, with step-by-step examples.",
+        slug: "git-basics-tutorial",
+    },
 ];
 ---
 
-<Layout title="Learning & Development">
+<Layout title="Learning" description="Certifications, coursework, and tutorial guides from James Nguyen — SavvyCoders, TripleTen, NABCEP in progress, and hands-on guides built from real work.">
     <section class="learning-header">
-        <h1>Learning & Development</h1>
-        <p>Continuous education and professional development journey.</p>
+        <h1>Learning</h1>
+        <p>
+            Certifications, coursework, and guides from things I've actually built. Most of what
+            I learn, I learn by shipping — so this page doubles as a running log.
+        </p>
     </section>
 
-    <section class="courses">
-        <h2>Education</h2>
-        {courses.map(course => (
-            <div class="course-card">
+    <section class="credentials">
+        <h2>In progress</h2>
+        {inProgress.map(course => (
+            <article class="course-card in-progress">
                 <div class="course-header">
                     <h3>{course.title}</h3>
-                    <span class={`status ${course.status.toLowerCase()}`}>{course.status}</span>
+                    <span class="status status-inprogress">In Progress</span>
+                </div>
+                <div class="provider-info">
+                    <span class="provider">{course.provider}</span>
+                    <span class="completion">target {course.completion}</span>
+                </div>
+                <p class="description">{course.description}</p>
+                <div class="skills">
+                    {course.skills.map(skill => <span class="skill-tag">{skill}</span>)}
+                </div>
+            </article>
+        ))}
+    </section>
+
+    <section class="credentials">
+        <h2>Completed</h2>
+        {certifications.map(course => (
+            <article class="course-card">
+                <div class="course-header">
+                    <h3>{course.title}</h3>
+                    <span class="status status-completed">Completed</span>
                 </div>
                 <div class="provider-info">
                     <span class="provider">{course.provider}</span>
@@ -77,113 +147,95 @@ const tutorials = [
                 </div>
                 <p class="description">{course.description}</p>
                 <div class="skills">
-                    {course.skills.map(skill => (
-                        <span class="skill-tag">{skill}</span>
-                    ))}
+                    {course.skills.map(skill => <span class="skill-tag">{skill}</span>)}
                 </div>
-            </div>
+            </article>
         ))}
     </section>
 
     <section class="tutorials">
-        <h2>Tutorials & Guides</h2>
+        <h2>Tutorials &amp; guides</h2>
+        <p class="tutorials-intro">
+            Short how-to posts from things I've worked through — sometimes with Claude, always from
+            real problems. More coming as I go.
+        </p>
         {tutorials.map(post => <BlogPost {...post} />)}
     </section>
 </Layout>
 
 <style>
-    .learning-header {
-        margin: 4rem 0;
-    }
-
-    .learning-header h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-    }
-
-    .learning-header p {
-        color: var(--accent-color);
-        font-size: 1.2rem;
-        max-width: 600px;
-    }
+    .learning-header { margin: 4rem 0 2rem; max-width: 780px; }
+    .learning-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .learning-header p { color: #ccc; font-size: 1.1rem; line-height: 1.7; }
 
     h2 {
-        font-size: 2rem;
-        margin: 3rem 0 2rem;
+        font-size: 1.5rem;
+        margin: 3rem 0 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #222;
     }
 
-    .courses {
-        display: grid;
-        gap: 2rem;
-        margin: 2rem 0;
-    }
-
+    .credentials { display: block; }
     .course-card {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 2rem;
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 1.5rem;
+        border-radius: 10px;
+        border: 1px solid #1f1f1f;
+        margin-bottom: 1rem;
     }
-
+    .course-card.in-progress {
+        border-color: rgba(255, 166, 0, 0.25);
+        background: linear-gradient(90deg, rgba(255, 166, 0, 0.04), transparent 40%);
+    }
     .course-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
+        gap: 1rem;
+        flex-wrap: wrap;
     }
-
-    .course-header h3 {
-        font-size: 1.5rem;
-        margin: 0;
-    }
-
+    .course-header h3 { font-size: 1.2rem; margin: 0; }
     .status {
-        padding: 0.5rem 1rem;
+        padding: 0.3rem 0.75rem;
         border-radius: 20px;
-        font-size: 0.9rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.04em;
     }
-
-    .status.completed {
-        background: rgba(0, 255, 0, 0.1);
-        color: #4CAF50;
+    .status-completed {
+        background: rgba(58, 170, 85, 0.12);
+        color: #7fc995;
+        border: 1px solid rgba(58, 170, 85, 0.25);
     }
-
-    .status.in.progress {
-        background: rgba(255, 166, 0, 0.1);
+    .status-inprogress {
+        background: rgba(255, 166, 0, 0.12);
         color: #FFA726;
+        border: 1px solid rgba(255, 166, 0, 0.25);
     }
-
-    .status.planned {
-        background: rgba(33, 150, 243, 0.1);
-        color: #2196F3;
-    }
-
     .provider-info {
         display: flex;
         justify-content: space-between;
-        color: var(--accent-color);
-        margin-bottom: 1rem;
+        color: #888;
+        margin-bottom: 0.75rem;
+        font-size: 0.9rem;
     }
-
-    .description {
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-    }
-
-    .skills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-    }
-
+    .description { margin-bottom: 1rem; line-height: 1.6; color: #ccc; }
+    .skills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .skill-tag {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 0.25rem 0.75rem;
-        border-radius: 15px;
-        font-size: 0.875rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.78rem;
+        color: #ccc;
     }
 
-    .tutorials {
-        margin: 4rem 0;
+    .tutorials { margin: 4rem 0; }
+    .tutorials-intro {
+        color: #aaa;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+        max-width: 780px;
     }
 </style>

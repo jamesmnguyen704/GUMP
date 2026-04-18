@@ -2,247 +2,326 @@
 import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 
-const repoUrl = "https://github.com/jamesmnguyen704/TripleTenProgram";
+const tripleTenRepo = "https://github.com/jamesmnguyen704/TripleTenProgram";
+const savvyRepo = "https://github.com/jamesmnguyen704/CapstoneSavvyCoders";
+const personalRepo = "https://github.com/jamesmnguyen704/GUMP";
 
-type Project = {
-    title: string;
-    description: string;
-    technologies: string[];
-    githubUrl: string;
-    outcome?: string;
-    featured?: boolean;
-    category:
-        | "Finance & Analytics"
-        | "Classification & Churn"
-        | "Regression & Forecasting"
-        | "NLP"
-        | "Computer Vision"
-        | "Exploratory Analysis"
-        | "Web";
-};
+// --- Systems I'm building (Day & Night Solar) ---
+const systems = [
+    {
+        title: "Project Waffles",
+        description: "Solar-industry operations and business intelligence platform in active development. Combines a vendor/product reference database, regulatory eligibility tracking, and ERP-style modules covering customers, jobs, products, schedules, and logistics — all built around a structured ID + schema system.",
+        technologies: ["Python", "SQL", "SQLite", "pandas", "Excel integration"],
+        outcome: "Core schema and intake/ETL pipeline live; dashboards next",
+        githubUrl: "https://github.com/jamesmnguyen704",
+        featured: true,
+    },
+    {
+        title: "Multi-Agent AI Orchestration",
+        description: "Hub-and-spoke architecture using Claude as the primary orchestrator across specialized agents for code generation, persistent memory, and desktop automation. Configured through a versioned CLAUDE.md with explicit routing rules, role declarations, and prompt contracts between agents.",
+        technologies: ["Claude Code", "Anthropic SDK", "MCP", "Python", "Prompt Engineering"],
+        outcome: "3-stage code-quality pipeline: implement → review → resolve",
+        githubUrl: "https://github.com/jamesmnguyen704",
+        featured: true,
+    },
+    {
+        title: "Bank Reconciliation Engine",
+        description: "Progressive fuzzy-match engine across 5 bank accounts in a high-volume, multi-account environment. Tier-priority confidence scoring with review queues for ambiguous matches — surfaces discrepancies before month-end, not after.",
+        technologies: ["Python", "pandas", "rule-based matching"],
+        outcome: "Discrepancies caught mid-cycle vs. at close",
+        githubUrl: "https://github.com/jamesmnguyen704",
+    },
+    {
+        title: "QuickBooks Automation",
+        description: "Programmatic IIF generation for customers, POs, invoices, and deposits with anti-duplicate safety checks against tens of thousands of historical transactions.",
+        technologies: ["Python", "QuickBooks Enterprise", "IIF"],
+        outcome: "Eliminated 90%+ of manual QB entry",
+        githubUrl: "https://github.com/jamesmnguyen704",
+    },
+    {
+        title: "Executive Dashboards (DNS)",
+        description: "pandas + openpyxl pipeline covering P&L, cash flow, billing, margin, and schedule. Auto-regenerates; static HTML operations hubs with collapsible sections and clickable file links.",
+        technologies: ["Python", "pandas", "openpyxl", "HTML"],
+        outcome: "CFO and leadership read the same data",
+        githubUrl: "https://github.com/jamesmnguyen704",
+    },
+    {
+        title: "Document Intelligence",
+        description: "OCR + classification + auto-routing for hundreds of incoming vendor docs, bank statements, and internal cost models. Outlook .msg / .eml forensics pipeline builds defensive timelines for dispute preparation.",
+        technologies: ["EasyOCR", "PyPDF2", "Python"],
+        outcome: "Hundreds of documents auto-classified and routed",
+        githubUrl: "https://github.com/jamesmnguyen704",
+    },
+    {
+        title: "Solar Compliance Reference System",
+        description: "Working reference system for tracking federal incentive eligibility, manufacturer sourcing rules, and domestic content thresholds across product categories. Built to help a commercial solar team make faster, more defensible procurement decisions.",
+        technologies: ["Excel", "Python", "Research Synthesis"],
+        outcome: "Faster, defensible procurement decisions",
+        githubUrl: "https://github.com/jamesmnguyen704",
+    },
+];
 
-const projects: Project[] = [
+// --- Capstones / standout applied projects ---
+const capstones = [
     {
-        title: "Customer Retention Prediction (Telecom)",
-        description: "Predicted contract cancellations for a telecom operator so marketing could reach at-risk customers before they churned.",
-        technologies: ["Python", "scikit-learn", "TensorFlow", "Random Forest", "Logistic Regression", "CNN"],
-        outcome: "AUC-ROC ≥ 0.75",
-        githubUrl: repoUrl,
-        category: "Classification & Churn",
+        title: "Cinemetrics",
+        description: "Full-stack Movie Data Single Page Application — SavvyCoders graduation capstone. Users explore trending films, upcoming releases, and box-office insights via real-time data from the TMDB API. Designed the UI, built client-side routing, reusable components, and async API integration end to end.",
+        technologies: ["JavaScript", "Node.js", "Express", "MongoDB", "Mongoose", "REST APIs", "Navigo", "Netlify"],
+        outcome: "Deployed end-to-end; SavvyCoders capstone",
+        githubUrl: "https://github.com/jamesmnguyen704/Cinemetrics",
         featured: true,
     },
     {
-        title: "Car Price Prediction",
-        description: "Built a gradient-boosted model to estimate used-car market value with a focus on prediction speed as well as accuracy.",
-        technologies: ["Python", "CatBoost", "LightGBM", "XGBoost", "scikit-learn"],
-        outcome: "Fast, tuned gradient-boosted model beat baseline linear regression",
-        githubUrl: repoUrl,
-        category: "Regression & Forecasting",
-        featured: true,
-    },
-    {
-        title: "Age Estimation from Photos (CNN)",
-        description: "Neural-network regression model that estimates age from a photograph — trained on a labeled image dataset.",
-        technologies: ["Python", "TensorFlow / Keras", "CNN", "PIL"],
-        outcome: "Regression CNN trained end-to-end on image data",
-        githubUrl: repoUrl,
-        category: "Computer Vision",
-        featured: true,
-    },
-    {
-        title: "Movie Review Sentiment",
-        description: "Trained NLP models to automatically flag negative movie reviews for sentiment tracking.",
-        technologies: ["Python", "NLTK", "spaCy", "transformers", "Logistic Regression", "LightGBM"],
-        outcome: "Multi-model NLP pipeline with transformer features",
-        githubUrl: repoUrl,
-        category: "NLP",
-    },
-    {
-        title: "Taxi Orders Forecasting",
-        description: "Forecasted the number of taxi orders in the next hour to help optimize fleet scheduling.",
-        technologies: ["Python", "statsmodels", "scikit-learn", "LightGBM"],
-        outcome: "RMSE ≤ 48 on hourly forecast",
-        githubUrl: repoUrl,
-        category: "Regression & Forecasting",
-    },
-    {
-        title: "Cell Phone Plan Recommender",
-        description: "Classification model that picks the best cell plan for a customer based on usage patterns.",
-        technologies: ["Python", "scikit-learn", "Decision Tree", "Random Forest", "Logistic Regression"],
-        outcome: "Accuracy ≥ 0.75",
-        githubUrl: repoUrl,
-        category: "Classification & Churn",
-    },
-    {
-        title: "Bank Client Retention",
-        description: "Predicted which bank customers were likely to leave so retention campaigns could be targeted.",
-        technologies: ["Python", "scikit-learn", "Random Forest", "Logistic Regression"],
-        outcome: "F1 ≥ 0.59",
-        githubUrl: repoUrl,
-        category: "Classification & Churn",
-    },
-    {
-        title: "Credit Scoring Analysis",
-        description: "Evaluated borrower metrics to predict the likelihood of loan default, supporting lending decisions.",
-        technologies: ["Python", "pandas"],
-        outcome: "Identified drivers of default risk",
-        githubUrl: repoUrl,
-        category: "Finance & Analytics",
-    },
-    {
-        title: "Oil Well Location Selection",
-        description: "Validated reserve volume models and calculated profit/risk trade-offs across candidate drilling regions.",
-        technologies: ["Python", "scikit-learn", "Linear Regression", "Bootstrap"],
-        outcome: "Picked the region with the best risk-adjusted return",
-        githubUrl: repoUrl,
-        category: "Finance & Analytics",
-    },
-    {
-        title: "Gold Recovery Modeling",
-        description: "Modeled the gold-mining recovery process to surface efficiency improvements in the production line.",
-        technologies: ["Python", "scikit-learn", "Linear Regression", "Decision Tree", "Random Forest"],
-        outcome: "Prototype model for industrial use",
-        githubUrl: repoUrl,
-        category: "Regression & Forecasting",
-    },
-    {
-        title: "Insurance Benefit Modeling",
-        description: "Identified similar customers and predicted insurance benefit amounts while preserving data privacy.",
-        technologies: ["Python", "scikit-learn", "K-Nearest Neighbors", "seaborn"],
-        outcome: "Privacy-aware similarity + benefit model",
-        githubUrl: repoUrl,
-        category: "Classification & Churn",
-    },
-    {
-        title: "Vehicle Price Analysis",
-        description: "Investigated which features drive used-vehicle prices in classified ads — a pricing-strategy study.",
-        technologies: ["Python", "pandas", "NumPy", "Matplotlib"],
-        outcome: "Feature importance report for pricing",
-        githubUrl: repoUrl,
-        category: "Exploratory Analysis",
-    },
-    {
-        title: "Video Game Sales Hypothesis Testing",
-        description: "Tested hypotheses on user vs. critic scores to pick promising platforms and advertising directions.",
-        technologies: ["Python", "pandas", "SciPy", "Matplotlib"],
-        outcome: "Statistically validated platform recommendations",
-        githubUrl: repoUrl,
-        category: "Exploratory Analysis",
-    },
-    {
-        title: "Taxi Trips vs. Weather",
-        description: "Tested whether weather conditions meaningfully shift taxi trip duration — a hypothesis-testing study.",
-        technologies: ["Python", "pandas", "SciPy"],
-        outcome: "Hypothesis test on real trip data",
-        githubUrl: repoUrl,
-        category: "Exploratory Analysis",
-    },
-    {
-        title: "Cell Plan Revenue Analysis",
-        description: "Analyzed client behavior across telecom packages to identify which plans generate the most revenue.",
-        technologies: ["Python", "pandas", "SciPy", "Matplotlib"],
-        outcome: "Revenue-driver segmentation",
-        githubUrl: repoUrl,
-        category: "Finance & Analytics",
-    },
-    {
-        title: "Music Preferences Across Cities",
-        description: "Compared listening habits between two cities to surface patterns in music preference.",
-        technologies: ["Python", "pandas"],
-        outcome: "First end-to-end EDA project",
-        githubUrl: repoUrl,
-        category: "Exploratory Analysis",
+        title: "Age Detection (TripleTen)",
+        description: "Computer-vision regression model for alcohol-sales compliance — estimates age from a photograph using a CNN trained on a labeled image dataset. Built for the supermarket chain Good Seed to help prevent sales to underage customers.",
+        technologies: ["Python", "TensorFlow", "Keras", "CNN", "PIL"],
+        outcome: "Regression CNN trained end-to-end",
+        githubUrl: tripleTenRepo,
     },
     {
         title: "jamesnguyen.netlify.app",
         description: "This site — an Astro static build deployed on Netlify. A place to write, log what I'm learning, and ship small web work.",
         technologies: ["Astro", "TypeScript", "HTML", "CSS", "Netlify"],
-        githubUrl: "https://github.com/jamesmnguyen704/GUMP",
         outcome: "Shipped and live",
-        category: "Web",
+        githubUrl: personalRepo,
     },
 ];
 
-const categoryOrder: Project["category"][] = [
-    "Classification & Churn",
-    "Regression & Forecasting",
-    "NLP",
-    "Computer Vision",
-    "Finance & Analytics",
-    "Exploratory Analysis",
-    "Web",
+// --- TripleTen Data Science program (16 projects, compact view) ---
+type TTProject = {
+    title: string;
+    description: string;
+    tech: string;
+    outcome?: string;
+};
+
+const tripleten: TTProject[] = [
+    {
+        title: "Customer Retention Prediction (Telecom)",
+        description: "Predicted contract cancellations so marketing could reach at-risk customers before they churned.",
+        tech: "Random Forest · Logistic Regression · CNN · TensorFlow",
+        outcome: "AUC-ROC ≥ 0.75",
+    },
+    {
+        title: "Car Price Prediction",
+        description: "Gradient-boosted model estimating used-car market value with a focus on prediction speed as well as accuracy.",
+        tech: "CatBoost · LightGBM · XGBoost · scikit-learn",
+        outcome: "Fast tuned GBM beat baseline linear",
+    },
+    {
+        title: "Movie Review Sentiment",
+        description: "NLP pipeline flagging negative movie reviews for sentiment tracking.",
+        tech: "NLTK · spaCy · transformers · LightGBM",
+        outcome: "Multi-model NLP with transformer features",
+    },
+    {
+        title: "Taxi Orders Forecasting",
+        description: "Hourly forecast of taxi demand to help optimize fleet scheduling.",
+        tech: "statsmodels · scikit-learn · LightGBM",
+        outcome: "RMSE ≤ 48 on hourly forecast",
+    },
+    {
+        title: "Cell Phone Plan Recommender",
+        description: "Classification model that picks the best cell plan for a customer from usage patterns.",
+        tech: "scikit-learn · Decision Tree · Random Forest · Logistic Regression",
+        outcome: "Accuracy ≥ 0.75",
+    },
+    {
+        title: "Bank Client Retention",
+        description: "Predicted which bank customers were likely to leave so retention could be targeted.",
+        tech: "scikit-learn · Random Forest · Logistic Regression",
+        outcome: "F1 ≥ 0.59",
+    },
+    {
+        title: "Credit Scoring Analysis",
+        description: "Evaluated borrower metrics to predict the likelihood of loan default.",
+        tech: "Python · pandas",
+        outcome: "Identified drivers of default risk",
+    },
+    {
+        title: "Oil Well Location Selection",
+        description: "Validated reserve volume models and calculated profit/risk trade-offs across candidate drilling regions.",
+        tech: "scikit-learn · Linear Regression · Bootstrap",
+        outcome: "Best risk-adjusted region selected",
+    },
+    {
+        title: "Gold Recovery Modeling",
+        description: "Modeled the gold-mining recovery process to surface efficiency improvements.",
+        tech: "scikit-learn · Linear Regression · Decision Tree · Random Forest",
+        outcome: "Prototype model for industrial use",
+    },
+    {
+        title: "Insurance Benefit Modeling",
+        description: "Identified similar customers and predicted insurance benefit amounts while preserving data privacy.",
+        tech: "scikit-learn · KNN · seaborn",
+        outcome: "Privacy-aware similarity + benefit model",
+    },
+    {
+        title: "Vehicle Price Analysis",
+        description: "Investigated which features drive used-vehicle prices in classified ads.",
+        tech: "pandas · NumPy · Matplotlib",
+        outcome: "Feature-importance report for pricing",
+    },
+    {
+        title: "Video Game Sales Hypothesis Testing",
+        description: "Tested hypotheses on user vs. critic scores to pick promising platforms and ad directions.",
+        tech: "pandas · SciPy · Matplotlib",
+        outcome: "Statistically validated recommendations",
+    },
+    {
+        title: "Taxi Trips vs. Weather",
+        description: "Tested whether weather conditions meaningfully shift taxi trip duration.",
+        tech: "pandas · SciPy",
+        outcome: "Hypothesis test on real trip data",
+    },
+    {
+        title: "Cell Plan Revenue Analysis",
+        description: "Analyzed client behavior across telecom packages to identify which plans generate the most revenue.",
+        tech: "pandas · SciPy · Matplotlib",
+        outcome: "Revenue-driver segmentation",
+    },
+    {
+        title: "Music Preferences Across Cities",
+        description: "Compared listening habits between two cities to surface patterns in music preference.",
+        tech: "Python · pandas",
+        outcome: "First end-to-end EDA project",
+    },
+    {
+        title: "Learning Coach Effectiveness Analysis",
+        description: "End-to-end DS workflow — cleaning, modeling, evaluation — focused on performance metrics and outcome prediction.",
+        tech: "Python · scikit-learn · pandas",
+        outcome: "Full workflow, performance metrics reported",
+    },
 ];
 
-const byCategory = categoryOrder
-    .map(category => ({
-        category,
-        items: projects.filter(p => p.category === category),
-    }))
-    .filter(group => group.items.length > 0);
-
-const featured = projects.filter(p => p.featured);
-const description = "Machine learning, forecasting, NLP, computer vision, and financial analytics projects by James Nguyen.";
+const description = "Systems James Nguyen is building at Day & Night Solar — plus capstones (Cinemetrics, Age Detection) and 16 data science projects from the TripleTen program.";
 ---
 
 <Layout title="Projects" description={description}>
     <section class="projects-header">
         <h1>Projects</h1>
         <p>
-            Real problems, honest write-ups. Each project shows what it was trying to solve,
-            what came out of it, and the stack used to get there.
+            Systems I'm shipping at work, capstones from SavvyCoders and TripleTen, and the full
+            16-project data science portfolio. Each card is honest about what it tried to do, what
+            came out, and the stack that got it there.
         </p>
     </section>
 
-    {featured.length > 0 && (
-        <section class="projects-section">
-            <h2>Featured</h2>
-            <div class="projects-grid">
-                {featured.map(p => <ProjectCard {...p} />)}
-            </div>
-        </section>
-    )}
+    <section class="projects-section">
+        <h2>Systems I'm building <span class="badge">Day &amp; Night Solar</span></h2>
+        <p class="section-intro">
+            The internal operating system behind a 170-project, 15-state commercial solar portfolio.
+            Each one replaces a spreadsheet, a folder of PDFs, or a manual QuickBooks workflow.
+        </p>
+        <div class="projects-grid">
+            {systems.map(p => <ProjectCard {...p} />)}
+        </div>
+    </section>
 
-    {byCategory.map(group => (
-        <section class="projects-section">
-            <h2>{group.category} <span class="count">({group.items.length})</span></h2>
-            <div class="projects-grid">
-                {group.items.map(p => <ProjectCard {...p} />)}
-            </div>
-        </section>
-    ))}
+    <section class="projects-section">
+        <h2>Capstones &amp; standouts</h2>
+        <div class="projects-grid">
+            {capstones.map(p => <ProjectCard {...p} />)}
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <h2>TripleTen Data Science — 16 projects</h2>
+        <p class="section-intro">
+            The end-to-end DS portfolio: churn, pricing, forecasting, NLP, computer vision, and classical
+            analytics. Full code and notebooks in the <a href={tripleTenRepo} target="_blank" rel="noopener" class="repo-link">TripleTenProgram</a> repo.
+        </p>
+        <div class="tt-grid">
+            {tripleten.map(p => (
+                <article class="tt-card">
+                    <h3>{p.title}</h3>
+                    <p class="tt-desc">{p.description}</p>
+                    {p.outcome && <p class="tt-outcome">{p.outcome}</p>}
+                    <p class="tt-tech">{p.tech}</p>
+                </article>
+            ))}
+        </div>
+    </section>
 </Layout>
 
 <style>
-    .projects-header {
-        margin: 4rem 0 3rem;
-    }
-    .projects-header h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-    }
+    .projects-header { margin: 4rem 0 3rem; max-width: 780px; }
+    .projects-header h1 { font-size: 3rem; margin-bottom: 1rem; }
     .projects-header p {
-        color: var(--accent-color);
+        color: #ccc;
         font-size: 1.1rem;
-        max-width: 640px;
-        line-height: 1.6;
+        line-height: 1.7;
     }
-    .projects-section {
-        margin: 3rem 0;
-    }
+
+    .projects-section { margin: 3rem 0; }
     .projects-section h2 {
-        font-size: 1.4rem;
-        margin-bottom: 1.25rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
         padding-bottom: 0.5rem;
         border-bottom: 1px solid #222;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
     }
-    .count {
-        color: var(--accent-color);
-        font-size: 0.9rem;
-        font-weight: normal;
+    .badge {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #3a5;
+        border: 1px solid #3a5;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        font-weight: 400;
     }
+    .section-intro {
+        color: #aaa;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+        max-width: 780px;
+    }
+    .repo-link {
+        color: #ddd;
+        text-decoration: none;
+        border-bottom: 1px solid #444;
+    }
+    .repo-link:hover { color: #fff; border-color: #fff; }
+
     .projects-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 1.25rem;
+    }
+
+    .tt-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 0.75rem;
+    }
+    .tt-card {
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid #1f1f1f;
+        border-radius: 8px;
+        transition: border-color 0.2s;
+    }
+    .tt-card:hover { border-color: #333; }
+    .tt-card h3 {
+        font-size: 0.95rem;
+        margin: 0 0 0.4rem;
+        color: #eee;
+    }
+    .tt-desc { color: #aaa; font-size: 0.85rem; line-height: 1.5; margin: 0 0 0.4rem; }
+    .tt-outcome {
+        color: #7fc995;
+        font-size: 0.78rem;
+        margin: 0 0 0.35rem;
+    }
+    .tt-tech {
+        color: #666;
+        font-size: 0.72rem;
+        margin: 0;
+        letter-spacing: 0.01em;
     }
 </style>
