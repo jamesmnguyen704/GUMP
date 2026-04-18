@@ -1,0 +1,273 @@
+---
+type Difficulty = "Beginner" | "Intermediate" | "Advanced";
+type Status = "Published" | "Draft" | "Coming Soon";
+
+interface Props {
+    title: string;
+    description: string;
+    slug: string;
+    category: string;
+    difficulty: Difficulty;
+    readTime: string;
+    stack: string[];
+    outcome: string;
+    date?: string;
+    status?: Status;
+    withClaude?: boolean;
+    featured?: boolean;
+}
+
+const {
+    title,
+    description,
+    slug,
+    category,
+    difficulty,
+    readTime,
+    stack,
+    outcome,
+    date,
+    status = "Published",
+    withClaude = false,
+    featured = false,
+} = Astro.props;
+
+const difficultyClass = difficulty.toLowerCase();
+const statusClass = status.toLowerCase().replace(/\s+/g, "-");
+const isLinked = status !== "Coming Soon";
+---
+
+<article class={`tutorial-card${featured ? " featured" : ""} status-${statusClass}`}>
+    {featured && <span class="featured-ribbon">Featured</span>}
+
+    <div class="card-head">
+        <span class="category-pill">{category}</span>
+        <span class={`difficulty difficulty-${difficultyClass}`}>
+            <span class="difficulty-dot" aria-hidden="true"></span>
+            {difficulty}
+        </span>
+        {withClaude && (
+            <span class="claude-badge" title="Built with Claude">
+                <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true">
+                    <path d="M12 2l2.39 7.36H22l-6.19 4.5L18.2 22 12 17.5 5.8 22l2.39-8.14L2 9.36h7.61L12 2z" fill="currentColor"/>
+                </svg>
+                Built with Claude
+            </span>
+        )}
+    </div>
+
+    <h3 class="title">{title}</h3>
+    <p class="description">{description}</p>
+
+    <div class="outcome-block">
+        <span class="outcome-label">You'll build</span>
+        <span class="outcome-value">{outcome}</span>
+    </div>
+
+    <div class="stack">
+        {stack.map(s => <span class="stack-chip">{s}</span>)}
+    </div>
+
+    <div class="card-foot">
+        <div class="meta">
+            <span class="read-time">{readTime}</span>
+            {date && <>
+                <span class="dot" aria-hidden="true">·</span>
+                <span class="date">{date}</span>
+            </>}
+        </div>
+        {isLinked ? (
+            <a class="read-link" href={`/blog/${slug}`}>
+                Read tutorial <span aria-hidden="true">&rarr;</span>
+            </a>
+        ) : (
+            <span class="read-link soon">Coming soon</span>
+        )}
+    </div>
+</article>
+
+<style>
+    .tutorial-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+        padding: 1.4rem;
+        border: 1px solid #222;
+        border-radius: 12px;
+        background:
+            radial-gradient(circle at top right, rgba(90, 127, 191, 0.05), transparent 60%),
+            #0c0c0c;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tutorial-card:hover {
+        transform: translateY(-3px);
+        border-color: #3a3a3a;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    .tutorial-card.featured {
+        border-color: rgba(217, 163, 62, 0.45);
+        background:
+            radial-gradient(circle at top right, rgba(217, 163, 62, 0.08), transparent 55%),
+            #0c0c0c;
+    }
+    .tutorial-card.featured:hover {
+        border-color: rgba(217, 163, 62, 0.7);
+    }
+    .tutorial-card.status-draft,
+    .tutorial-card.status-coming-soon {
+        opacity: 0.85;
+    }
+
+    .featured-ribbon {
+        position: absolute;
+        top: 0.9rem;
+        right: 0.9rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.2rem 0.5rem;
+        background: rgba(217, 163, 62, 0.15);
+        color: #d9a33e;
+        border: 1px solid rgba(217, 163, 62, 0.35);
+        border-radius: 4px;
+        font-weight: 600;
+    }
+
+    .card-head {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        align-items: center;
+    }
+    .category-pill {
+        background: rgba(255, 255, 255, 0.06);
+        color: #ddd;
+        padding: 0.18rem 0.55rem;
+        border-radius: 4px;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .difficulty {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.18rem 0.55rem;
+        border-radius: 4px;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #ccc;
+    }
+    .difficulty-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+    }
+    .difficulty-beginner .difficulty-dot { background: #3a5; }
+    .difficulty-beginner { border-color: rgba(58, 170, 85, 0.3); color: #7fc995; }
+    .difficulty-intermediate .difficulty-dot { background: #5a7fbf; }
+    .difficulty-intermediate { border-color: rgba(90, 127, 191, 0.3); color: #a5bae8; }
+    .difficulty-advanced .difficulty-dot { background: #b26ec0; }
+    .difficulty-advanced { border-color: rgba(178, 110, 192, 0.3); color: #d5a9df; }
+
+    .claude-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.18rem 0.55rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        background: rgba(217, 119, 62, 0.08);
+        color: #e09a62;
+        border: 1px solid rgba(217, 119, 62, 0.25);
+    }
+
+    .title {
+        font-size: 1.2rem;
+        line-height: 1.35;
+        margin: 0;
+        color: #fff;
+        padding-right: 5rem;
+    }
+    .description {
+        color: #bbb;
+        line-height: 1.55;
+        font-size: 0.92rem;
+        margin: 0;
+    }
+
+    .outcome-block {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        padding: 0.65rem 0.85rem;
+        background: rgba(58, 170, 85, 0.05);
+        border-left: 2px solid #3a5;
+        border-radius: 4px;
+    }
+    .outcome-label {
+        color: #7fc995;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 500;
+    }
+    .outcome-value {
+        color: #eee;
+        font-size: 0.92rem;
+        line-height: 1.4;
+    }
+
+    .stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+    }
+    .stack-chip {
+        font-size: 0.72rem;
+        padding: 0.18rem 0.5rem;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.04);
+        color: #bbb;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .card-foot {
+        margin-top: auto;
+        padding-top: 0.4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 0.8rem;
+    }
+    .meta {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: #888;
+        font-size: 0.78rem;
+    }
+    .dot { color: #444; }
+    .read-link {
+        color: #ddd;
+        text-decoration: none;
+        font-size: 0.85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        transition: color 0.2s, transform 0.2s;
+    }
+    .read-link:hover { color: #fff; transform: translateX(2px); }
+    .read-link.soon {
+        color: #666;
+        cursor: default;
+    }
+</style>
