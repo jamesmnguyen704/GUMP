@@ -1,256 +1,333 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const skills = {
-    programming: [
-        "Python",
-        "Pandas",
-        "NumPy", 
-        "Matplotlib",
-        "Scikit-learn",
-        "Plotly",
-        "Seaborn",
-        "SQL"
-    ],
-    machineLearning: [
-        "Supervised ML",
-        "Tree-based Models",
-        "Unsupervised ML",
-        "Clustering",
-        "NLP",
-        "XGBoost",
-        "LightGBM"
-    ],
-    dataScience: [
-        "Time Series Analysis",
-        "Anomaly Detection",
-        "A/B Testing",
-        "Experimental Design",
-        "Data Preprocessing",
-        "Model Evaluation"
-    ],
-    accounting: [
-        "Journal Entries",
-        "General Ledgers",
-        "Bank Reconciliation",
-        "Fixed Assets"
-    ],
-    software: [
-        "SAP",
-        "Oracle",
-        "Microsoft Excel",
-        "Microsoft Outlook"
-    ],
-    interpersonal: [
-        "Strong Communication",
-        "Stakeholder Management",
-        "Problem Resolution",
-        "Team Collaboration",
-        "Customer Focus",
-        "Detail Oriented",
-        "Adaptability",
-        "Continuous Learning"
-    ]
+type Tier = "Core" | "Working" | "Exploring";
+
+type SkillGroup = {
+    title: string;
+    blurb: string;
+    skills: { name: string; tier: Tier }[];
 };
+
+const groups: SkillGroup[] = [
+    {
+        title: "Data & Python",
+        blurb: "The tools I reach for first when a dataset lands on my desk.",
+        skills: [
+            { name: "Python", tier: "Core" },
+            { name: "pandas", tier: "Core" },
+            { name: "NumPy", tier: "Core" },
+            { name: "SQL", tier: "Core" },
+            { name: "Matplotlib", tier: "Core" },
+            { name: "Seaborn", tier: "Working" },
+            { name: "Plotly", tier: "Working" },
+            { name: "SciPy / statsmodels", tier: "Working" },
+        ],
+    },
+    {
+        title: "Machine Learning",
+        blurb: "Classical ML where I've shipped measurable results, and the newer stuff I'm building on.",
+        skills: [
+            { name: "scikit-learn", tier: "Core" },
+            { name: "Decision Trees / Random Forest", tier: "Core" },
+            { name: "Logistic Regression", tier: "Core" },
+            { name: "LightGBM", tier: "Working" },
+            { name: "XGBoost", tier: "Working" },
+            { name: "CatBoost", tier: "Working" },
+            { name: "NLP (NLTK, spaCy, transformers)", tier: "Working" },
+            { name: "TensorFlow / Keras (CNNs)", tier: "Working" },
+            { name: "Time Series Forecasting", tier: "Working" },
+            { name: "PyTorch", tier: "Exploring" },
+            { name: "LLMs / embeddings", tier: "Exploring" },
+        ],
+    },
+    {
+        title: "Statistics & Experimentation",
+        blurb: "The stats muscle behind the models.",
+        skills: [
+            { name: "Hypothesis Testing", tier: "Core" },
+            { name: "A/B Testing", tier: "Working" },
+            { name: "Experimental Design", tier: "Working" },
+            { name: "Bootstrap / Resampling", tier: "Working" },
+            { name: "Anomaly Detection", tier: "Working" },
+        ],
+    },
+    {
+        title: "Web & Dev Tooling",
+        blurb: "Where I'm rebuilding as a full-stack developer.",
+        skills: [
+            { name: "HTML / CSS", tier: "Working" },
+            { name: "JavaScript", tier: "Working" },
+            { name: "Git & GitHub", tier: "Working" },
+            { name: "Astro", tier: "Working" },
+            { name: "VS Code", tier: "Core" },
+            { name: "Netlify", tier: "Working" },
+            { name: "TypeScript", tier: "Exploring" },
+            { name: "React", tier: "Exploring" },
+            { name: "Node.js", tier: "Exploring" },
+        ],
+    },
+    {
+        title: "Finance & Accounting",
+        blurb: "The background I don't want to hide — it still shapes how I frame problems.",
+        skills: [
+            { name: "General Ledger", tier: "Core" },
+            { name: "Bank Reconciliation", tier: "Core" },
+            { name: "Journal Entries", tier: "Core" },
+            { name: "Fixed Assets", tier: "Core" },
+            { name: "SAP", tier: "Working" },
+            { name: "Oracle", tier: "Working" },
+            { name: "Excel (advanced)", tier: "Core" },
+        ],
+    },
+];
+
+const values = [
+    "Write it down — a result you can't explain isn't a result yet.",
+    "Prefer the simple model that ships to the clever one that doesn't.",
+    "Learn in public: repos, posts, and a site that reflects the work.",
+];
 ---
 
-<Layout title="About Me">
+<Layout title="About" description="James Nguyen — accountant turned data scientist, currently building toward full-stack. Skills, background, and what I'm working on now.">
     <section class="about-header">
-        <h1>About Me</h1>
+        <h1>About</h1>
         <p class="intro">
-            A Data Scientist with five years of accounting experience, I bring a unique blend of 
-            financial expertise and technical skills to the field of data science. My journey from 
-            certified accountant to data scientist has equipped me with both business acumen and 
-            analytical capabilities.
+            I'm James — five years in accounting, two years building machine learning models,
+            and now learning full-stack so I can ship the ideas instead of just modeling them.
+            The short version: I like finding patterns in data and turning them into something
+            someone can actually use.
         </p>
     </section>
 
-    <section class="career-transition">
-        <h2>My Journey</h2>
+    <section class="now">
+        <h2>What I'm doing now</h2>
+        <ul class="now-list">
+            <li>
+                <span class="now-label">Building</span>
+                <span class="now-value">Full-stack web skills through SavvyCoders — JavaScript, HTML/CSS, Git, and the web platform end to end.</span>
+            </li>
+            <li>
+                <span class="now-label">Shipping</span>
+                <span class="now-value">This site (Astro + Netlify) as a living portfolio and writing space.</span>
+            </li>
+            <li>
+                <span class="now-label">Studying</span>
+                <span class="now-value">Python fundamentals review, LLM-backed applications, and tightening my ML fundamentals.</span>
+            </li>
+            <li>
+                <span class="now-label">Open to</span>
+                <span class="now-value">Data science, analytics, or full-stack roles where finance + data is a plus.</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="journey">
+        <h2>The path here</h2>
         <p>
-            During my time as an accountant, I discovered patterns in financial data that could 
-            predict business trends. This sparked my passion for data science and led me to 
-            transition into this field. My accounting background proved invaluable—providing me 
-            with a deep understanding of business processes, financial modeling, and the 
-            importance of accurate data analysis.
+            I spent five years as an accountant — general ledger, bank rec, fixed assets, the full cycle.
+            What hooked me was noticing that the same spreadsheets I was reconciling had signal in them
+            if you treated them like a dataset instead of a report. That led me into TripleTen's data
+            science bootcamp, where I worked through 16 end-to-end projects: churn prediction, pricing
+            models, forecasting, NLP, a CNN regression.
         </p>
         <p>
-            My first data science project involved analyzing financial statements to predict 
-            company performance, allowing me to bridge the gap between financial expertise and 
-            data science techniques. Today, I specialize in financial analytics, where my 
-            combined experience gives me a unique advantage in understanding business problems 
-            and communicating solutions to stakeholders.
+            Now I'm learning full-stack so nothing has to stop at a notebook. My goal is to build
+            data-driven products where the finance and accounting sense informs the modeling, and
+            the modeling informs the product.
         </p>
     </section>
 
-    <section class="interpersonal-section">
-        <h2>Interpersonal Skills</h2>
-        <div class="interpersonal-grid">
-            {skills.interpersonal.map(skill => (
-                <div class="skill-pill">{skill}</div>
+    <section class="values">
+        <h2>How I work</h2>
+        <ul class="values-list">
+            {values.map(v => <li>{v}</li>)}
+        </ul>
+    </section>
+
+    <section class="skills">
+        <h2>Skills</h2>
+        <p class="skills-key">
+            <span class="tier-dot tier-core"></span> <strong>Core</strong> — used regularly, confident
+            <span class="dot-sep"></span>
+            <span class="tier-dot tier-working"></span> <strong>Working</strong> — shipped with it, still growing
+            <span class="dot-sep"></span>
+            <span class="tier-dot tier-exploring"></span> <strong>Exploring</strong> — actively learning
+        </p>
+        <div class="skill-groups">
+            {groups.map(group => (
+                <div class="skill-group">
+                    <h3>{group.title}</h3>
+                    <p class="blurb">{group.blurb}</p>
+                    <div class="skill-list">
+                        {group.skills.map(skill => (
+                            <span class={`skill-pill tier-${skill.tier.toLowerCase()}`}>
+                                <span class="pill-dot" aria-hidden="true"></span>
+                                {skill.name}
+                            </span>
+                        ))}
+                    </div>
+                </div>
             ))}
-        </div>
-    </section>
-
-    <section class="skills-section">
-        <h2>Skills & Expertise</h2>
-        
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3>Programming</h3>
-                <div class="skills-list">
-                    {skills.programming.map(skill => <span class="skill-pill">{skill}</span>)}
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Machine Learning</h3>
-                <div class="skills-list">
-                    {skills.machineLearning.map(skill => <span class="skill-pill">{skill}</span>)}
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Data Science</h3>
-                <div class="skills-list">
-                    {skills.dataScience.map(skill => <span class="skill-pill">{skill}</span>)}
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Accounting</h3>
-                <div class="skills-list">
-                    {skills.accounting.map(skill => <span class="skill-pill">{skill}</span>)}
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Software</h3>
-                <div class="skills-list">
-                    {skills.software.map(skill => <span class="skill-pill">{skill}</span>)}
-                </div>
-            </div>
         </div>
     </section>
 </Layout>
 
 <style>
     .about-header {
-        margin: 4rem 0;
+        margin: 4rem 0 2rem;
     }
-
     .about-header h1 {
         font-size: 3rem;
         margin-bottom: 1.5rem;
     }
-
     .intro {
-        font-size: 1.2rem;
-        line-height: 1.6;
-        max-width: 800px;
-        color: var(--accent-color);
+        font-size: 1.15rem;
+        line-height: 1.7;
+        max-width: 760px;
+        color: #ddd;
     }
 
-    .career-transition {
-        margin: 4rem 0;
-        max-width: 800px;
+    section {
+        margin: 3rem 0;
     }
-
-    .career-transition h2 {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .career-transition p {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        margin-bottom: 1.5rem;
-    }
-
-    .interpersonal-section {
-        margin: 4rem 0;
-    }
-
-    .interpersonal-section h2 {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .interpersonal-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        padding: 1.5rem;
-        border-radius: 8px;
-    }
-
-    .skills-section {
-        margin: 4rem 0;
-    }
-
-    .skills-section h2 {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-
-    .skill-category {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 1.5rem;
-        border-radius: 8px;
-    }
-
-    .skill-category h3 {
-        font-size: 1.3rem;
+    section h2 {
+        font-size: 1.5rem;
         margin-bottom: 1rem;
-        color: var(--accent-color);
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #222;
     }
 
-    .skills-list {
+    .now-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.75rem;
+        max-width: 760px;
+    }
+    .now-list li {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #1a1a1a;
+    }
+    .now-label {
+        color: #888;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        padding-top: 0.15rem;
+    }
+    .now-value {
+        color: #ddd;
+        line-height: 1.6;
+    }
+
+    .journey {
+        max-width: 760px;
+    }
+    .journey p {
+        line-height: 1.7;
+        color: #ccc;
+        margin-bottom: 1rem;
+    }
+
+    .values-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.5rem;
+        max-width: 760px;
+    }
+    .values-list li {
+        padding: 0.75rem 1rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-left: 2px solid #3a5;
+        color: #ddd;
+        line-height: 1.55;
+    }
+
+    .skills-key {
+        color: #aaa;
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
         display: flex;
         flex-wrap: wrap;
-        gap: 0.75rem;
+        align-items: center;
+        gap: 0.5rem;
     }
+    .skills-key strong {
+        color: #eee;
+        font-weight: 500;
+    }
+    .dot-sep {
+        width: 3px;
+        height: 3px;
+        background: #444;
+        border-radius: 50%;
+        margin: 0 0.25rem;
+    }
+    .tier-dot {
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        margin-right: 0.35rem;
+    }
+    .tier-dot.tier-core { background: #3a5; }
+    .tier-dot.tier-working { background: #5a7fbf; }
+    .tier-dot.tier-exploring { background: #8a6ec0; }
 
+    .skill-groups {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1.5rem;
+    }
+    .skill-group {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid #1f1f1f;
+        border-radius: 10px;
+        padding: 1.25rem;
+    }
+    .skill-group h3 {
+        font-size: 1.1rem;
+        margin: 0 0 0.25rem;
+    }
+    .skill-group .blurb {
+        color: #888;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+    .skill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+    }
     .skill-pill {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--text-color);
-        padding: 0.4rem 0.8rem;
-        border-radius: 50px;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.3rem 0.7rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        text-align: center;
+        background: rgba(255, 255, 255, 0.04);
+        color: #ddd;
     }
-
-    .skill-pill:hover {
-        background: rgba(255, 255, 255, 0.15);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        border-color: rgba(255, 255, 255, 0.2);
+    .skill-pill .pill-dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        margin-right: 0.4rem;
     }
-
-    @media (max-width: 1024px) {
-        .interpersonal-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .interpersonal-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 480px) {
-        .interpersonal-grid {
-            grid-template-columns: 1fr;
-        }
-    }
+    .skill-pill.tier-core .pill-dot { background: #3a5; }
+    .skill-pill.tier-working .pill-dot { background: #5a7fbf; }
+    .skill-pill.tier-exploring .pill-dot { background: #8a6ec0; }
+    .skill-pill.tier-core { border-color: rgba(58, 170, 85, 0.3); }
+    .skill-pill.tier-working { border-color: rgba(90, 127, 191, 0.3); }
+    .skill-pill.tier-exploring { border-color: rgba(138, 110, 192, 0.3); }
 </style>

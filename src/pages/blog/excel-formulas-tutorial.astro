@@ -22,7 +22,7 @@ import FullBlogPost from '../../components/FullBlogPost.astro';
         </p>
 
         <h3>Column 'U' Validation</h3>
-        <pre><code>IF(D + F = 0, "Not In SAGE",
+        <pre is:raw><code>IF(D + F = 0, "Not In SAGE",
 IF(D > 0, VLOOKUP('SAGE Trade AR Aging' tab column 'K',
 IF(E <> 0, VLOOKUP('Sage AR Acct Date' tab)))</code></pre>
 
@@ -34,17 +34,17 @@ IF(E <> 0, VLOOKUP('Sage AR Acct Date' tab)))</code></pre>
         </ul>
 
         <h3>Column 'u' Complex Formula</h3>
-        <pre><code>=IF(D18 + F18 = 0, "Not In SAGE",
+        <pre is:raw><code>=IF(D18 + F18 = 0, "Not In SAGE",
 IF(D18 <> 0, VLOOKUP(C18, 'SAGE Trade AR Aging'!A:K, 11, FALSE),
 IF(E18 <> 0, DATEVALUE(VLOOKUP(C18, 'Sage AR Acct Date'!N:O, 4, FALSE)), "")))</code></pre>
 
         <h3>Column 'Q' Validation</h3>
-        <pre><code>IF(D + F = 0, "Not In SAGE",
+        <pre is:raw><code>IF(D + F = 0, "Not In SAGE",
 IF(D <>0, VLOOKUP('Sage AR Acct Date' tab,
 IF(E<>0, VLOOKUP('SAGE Retainage Aging' tab column 'K')))</code></pre>
 
         <h3>Column 'q' Complex Formula</h3>
-        <pre><code>=IF(D18 + F18 = 0, "Not In SAGE",
+        <pre is:raw><code>=IF(D18 + F18 = 0, "Not In SAGE",
 IF(D18 <> 0, DATEVALUE(VLOOKUP(C18, 'Sage AR Acct Date'!N:P, 3, FALSE)),
 IF(E18 <> 0, VLOOKUP(C18, 'SAGE Retainage Aging'!A:K, 11, FALSE), "")))</code></pre>
 

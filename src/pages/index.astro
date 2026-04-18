@@ -1,6 +1,44 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SocialStats from '../components/SocialStats.astro';
+
+const sections = [
+    {
+        title: "About",
+        href: "/about",
+        body: "Background, path from accounting into data science, and what I'm building toward.",
+    },
+    {
+        title: "Work",
+        href: "/work",
+        body: "Roles, responsibilities, and the tools I use day to day.",
+    },
+    {
+        title: "Projects",
+        href: "/projects",
+        body: "Things I've built — data, ML, and web experiments.",
+    },
+    {
+        title: "Python",
+        href: "/python",
+        body: "Notes and exercises from the Python track I'm working through.",
+    },
+    {
+        title: "Learning",
+        href: "/learning",
+        body: "What I'm studying now and resources worth returning to.",
+    },
+    {
+        title: "Blog",
+        href: "/blog",
+        body: "Writing on finance, data, and switching careers mid-stream.",
+    },
+    {
+        title: "Favorites",
+        href: "/favorites",
+        body: "Books, tools, and links I keep coming back to.",
+    },
+];
 ---
 
 <Layout title="Home">
@@ -8,10 +46,28 @@ import SocialStats from '../components/SocialStats.astro';
         <h1>Hi, I'm James Nguyen</h1>
         <p class="subtitle">Accountant/Data Scientist & pursuing FullStack Developer</p>
         <p class="description">
-            I specialize in building machine learning models and analyzing complex datasets 
-            to solve real-world problems, while learning to build websites
+            I specialize in building machine learning models and analyzing complex datasets
+            to solve real-world problems, while learning to build websites.
         </p>
     </section>
+
+    <section class="explore">
+        <h2>Explore</h2>
+        <ul class="card-grid">
+            {sections.map(section => (
+                <li class="card">
+                    <a href={section.href}>
+                        <h3>
+                            {section.title}
+                            <span aria-hidden="true">&rarr;</span>
+                        </h3>
+                        <p>{section.body}</p>
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </section>
+
     <SocialStats />
 </Layout>
 
@@ -32,5 +88,57 @@ import SocialStats from '../components/SocialStats.astro';
     .description {
         font-size: 1.2rem;
         line-height: 1.6;
+    }
+
+    .explore {
+        margin: 4rem 0;
+    }
+    .explore h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .card-grid {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+    }
+    .card {
+        border: 1px solid #2a2a2a;
+        border-radius: 8px;
+        background: #111;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .card:hover {
+        border-color: var(--text-color);
+        transform: translateY(-2px);
+    }
+    .card a {
+        display: block;
+        padding: 1.25rem;
+        color: var(--text-color);
+        text-decoration: none;
+    }
+    .card h3 {
+        font-size: 1.1rem;
+        margin: 0 0 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .card h3 span {
+        color: var(--accent-color);
+        transition: transform 0.2s ease;
+    }
+    .card:hover h3 span {
+        transform: translateX(4px);
+        color: var(--text-color);
+    }
+    .card p {
+        margin: 0;
+        color: var(--accent-color);
+        line-height: 1.5;
     }
 </style>

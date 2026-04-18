@@ -2,137 +2,247 @@
 import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 
-const projects = [
+const repoUrl = "https://github.com/jamesmnguyen704/TripleTenProgram";
+
+type Project = {
+    title: string;
+    description: string;
+    technologies: string[];
+    githubUrl: string;
+    outcome?: string;
+    featured?: boolean;
+    category:
+        | "Finance & Analytics"
+        | "Classification & Churn"
+        | "Regression & Forecasting"
+        | "NLP"
+        | "Computer Vision"
+        | "Exploratory Analysis"
+        | "Web";
+};
+
+const projects: Project[] = [
     {
-        title: "Project 01: Music Preferences Analysis",
-        description: "Analyzed and compared music preferences between two different cities to identify patterns and trends in listening habits.",
+        title: "Customer Retention Prediction (Telecom)",
+        description: "Predicted contract cancellations for a telecom operator so marketing could reach at-risk customers before they churned.",
+        technologies: ["Python", "scikit-learn", "TensorFlow", "Random Forest", "Logistic Regression", "CNN"],
+        outcome: "AUC-ROC ≥ 0.75",
+        githubUrl: repoUrl,
+        category: "Classification & Churn",
+        featured: true,
+    },
+    {
+        title: "Car Price Prediction",
+        description: "Built a gradient-boosted model to estimate used-car market value with a focus on prediction speed as well as accuracy.",
+        technologies: ["Python", "CatBoost", "LightGBM", "XGBoost", "scikit-learn"],
+        outcome: "Fast, tuned gradient-boosted model beat baseline linear regression",
+        githubUrl: repoUrl,
+        category: "Regression & Forecasting",
+        featured: true,
+    },
+    {
+        title: "Age Estimation from Photos (CNN)",
+        description: "Neural-network regression model that estimates age from a photograph — trained on a labeled image dataset.",
+        technologies: ["Python", "TensorFlow / Keras", "CNN", "PIL"],
+        outcome: "Regression CNN trained end-to-end on image data",
+        githubUrl: repoUrl,
+        category: "Computer Vision",
+        featured: true,
+    },
+    {
+        title: "Movie Review Sentiment",
+        description: "Trained NLP models to automatically flag negative movie reviews for sentiment tracking.",
+        technologies: ["Python", "NLTK", "spaCy", "transformers", "Logistic Regression", "LightGBM"],
+        outcome: "Multi-model NLP pipeline with transformer features",
+        githubUrl: repoUrl,
+        category: "NLP",
+    },
+    {
+        title: "Taxi Orders Forecasting",
+        description: "Forecasted the number of taxi orders in the next hour to help optimize fleet scheduling.",
+        technologies: ["Python", "statsmodels", "scikit-learn", "LightGBM"],
+        outcome: "RMSE ≤ 48 on hourly forecast",
+        githubUrl: repoUrl,
+        category: "Regression & Forecasting",
+    },
+    {
+        title: "Cell Phone Plan Recommender",
+        description: "Classification model that picks the best cell plan for a customer based on usage patterns.",
+        technologies: ["Python", "scikit-learn", "Decision Tree", "Random Forest", "Logistic Regression"],
+        outcome: "Accuracy ≥ 0.75",
+        githubUrl: repoUrl,
+        category: "Classification & Churn",
+    },
+    {
+        title: "Bank Client Retention",
+        description: "Predicted which bank customers were likely to leave so retention campaigns could be targeted.",
+        technologies: ["Python", "scikit-learn", "Random Forest", "Logistic Regression"],
+        outcome: "F1 ≥ 0.59",
+        githubUrl: repoUrl,
+        category: "Classification & Churn",
+    },
+    {
+        title: "Credit Scoring Analysis",
+        description: "Evaluated borrower metrics to predict the likelihood of loan default, supporting lending decisions.",
         technologies: ["Python", "pandas"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+        outcome: "Identified drivers of default risk",
+        githubUrl: repoUrl,
+        category: "Finance & Analytics",
     },
     {
-        title: "Project 02: Credit Scoring Analysis",
-        description: "Evaluated various metrics to predict the likelihood of a customer defaulting on a loan, helping financial institutions make informed lending decisions.",
+        title: "Oil Well Location Selection",
+        description: "Validated reserve volume models and calculated profit/risk trade-offs across candidate drilling regions.",
+        technologies: ["Python", "scikit-learn", "Linear Regression", "Bootstrap"],
+        outcome: "Picked the region with the best risk-adjusted return",
+        githubUrl: repoUrl,
+        category: "Finance & Analytics",
+    },
+    {
+        title: "Gold Recovery Modeling",
+        description: "Modeled the gold-mining recovery process to surface efficiency improvements in the production line.",
+        technologies: ["Python", "scikit-learn", "Linear Regression", "Decision Tree", "Random Forest"],
+        outcome: "Prototype model for industrial use",
+        githubUrl: repoUrl,
+        category: "Regression & Forecasting",
+    },
+    {
+        title: "Insurance Benefit Modeling",
+        description: "Identified similar customers and predicted insurance benefit amounts while preserving data privacy.",
+        technologies: ["Python", "scikit-learn", "K-Nearest Neighbors", "seaborn"],
+        outcome: "Privacy-aware similarity + benefit model",
+        githubUrl: repoUrl,
+        category: "Classification & Churn",
+    },
+    {
+        title: "Vehicle Price Analysis",
+        description: "Investigated which features drive used-vehicle prices in classified ads — a pricing-strategy study.",
+        technologies: ["Python", "pandas", "NumPy", "Matplotlib"],
+        outcome: "Feature importance report for pricing",
+        githubUrl: repoUrl,
+        category: "Exploratory Analysis",
+    },
+    {
+        title: "Video Game Sales Hypothesis Testing",
+        description: "Tested hypotheses on user vs. critic scores to pick promising platforms and advertising directions.",
+        technologies: ["Python", "pandas", "SciPy", "Matplotlib"],
+        outcome: "Statistically validated platform recommendations",
+        githubUrl: repoUrl,
+        category: "Exploratory Analysis",
+    },
+    {
+        title: "Taxi Trips vs. Weather",
+        description: "Tested whether weather conditions meaningfully shift taxi trip duration — a hypothesis-testing study.",
+        technologies: ["Python", "pandas", "SciPy"],
+        outcome: "Hypothesis test on real trip data",
+        githubUrl: repoUrl,
+        category: "Exploratory Analysis",
+    },
+    {
+        title: "Cell Plan Revenue Analysis",
+        description: "Analyzed client behavior across telecom packages to identify which plans generate the most revenue.",
+        technologies: ["Python", "pandas", "SciPy", "Matplotlib"],
+        outcome: "Revenue-driver segmentation",
+        githubUrl: repoUrl,
+        category: "Finance & Analytics",
+    },
+    {
+        title: "Music Preferences Across Cities",
+        description: "Compared listening habits between two cities to surface patterns in music preference.",
         technologies: ["Python", "pandas"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+        outcome: "First end-to-end EDA project",
+        githubUrl: repoUrl,
+        category: "Exploratory Analysis",
     },
     {
-        title: "Project 03: Vehicle Price Analysis",
-        description: "Investigated factors influencing vehicle prices by analyzing classified ads data to assist in better pricing strategies.",
-        technologies: ["Python", "pandas", "numpy", "matplotlib"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
+        title: "jamesnguyen.netlify.app",
+        description: "This site — an Astro static build deployed on Netlify. A place to write, log what I'm learning, and ship small web work.",
+        technologies: ["Astro", "TypeScript", "HTML", "CSS", "Netlify"],
+        githubUrl: "https://github.com/jamesmnguyen704/GUMP",
+        outcome: "Shipped and live",
+        category: "Web",
     },
-    {
-        title: "Project 04: Cell Plans Analysis",
-        description: "Examined client behavior and identified which telecom packages generate the most income, providing insights for marketing and sales strategies.",
-        technologies: ["Python", "pandas", "numpy", "matplotlib", "math", "scipy"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
-    },
-    {
-        title: "Project 05: Video Games Analysis",
-        description: "Tested hypothesis regarding video game users and critics to determine promising projects and plan effective advertising campaigns.",
-        technologies: ["Python", "pandas", "numpy", "scipy", "matplotlib"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
-    },
-    {
-        title: "Project 06: Taxi Trip Analysis",
-        description: "Analyzed taxi trip durations in relation to weather conditions to test and validate hypotheses, aiding in optimizing taxi services.",
-        technologies: ["Python", "pandas", "numpy", "scipy", "matplotlib"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
-    },
-    {
-        title: "Project 07: Cell Phone Plans Prediction",
-        description: "Developed a classification model to help clients select the best cell phone plan, achieving a performance metric of at least 0.75.",
-        technologies: ["Python", "pandas", "sklearn", "Decision Tree", "Random Forest", "Logistic Regression"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
-    },
-    {
-        title: "Project 08: Client Retention Prediction",
-        description: "Created a prediction model for client retention with an F1 score of at least 0.59, helping businesses improve their customer retention strategies.",
-        technologies: ["Python", "pandas", "matplotlib", "sklearn", "Decision Tree", "Random Forest", "Logistic Regression"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
-    },
-    {
-        title: "Project 09: Oil Well Location Prediction",
-        description: "Validated oil reserve volume prediction models and calculated profits and risks for different regions, aiding in strategic decision-making for OilGiant's operations.",
-        technologies: ["Python", "pandas", "numpy", "scipy", "matplotlib", "sklearn", "Random Forest", "Linear Regression"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
-    },
-    {
-        title: "Project 10: Gold Production Modeling",
-        description: "Modeled the production process in the gold mining industry to improve efficiency and developed a prototype machine learning model for industrial applications.",
-        technologies: ["Python", "pandas", "numpy", "matplotlib", "sklearn", "Linear Regression", "Decision Tree", "Random Forest"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
-    },
-    {
-        title: "Project 11: Insurance Modeling",
-        description: "Identified similar customers and predicted insurance benefit amounts while ensuring data privacy, enhancing customer service and risk management in insurance.",
-        technologies: ["Python", "numpy", "pandas", "seaborn", "matplotlib", "sklearn", "math", "K-Nearest Neighbors"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
-    },
-    {
-        title: "Project 12: Car Price Prediction",
-        description: "Built a model to determine market value of cars with an emphasis on prediction quality and speed, supporting automotive market analysis.",
-        technologies: ["Python", "numpy", "pandas", "matplotlib", "sklearn", "catboost", "LightGBM", "XGBoost", "Decision Tree", "Random Forest", "Linear Regression"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
-    },
-    {
-        title: "Project 13: Taxi Orders Prediction",
-        description: "Predicted the number of taxi orders in the next hour with a RECM metric not exceeding 48, helping optimize taxi fleet management.",
-        technologies: ["Python", "numpy", "pandas", "statsmodels", "sklearn", "Decision Tree", "Random Forest", "Linear Regression", "LGBM"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
-    },
-    {
-        title: "Project 14: Movie Reviews Categorization",
-        description: "Trained models to automatically detect negative movie reviews, aiding in sentiment analysis and customer feedback management.",
-        technologies: ["Python", "numpy", "re", "pandas", "seaborn", "matplotlib", "nltk", "transformers", "tqdm", "spacy", "sklearn", "Logistic Regression", "LGBM"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
-    },
-    {
-        title: "Project 15: Face Identification",
-        description: "Built and evaluated a neural network regression model to estimate age based on photographs, supporting biometric analysis applications.",
-        technologies: ["Python", "pandas", "numpy", "matplotlib", "PIL", "tensorflow.keras", "CNN", "Sequential", "GlobalAveragePooling2D", "Dense", "Dropout"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
-    },
-    {
-        title: "Project 16: Customer Retention Prediction",
-        description: "Developed a model predicting contract cancellations with an AUC-ROC greater than or equal to 0.75, helping businesses reduce churn rates.",
-        technologies: ["Python", "numpy", "pandas", "matplotlib", "tensorflow", "sklearn", "Logistic Regression", "Decision Tree", "Random Forest", "CNN"],
-        githubUrl: "https://github.com/jamesmnguyen704/TripleTenProgram"
-    }
 ];
+
+const categoryOrder: Project["category"][] = [
+    "Classification & Churn",
+    "Regression & Forecasting",
+    "NLP",
+    "Computer Vision",
+    "Finance & Analytics",
+    "Exploratory Analysis",
+    "Web",
+];
+
+const byCategory = categoryOrder
+    .map(category => ({
+        category,
+        items: projects.filter(p => p.category === category),
+    }))
+    .filter(group => group.items.length > 0);
+
+const featured = projects.filter(p => p.featured);
+const description = "Machine learning, forecasting, NLP, computer vision, and financial analytics projects by James Nguyen.";
 ---
 
-<Layout title="Data Science Projects">
+<Layout title="Projects" description={description}>
     <section class="projects-header">
-        <h1>Data Science Projects</h1>
-        <p>A comprehensive portfolio of data science and machine learning projects, showcasing various techniques and technologies.</p>
+        <h1>Projects</h1>
+        <p>
+            Real problems, honest write-ups. Each project shows what it was trying to solve,
+            what came out of it, and the stack used to get there.
+        </p>
     </section>
 
-    <section class="projects-grid">
-        {projects.map(project => <ProjectCard {...project} />)}
-    </section>
+    {featured.length > 0 && (
+        <section class="projects-section">
+            <h2>Featured</h2>
+            <div class="projects-grid">
+                {featured.map(p => <ProjectCard {...p} />)}
+            </div>
+        </section>
+    )}
+
+    {byCategory.map(group => (
+        <section class="projects-section">
+            <h2>{group.category} <span class="count">({group.items.length})</span></h2>
+            <div class="projects-grid">
+                {group.items.map(p => <ProjectCard {...p} />)}
+            </div>
+        </section>
+    ))}
 </Layout>
 
 <style>
     .projects-header {
-        margin: 4rem 0;
+        margin: 4rem 0 3rem;
     }
-
     .projects-header h1 {
         font-size: 3rem;
         margin-bottom: 1rem;
     }
-
     .projects-header p {
         color: var(--accent-color);
-        font-size: 1.2rem;
-        max-width: 600px;
+        font-size: 1.1rem;
+        max-width: 640px;
+        line-height: 1.6;
     }
-
+    .projects-section {
+        margin: 3rem 0;
+    }
+    .projects-section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #222;
+    }
+    .count {
+        color: var(--accent-color);
+        font-size: 0.9rem;
+        font-weight: normal;
+    }
     .projects-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin: 2rem 0;
+        gap: 1.25rem;
     }
 </style>

@@ -22,7 +22,7 @@ import FullBlogPost from '../../components/FullBlogPost.astro';
         </p>
         <ul>
             <li>String Creation and Formatting:
-                <pre><code># String creation
+                <pre is:raw><code># String creation
 single_quotes = 'Hello'
 double_quotes = "World"
 multi_line = '''This is a
@@ -36,7 +36,7 @@ template = "{} is {} years old".format(name, age)
 old_style = "%s is %d years old" % (name, age)</code></pre>
             </li>
             <li>String Methods:
-                <pre><code># Common string methods
+                <pre is:raw><code># Common string methods
 text = "  Hello, World!  "
 length = len(text)                # Get length
 stripped = text.strip()           # Remove whitespace
@@ -52,7 +52,7 @@ position = text.find('World')    # Find substring
 count = text.count('l')          # Count occurrences</code></pre>
             </li>
             <li>String Indexing and Slicing:
-                <pre><code>text = "Python Programming"
+                <pre is:raw><code>text = "Python Programming"
 first_char = text[0]      # First character
 last_char = text[-1]      # Last character
 slice_1 = text[0:6]       # Characters 0 to 5
@@ -69,7 +69,7 @@ step_2 = text[::2]        # Every second character</code></pre>
         </p>
         <ul>
             <li>List Operations:
-                <pre><code># List creation and modification
+                <pre is:raw><code># List creation and modification
 numbers = [1, 2, 3, 4, 5]
 mixed = [1, "hello", 3.14, True]
 
@@ -91,7 +91,7 @@ squares = [x**2 for x in range(5)]
 evens = [x for x in numbers if x % 2 == 0]</code></pre>
             </li>
             <li>Tuple Operations:
-                <pre><code># Tuple creation
+                <pre is:raw><code># Tuple creation
 point = (3, 4)
 singleton = (1,)    # Single item tuple needs comma
 mixed = (1, "two", 3.0)
@@ -112,7 +112,7 @@ a, *rest, b = (1, 2, 3, 4)  # Extended unpacking</code></pre>
         </p>
         <ul>
             <li>Conditional Statements:
-                <pre><code># If statements
+                <pre is:raw><code># If statements
 if x > 0:
     print("Positive")
 elif x < 0:
@@ -132,7 +132,7 @@ if name in approved_list:
     print("Access granted")</code></pre>
             </li>
             <li>Loops and Iterations:
-                <pre><code># For loops
+                <pre is:raw><code># For loops
 for i in range(5):
     print(i)
 
@@ -164,7 +164,7 @@ for i in range(3):
         print(f"({i}, {j})")</code></pre>
             </li>
             <li>Loop with List/Dict Comprehension:
-                <pre><code># List comprehension with conditions
+                <pre is:raw><code># List comprehension with conditions
 numbers = [x for x in range(10) if x % 2 == 0]
 
 # Dictionary comprehension
@@ -181,20 +181,20 @@ matrix = [[i+j for j in range(3)] for i in range(3)]</code></pre>
         </p>
         <ul>
             <li>Comments:
-                <pre><code># Single line comment
+                <pre is:raw><code># Single line comment
 '''
 Multi-line
 comment
 '''</code></pre>
             </li>
             <li>Print statements:
-                <pre><code>print("Hello, World!")
+                <pre is:raw><code>print("Hello, World!")
 print(f"Value is {variable}")  # f-strings
 print("Score: %.2f" % score)   # % formatting
 print("Name: {}".format(name)) # .format()</code></pre>
             </li>
             <li>Variables:
-                <pre><code>x = 5           # Integer
+                <pre is:raw><code>x = 5           # Integer
 name = "John"    # String
 price = 19.99    # Float
 is_valid = True  # Boolean</code></pre>
@@ -207,7 +207,7 @@ is_valid = True  # Boolean</code></pre>
         </p>
         <ul>
             <li>String Operations:
-                <pre><code>text = "Hello"
+                <pre is:raw><code>text = "Hello"
 length = len(text)
 upper_case = text.upper()
 lower_case = text.lower()
@@ -215,13 +215,13 @@ split_text = "a,b,c".split(",")
 joined_text = " ".join(['Hello', 'World'])</code></pre>
             </li>
             <li>Type Conversion:
-                <pre><code>str_to_int = int("123")
+                <pre is:raw><code>str_to_int = int("123")
 str_to_float = float("123.45")
 num_to_str = str(123)
 to_bool = bool(1)</code></pre>
             </li>
             <li>Common Errors:
-                <pre><code>try:
+                <pre is:raw><code>try:
     int("abc")  # ValueError
     1/0         # ZeroDivisionError
 except ValueError as e:
@@ -237,7 +237,7 @@ except ZeroDivisionError as e:
         </p>
         <ul>
             <li>Basic Math:
-                <pre><code>addition = 5 + 3
+                <pre is:raw><code>addition = 5 + 3
 subtraction = 10 - 4
 multiplication = 6 * 2
 division = 15 / 3
@@ -246,7 +246,7 @@ modulus = 15 % 4
 exponent = 2 ** 3</code></pre>
             </li>
             <li>Math Module:
-                <pre><code>import math
+                <pre is:raw><code>import math
 
 pi_value = math.pi
 square_root = math.sqrt(16)
@@ -261,14 +261,14 @@ floor = math.floor(4.7)</code></pre>
         </p>
         <ul>
             <li>Lists:
-                <pre><code>numbers = [1, 2, 3, 4, 5]
+                <pre is:raw><code>numbers = [1, 2, 3, 4, 5]
 numbers.append(6)      # Add element
 numbers.pop()         # Remove last element
 numbers.insert(0, 0)  # Insert at index
 sliced = numbers[1:4] # Slicing</code></pre>
             </li>
             <li>Dictionaries:
-                <pre><code>person = {
+                <pre is:raw><code>person = {
     'name': 'John',
     'age': 30,
     'city': 'New York'
@@ -286,19 +286,19 @@ values = person.values()              # Get values</code></pre>
         </p>
         <ul>
             <li>Basic Function:
-                <pre><code>def greet(name):
+                <pre is:raw><code>def greet(name):
     return f"Hello, {name}!"</code></pre>
             </li>
             <li>Default Parameters:
-                <pre><code>def calculate_total(price, tax_rate=0.1):
+                <pre is:raw><code>def calculate_total(price, tax_rate=0.1):
     return price * (1 + tax_rate)</code></pre>
             </li>
             <li>Multiple Returns:
-                <pre><code>def get_stats(numbers):
+                <pre is:raw><code>def get_stats(numbers):
     return min(numbers), max(numbers), sum(numbers)</code></pre>
             </li>
             <li>Lambda Functions:
-                <pre><code>square = lambda x: x**2
+                <pre is:raw><code>square = lambda x: x**2
 double = lambda x: x*2</code></pre>
             </li>
         </ul>
@@ -309,7 +309,7 @@ double = lambda x: x*2</code></pre>
         </p>
         <ul>
             <li>DataFrame Creation:
-                <pre><code>import pandas as pd
+                <pre is:raw><code>import pandas as pd
 
 df = pd.DataFrame({
     'name': ['John', 'Jane'],
@@ -317,7 +317,7 @@ df = pd.DataFrame({
 })</code></pre>
             </li>
             <li>Data Selection:
-                <pre><code># Column selection
+                <pre is:raw><code># Column selection
 names = df['name']
 
 # Filtering
@@ -330,7 +330,7 @@ filtered = df[
 ]</code></pre>
             </li>
             <li>Missing Values:
-                <pre><code># Check missing
+                <pre is:raw><code># Check missing
 null_count = df.isnull().sum()
 
 # Fill missing
@@ -338,7 +338,7 @@ df.fillna(0)  # Fill with zero
 df.dropna()   # Remove missing</code></pre>
             </li>
             <li>Grouping and Aggregation:
-                <pre><code># Group by and calculate mean
+                <pre is:raw><code># Group by and calculate mean
 grouped = df.groupby('category')['value'].mean()
 
 # Multiple aggregations
@@ -353,7 +353,7 @@ aggs = df.groupby('category').agg({
         <p>
             Common error handling patterns:
         </p>
-        <pre><code>def safe_division(a, b):
+        <pre is:raw><code>def safe_division(a, b):
     try:
         result = a / b
     except ZeroDivisionError:

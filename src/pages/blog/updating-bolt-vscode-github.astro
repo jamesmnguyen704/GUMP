@@ -42,7 +42,7 @@ import FullBlogPost from '../../components/FullBlogPost.astro';
         <p>
             After opening VS Code and checking Git status, I followed these steps for version control:
         </p>
-        <pre><code>git status
+        <pre is:raw><code>git status
 git add .
 git commit -m "Updated site with latest Bolt export (April 17)"</code></pre>
 
@@ -50,7 +50,7 @@ git commit -m "Updated site with latest Bolt export (April 17)"</code></pre>
         <p>
             When pushing changes, I encountered and resolved a branch naming issue:
         </p>
-        <pre><code># Initial attempt
+        <pre is:raw><code># Initial attempt
 git push origin main
 
 # Error received
