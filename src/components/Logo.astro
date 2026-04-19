@@ -1,53 +1,66 @@
 ---
+type Size = "sm" | "md" | "lg";
+type Variant = "mark" | "full";
+
 interface Props {
     initials?: string;
     fullName?: string;
+    size?: Size;
+    variant?: Variant;
+    link?: boolean;
 }
 
-const { initials = "JN", fullName = "jamesnguyen" } = Astro.props;
+const {
+    initials = "JN",
+    fullName = "james nguyen",
+    size = "md",
+    variant = "full",
+    link = true,
+} = Astro.props;
+
+const Tag = link ? "a" : "span";
 ---
 
-<a href="/" class="logo-container">
-    <div class="logo">
-        <span class="initials">{initials}</span>
-    </div>
-    <span class="full-name">{fullName}</span>
-</a>
+<Tag class={`logo-root size-${size} variant-${variant}`} {...(link ? { href: "/", "aria-label": "Home" } : {})}>
+    <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <rect width="32" height="32" rx="7" fill="#0a0a0a"/>
+            <rect x="0.5" y="0.5" width="31" height="31" rx="6.5" fill="none" stroke="#d9a33e" stroke-opacity="0.45" stroke-width="1"/>
+            <text x="50%" y="56%" text-anchor="middle" dominant-baseline="middle"
+                  font-family="'Inter Variable', Inter, system-ui, sans-serif"
+                  font-size="14" font-weight="700" fill="#d9a33e" letter-spacing="-0.5">{initials}</text>
+        </svg>
+    </span>
+    {variant === "full" && (
+        <span class="logo-text">{fullName}</span>
+    )}
+</Tag>
 
 <style>
-    .logo-container {
-        display: flex;
+    .logo-root {
+        display: inline-flex;
         align-items: center;
-        gap: 0.75rem;
-        font-weight: 500;
-        text-decoration: none;
-        transition: opacity 0.2s ease;
-    }
-
-    .logo-container:hover {
-        opacity: 0.8;
-    }
-
-    .logo {
-        background-color: #ffffff;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .initials {
-        color: #000000;
-        font-size: 1rem;
-        text-transform: uppercase;
-        font-weight: 600;
-    }
-
-    .full-name {
-        font-size: 1.1rem;
+        gap: 0.6rem;
         color: var(--text-color);
-        text-transform: lowercase;
+        text-decoration: none;
+        transition: opacity 0.15s;
     }
+    a.logo-root:hover { opacity: 0.85; }
+
+    .logo-mark {
+        display: inline-flex;
+        flex-shrink: 0;
+    }
+    .size-sm .logo-mark { width: 24px; height: 24px; }
+    .size-md .logo-mark { width: 30px; height: 30px; }
+    .size-lg .logo-mark { width: 40px; height: 40px; }
+
+    .logo-text {
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--text-color);
+    }
+    .size-sm .logo-text { font-size: 0.85rem; }
+    .size-md .logo-text { font-size: 1rem; }
+    .size-lg .logo-text { font-size: 1.2rem; }
 </style>
