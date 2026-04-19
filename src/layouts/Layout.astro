@@ -1,5 +1,6 @@
 ---
 import Logo from '../components/Logo.astro';
+import SocialIcons from '../components/SocialIcons.astro';
 
 interface Props {
 	title: string;
@@ -47,38 +48,37 @@ const ogImage = new URL(image, Astro.site ?? Astro.url);
 	<body>
 		<header>
 			<nav>
-				<div class="logo">
+				<a href="/" class="logo" aria-label="Home">
 					<Logo initials="JN" fullName="jamesnguyen" />
-				</div>
+				</a>
 				<div class="nav-links">
-					<a href="/">Home</a>
 					<a href="/about">About</a>
 					<a href="/work">Work</a>
 					<a href="/projects">Projects</a>
-					<a href="/learning">Learning</a>
-					<a href="/blog">Blog</a>
-					<a href="/favorites">Favorites</a>
-					<div class="contact-container">
-						<a href="mailto:jamesmnguyen704@outlook.com" class="contact-btn">Contact</a>
-						<div class="contact-info">
-							<p><a href="mailto:jamesmnguyen704@outlook.com">jamesmnguyen704@outlook.com</a></p>
-							<p><a href="https://github.com/jamesmnguyen704" target="_blank" rel="noopener">GitHub</a></p>
-							<p><a href="https://www.linkedin.com/in/jamesmnguyen704/" target="_blank" rel="noopener">LinkedIn</a></p>
-						</div>
-					</div>
+					<a href="/blog">Writing</a>
+					<a href="mailto:jamesmnguyen704@outlook.com" class="contact-btn">Contact</a>
 				</div>
 			</nav>
 		</header>
 		<main>
 			<slot />
 		</main>
+		<footer>
+			<div class="footer-inner">
+				<p class="footer-copy">&copy; {new Date().getFullYear()} James Nguyen</p>
+				<SocialIcons size="sm" />
+			</div>
+		</footer>
 	</body>
 </html>
 <style is:global>
 	:root {
-		--text-color: #ffffff;
-		--bg-color: #000000;
-		--accent-color: #666666;
+		--text-color: #eaeaea;
+		--text-muted: #9a9a9a;
+		--bg-color: #0a0a0a;
+		--bg-elev: #111;
+		--border: #222;
+		--accent: #d9a33e;
 	}
 	* {
 		margin: 0;
@@ -86,77 +86,104 @@ const ogImage = new URL(image, Astro.site ?? Astro.url);
 		box-sizing: border-box;
 	}
 	html {
-		font-family: system-ui, sans-serif;
+		font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 		background: var(--bg-color);
 		color: var(--text-color);
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 	body {
-		max-width: 1200px;
+		max-width: 1140px;
 		margin: 0 auto;
-		padding: 0 1rem;
+		padding: 0 1.5rem;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
 	}
 	header {
-		padding: 2rem 0;
+		position: sticky;
+		top: 0;
+		z-index: 40;
+		padding: 1.25rem 0;
+		background: rgba(10, 10, 10, 0.78);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.2s;
+	}
+	header::after {
+		content: "";
+		position: absolute;
+		inset: auto 0 0 0;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, var(--border), transparent);
+		opacity: 0.6;
 	}
 	nav {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		gap: 1rem;
+	}
+	.logo {
+		display: inline-flex;
+		color: var(--text-color);
+		text-decoration: none;
 	}
 	.nav-links {
 		display: flex;
-		gap: 2rem;
+		gap: 1.75rem;
 		align-items: center;
 	}
 	.nav-links a {
-		color: var(--text-color);
+		color: var(--text-muted);
 		text-decoration: none;
-		font-size: 1rem;
+		font-size: 0.92rem;
+		transition: color 0.15s;
 	}
-	.contact-container {
-		position: relative;
+	.nav-links a:hover {
+		color: var(--text-color);
 	}
 	.contact-btn {
-		border: 1px solid var(--text-color);
-		padding: 0.5rem 1rem;
-		border-radius: 4px;
-	}
-	.contact-info {
-		position: absolute;
-		top: 100%;
-		right: 0;
-		background-color: var(--bg-color);
-		border: 1px solid var(--text-color);
-		padding: 1rem;
-		border-radius: 4px;
-		margin-top: 0.5rem;
-		display: none;
-		white-space: nowrap;
-		z-index: 10;
-	}
-	.contact-info p {
-		margin: 0.5rem 0;
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-	}
-	.contact-container:hover .contact-info {
-		display: block;
-	}
-	.outlook-icon, .discord-icon {
-		width: 20px;
-		height: 20px;
-	}
-	.outlook-icon {
-		color: #0078D4;
-	}
-	.discord-link {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		padding: 0.45rem 0.9rem;
+		border-radius: 6px;
 		color: var(--text-color) !important;
+		transition: border-color 0.15s, background 0.15s;
+	}
+	.contact-btn:hover {
+		border-color: var(--text-color);
+		background: rgba(255, 255, 255, 0.04);
 	}
 	main {
-		padding: 2rem 0;
+		flex: 1;
+		padding: 1.5rem 0 4rem;
+	}
+	footer {
+		padding: 3rem 0 2rem;
+		margin-top: 4rem;
+		border-top: 1px solid var(--border);
+	}
+	.footer-inner {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+	}
+	.footer-copy {
+		color: var(--text-muted);
+		font-size: 0.85rem;
+	}
+
+	a { color: inherit; }
+
+	@media (max-width: 720px) {
+		.nav-links { gap: 0.75rem; }
+		.nav-links a { font-size: 0.85rem; }
+	}
+	@media (max-width: 500px) {
+		.nav-links > a[href="/about"],
+		.nav-links > a[href="/work"] { display: none; }
 	}
 </style>

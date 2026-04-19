@@ -2,17 +2,63 @@
 import Layout from '../layouts/Layout.astro';
 import WorkExperience from '../components/WorkExperience.astro';
 
-const description = "Work history of James Nguyen: Day & Night Solar, Keeley, Curtiss-Wright, Robert Half, NTT, Wells Fargo, Walmart eCommerce, and Top Nails Tech (founder).";
+type Education = {
+    credential: string;
+    provider: string;
+    period: string;
+    summary: string;
+    takeaways: string[];
+};
+
+const education: Education[] = [
+    {
+        credential: "Full Stack Web Development Certificate",
+        provider: "Savvy Coders",
+        period: "Sep 2025 – Dec 2025",
+        summary: "12-week immersive full-stack bootcamp in a facilitated Scrum environment running two-week sprints. Built and deployed the Cinemetrics capstone to Netlify/Render.",
+        takeaways: ["JavaScript", "HTML", "CSS", "Node.js", "Express", "MongoDB", "Mongoose", "REST APIs", "Navigo", "Git/GitHub", "Agile / Scrum", "Thunder Client"],
+    },
+    {
+        credential: "WorkKeys Silver — National Career Readiness",
+        provider: "ACT",
+        period: "Dec 2025",
+        summary: "National Career Readiness Certificate at the Silver level — validating applied math, workplace documents, and graphic literacy.",
+        takeaways: ["Data Analysis", "Applied Math", "Workplace Documents"],
+    },
+    {
+        credential: "Agile Fundamentals (ICP)",
+        provider: "ICAgile",
+        period: "2024",
+        summary: "ICAgile Agile Fundamentals certification — the lens I now use for sprint planning and iterative delivery on my internal tooling.",
+        takeaways: ["Agile", "Scrum", "Iterative Delivery"],
+    },
+    {
+        credential: "Data Science Certification",
+        provider: "TripleTen",
+        period: "Sep 2023 – May 2024",
+        summary: "16 end-to-end data science projects covering Python fundamentals, EDA, statistical testing, classical ML, tree ensembles, NLP, time series, and a CNN regression for computer vision.",
+        takeaways: ["Python", "pandas", "NumPy", "scikit-learn", "LightGBM", "XGBoost", "CatBoost", "TensorFlow/Keras", "spaCy", "transformers", "Hypothesis Testing", "Time Series"],
+    },
+    {
+        credential: "Bachelor's Degree in Accounting",
+        provider: "Belmont Abbey College",
+        period: "Completed 2012",
+        summary: "Financial accounting, managerial accounting, auditing, taxation, and business law — the foundation for a decade of reconciliation work across enterprise ERPs.",
+        takeaways: ["Financial Accounting", "Managerial Accounting", "Auditing", "Taxation", "Cost Accounting", "Business Law"],
+    },
+];
+
+const description = "Work history of James Nguyen: Day & Night Solar, Keeley, Curtiss-Wright, Robert Half, NTT, Wells Fargo, Walmart eCommerce, and Top Nails Tech (founder). Plus education and certifications.";
 ---
 
 <Layout title="Work" description={description}>
     <section class="work-header">
         <h1>Work</h1>
         <p>
-            Ten-plus years of finance and operations work — from running my own business to
+            Ten-plus years of finance and operations — from running my own business to
             enterprise reconciliation at NTT, Robert Half, and Curtiss-Wright, to building the
-            internal operating system at Day &amp; Night Solar. The through-line is the same: take
-            messy financial data from multiple source systems and turn it into something reliable.
+            internal operating system at Day &amp; Night Solar. The through-line is the same:
+            take messy financial data from multiple source systems and turn it into something reliable.
         </p>
     </section>
 
@@ -29,17 +75,41 @@ const description = "Work history of James Nguyen: Day & Night Solar, Keeley, Cu
             with a CPA-grade mindset for controls, audit trails, and safety.
         </p>
     </section>
+
+    <section class="education-section">
+        <div class="education-head">
+            <h2>Education &amp; what I learned</h2>
+            <p>
+                Credentials aren't the point — what I actually walked away with is. Each line
+                below is the program and the skills it moved me on.
+            </p>
+        </div>
+
+        <ul class="edu-list">
+            {education.map(edu => (
+                <li class="edu-item">
+                    <div class="edu-header">
+                        <h3>{edu.credential}</h3>
+                        <span class="edu-period">{edu.period}</span>
+                    </div>
+                    <p class="edu-provider">{edu.provider}</p>
+                    <p class="edu-summary">{edu.summary}</p>
+                    <div class="edu-takeaways">
+                        {edu.takeaways.map(t => <span class="takeaway-tag">{t}</span>)}
+                    </div>
+                </li>
+            ))}
+        </ul>
+    </section>
 </Layout>
 
 <style>
-    .work-header { margin: 4rem 0 2rem; max-width: 780px; }
-    .work-header h1 { font-size: 3rem; margin-bottom: 1rem; }
-    .work-header p {
-        color: #ccc;
-        font-size: 1.1rem;
-        line-height: 1.7;
-    }
+    .work-header { margin: 3rem 0 2rem; max-width: 780px; }
+    .work-header h1 { font-size: 3rem; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .work-header p { color: #bbb; font-size: 1.1rem; line-height: 1.7; }
+
     .work-content { margin: 2rem 0 4rem; }
+
     .throughline {
         margin: 4rem 0;
         padding: 1.5rem 1.75rem;
@@ -52,9 +122,77 @@ const description = "Work history of James Nguyen: Day & Night Solar, Keeley, Cu
         margin: 0 0 0.75rem;
         color: #eee;
     }
-    .throughline p {
-        color: #ccc;
-        line-height: 1.7;
+    .throughline p { color: #ccc; line-height: 1.7; margin: 0; }
+
+    .education-section { margin: 4rem 0; }
+    .education-head {
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 1px solid #222;
+        max-width: 780px;
+    }
+    .education-head h2 {
+        font-size: 1.6rem;
+        margin: 0 0 0.4rem;
+    }
+    .education-head p {
+        color: #888;
+        font-size: 0.95rem;
+        line-height: 1.55;
+    }
+
+    .edu-list {
+        list-style: none;
+        padding: 0;
         margin: 0;
+        display: grid;
+        gap: 1rem;
+    }
+    .edu-item {
+        padding: 1.25rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid #1f1f1f;
+        border-radius: 10px;
+    }
+    .edu-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.5rem;
+        align-items: baseline;
+        margin-bottom: 0.3rem;
+    }
+    .edu-header h3 {
+        font-size: 1.1rem;
+        margin: 0;
+        color: #eee;
+    }
+    .edu-period {
+        color: #888;
+        font-size: 0.82rem;
+    }
+    .edu-provider {
+        color: #d9a33e;
+        font-size: 0.85rem;
+        margin: 0 0 0.6rem;
+    }
+    .edu-summary {
+        color: #ccc;
+        line-height: 1.6;
+        margin: 0 0 0.9rem;
+        font-size: 0.95rem;
+    }
+    .edu-takeaways {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+    }
+    .takeaway-tag {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        color: #bbb;
     }
 </style>

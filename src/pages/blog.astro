@@ -1,68 +1,362 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import TutorialCard from '../components/TutorialCard.astro';
 import BlogPost from '../components/BlogPost.astro';
 
-const posts = [
+type Difficulty = "Beginner" | "Intermediate" | "Advanced";
+type TutorialStatus = "Published" | "Draft" | "Coming Soon";
+
+type Tutorial = {
+    title: string;
+    description: string;
+    slug: string;
+    category: string;
+    difficulty: Difficulty;
+    readTime: string;
+    stack: string[];
+    outcome: string;
+    date?: string;
+    status?: TutorialStatus;
+    withClaude?: boolean;
+    featured?: boolean;
+};
+
+// --- Tutorials (the showcase) ---
+const tutorials: Tutorial[] = [
     {
-        title: "SavvyCoders for FullStack",
-        date: "Sep 2025 – Current",
-        readTime: "N/A",
-        category: "Education",
-        excerpt: "Full stack web development through SavvyCoders, focusing on JavaScript, HTML, CSS, Git, and building responsive, interactive web applications.",
-        slug: "savvycoders-fullstack-bootcamp"
+        title: "Multi-Agent Orchestration with Claude Code",
+        description: "A hub-and-spoke setup with reusable skills, tiered model routing, and a three-stage code-quality pipeline.",
+        slug: "multi-agent-orchestration-claude-code",
+        category: "AI · Orchestration",
+        difficulty: "Advanced",
+        readTime: "18 min read",
+        stack: ["Claude Code", "Anthropic SDK", "MCP", "Ollama"],
+        outcome: "A working multi-agent system with implement → review → resolve pipeline",
+        status: "Draft",
+        withClaude: true,
+        featured: true,
     },
     {
-        title: "Website Improvements",
-        date: "09 Jan 2025",
-        readTime: "5 Mins Read",
-        category: "Development",
-        excerpt: "A detailed look at recent improvements to my portfolio website, including enhanced project cards, contact features, and expanded about section.",
-        slug: "website-improvements-jan-2024"
+        title: "Building a Bank Reconciliation Engine with Fuzzy Matching",
+        description: "Progressive match tiers, confidence scoring, and a review queue that only surfaces what a human needs to look at.",
+        slug: "bank-reconciliation-fuzzy-matching",
+        category: "Automation · Finance",
+        difficulty: "Advanced",
+        readTime: "15 min read",
+        stack: ["Python", "pandas", "rapidfuzz"],
+        outcome: "A multi-tier fuzzy match engine with audit logs",
+        status: "Draft",
+        featured: true,
     },
+    {
+        title: "Building a Finance Platform with FastAPI",
+        description: "Rebuilding back-office operations on FastAPI + SQLAlchemy + Alembic — designed to migrate cleanly from SQLite to Postgres.",
+        slug: "fastapi-finance-platform",
+        category: "Backend · Finance",
+        difficulty: "Advanced",
+        readTime: "16 min read",
+        stack: ["FastAPI", "SQLAlchemy", "Alembic", "Pydantic"],
+        outcome: "A finance service with clean ORM/service/API layers",
+        status: "Draft",
+        featured: true,
+    },
+    {
+        title: "Automating QuickBooks IIF Generation with Python",
+        description: "How I eliminated 90%+ of manual QB entry with programmatic IIF files — and the anti-duplicate checks that make it safe.",
+        slug: "quickbooks-iif-automation",
+        category: "Automation · Finance",
+        difficulty: "Intermediate",
+        readTime: "12 min read",
+        stack: ["Python", "pandas", "QuickBooks Enterprise"],
+        outcome: "A CLI that generates valid IIF files with de-duplication",
+        status: "Draft",
+    },
+    {
+        title: "OCR Document Intelligence: Classifying Vendor Docs at Scale",
+        description: "Turn a PDF folder into a searchable operational feed with OCR, classification, and auto-routing.",
+        slug: "ocr-document-intelligence",
+        category: "AI · Automation",
+        difficulty: "Advanced",
+        readTime: "14 min read",
+        stack: ["EasyOCR", "Python", "LLM classification"],
+        outcome: "A pipeline that reads, classifies, and routes hundreds of docs a week",
+        status: "Draft",
+    },
+    {
+        title: "From Excel to SQLite: Building a Real Operational Database",
+        description: "How to migrate a live Excel-driven workflow to SQLite without downtime — and why it's the right step before Postgres.",
+        slug: "excel-to-sqlite",
+        category: "Data · Backend",
+        difficulty: "Intermediate",
+        readTime: "11 min read",
+        stack: ["SQLite", "Python", "pandas"],
+        outcome: "A database replacing a shared spreadsheet, with Excel still readable",
+        status: "Draft",
+    },
+    {
+        title: "Designing Dashboards That CFOs Actually Read",
+        description: "Pandas + openpyxl dashboards that land on page one. The one-screen rule, and why your CFO doesn't want filters.",
+        slug: "cfo-dashboards",
+        category: "Reporting · Finance",
+        difficulty: "Intermediate",
+        readTime: "9 min read",
+        stack: ["pandas", "openpyxl", "HTML"],
+        outcome: "A CFO-grade dashboard that auto-regenerates daily",
+        status: "Draft",
+    },
+    {
+        title: "ERP Data Migration: A SQL + Excel Playbook",
+        description: "Extract-validate-compare workflows for an in-flight ERP migration — when you don't own the ETL.",
+        slug: "erp-data-migration-sql",
+        category: "Data · SQL",
+        difficulty: "Intermediate",
+        readTime: "10 min read",
+        stack: ["SQL", "Excel", "VS Code"],
+        outcome: "A repeatable reconciliation playbook and discrepancy report",
+        status: "Draft",
+    },
+    {
+        title: "Scaffolding a Full-Stack App with Claude Code",
+        description: "Going from empty repo to a running Node/Express/MongoDB app — the path I took for my SavvyCoders capstone.",
+        slug: "scaffolding-fullstack-with-claude",
+        category: "Web · Claude",
+        difficulty: "Beginner",
+        readTime: "10 min read",
+        stack: ["Node.js", "Express", "MongoDB", "Claude Code"],
+        outcome: "A deploy-ready full-stack scaffold and your first CRUD route",
+        status: "Draft",
+        withClaude: true,
+    },
+];
+
+const legacyTutorials: Tutorial[] = [
+    {
+        title: "Excel Formulas for Data Migration Validation",
+        description: "Advanced Excel for validating migrations — XLOOKUP, IF chains, INDEX/MATCH, and date validation.",
+        slug: "excel-formulas-tutorial",
+        category: "Data · Excel",
+        difficulty: "Intermediate",
+        readTime: "6 min read",
+        stack: ["Excel", "XLOOKUP", "INDEX/MATCH"],
+        outcome: "A validation-ready Excel workflow for ERP migrations",
+        date: "Apr 2025",
+        status: "Published",
+    },
+    {
+        title: "Updating My Site with Bolt, VS Code, and GitHub",
+        description: "My workflow for editing this site across Bolt, VS Code, and GitHub — with clean version control.",
+        slug: "updating-bolt-vscode-github",
+        category: "Web · Dev Tools",
+        difficulty: "Beginner",
+        readTime: "8 min read",
+        stack: ["Bolt", "VS Code", "GitHub"],
+        outcome: "A clean edit-test-commit-deploy loop for a personal site",
+        date: "Apr 2025",
+        status: "Published",
+    },
+    {
+        title: "Git Basics: Cloning a Repo and Pushing to GitHub",
+        description: "The essential Git commands for cloning and pushing, with step-by-step examples.",
+        slug: "git-basics-tutorial",
+        category: "Dev Tools · Git",
+        difficulty: "Beginner",
+        readTime: "5 min read",
+        stack: ["Git", "GitHub"],
+        outcome: "Confidence cloning repos and pushing your first commit",
+        date: "Apr 2025",
+        status: "Published",
+    },
+];
+
+// --- Blog-style posts (career, updates, notes) ---
+type Post = {
+    title: string;
+    date: string;
+    readTime: string;
+    category: string;
+    excerpt: string;
+    slug: string;
+};
+
+const posts: Post[] = [
     {
         title: "From Accounting to Data Science: My Career Transition Journey",
         date: "05 Dec 2023",
-        readTime: "8 Mins Read",
+        readTime: "8 min read",
         category: "Career",
         excerpt: "My personal journey of transitioning from a certified accountant to a data scientist, and the lessons learned along the way.",
-        slug: "from-accounting-to-data-science"
+        slug: "from-accounting-to-data-science",
     },
     {
-        title: "Introduction to Machine Learning",
+        title: "Machine Learning in Finance",
         date: "03 Dec 2023",
-        readTime: "10 Mins Read",
+        readTime: "10 min read",
         category: "Machine Learning",
-        excerpt: "A comprehensive guide to understanding the basics of machine learning and its applications.",
-        slug: "intro-to-ml"
-    }
+        excerpt: "A practical look at how ML techniques apply to financial problems — and where traditional methods still win.",
+        slug: "machine-learning-in-finance",
+    },
+    {
+        title: "Correlation and Hypothesis Testing",
+        date: "Feb 2024",
+        readTime: "7 min read",
+        category: "Statistics",
+        excerpt: "Notes on correlation measures and the hypothesis tests that go with them — from the TripleTen program.",
+        slug: "correlation-hypothesis",
+    },
+    {
+        title: "Sprint 1: Python Fundamentals Review",
+        date: "20 Apr 2025",
+        readTime: "12 min read",
+        category: "Programming",
+        excerpt: "A deep review of Sprint 1 fundamentals from the TripleTen program — data types, control flow, and early pandas.",
+        slug: "sprint1-python-fundamentals",
+    },
+    {
+        title: "Website Improvements — Jan 2024",
+        date: "09 Jan 2025",
+        readTime: "5 min read",
+        category: "Development",
+        excerpt: "Recent improvements to the portfolio: enhanced project cards, contact features, and expanded about section.",
+        slug: "website-improvements-jan-2024",
+    },
+    {
+        title: "Project Update — Jan 2024",
+        date: "Jan 2024",
+        readTime: "4 min read",
+        category: "Development",
+        excerpt: "Where things stood on the portfolio + learning roadmap at the start of the year.",
+        slug: "project-update-jan-2024",
+    },
+    {
+        title: "Data Analyst Role in St. Louis",
+        date: "2025",
+        readTime: "5 min read",
+        category: "Career",
+        excerpt: "Notes from landing a contract data analyst role at Keeley Companies — ERP migration, SQL at scale.",
+        slug: "data-analyst-role-st-louis",
+    },
 ];
+
+const featuredTutorials = tutorials.filter(t => t.featured);
+const otherTutorials = tutorials.filter(t => !t.featured);
 ---
 
-<Layout title="Blog">
-    <section class="blog-header">
-        <h1>Blog</h1>
-        <p>Thoughts and insights about data science, machine learning, and technology.</p>
+<Layout title="Writing" description="Tutorials and notes from James Nguyen — finance automation, AI orchestration, data engineering, full-stack web, career transitions.">
+    <section class="writing-header">
+        <h1>Writing</h1>
+        <p>
+            Tutorials pulled straight from what I've shipped, plus notes on the journey from
+            accounting to data science to building systems. Drafts are actively being written —
+            the cards tell you what's landing next.
+        </p>
     </section>
 
-    <section class="posts">
+    <section class="tutorials-section">
+        <div class="section-head">
+            <h2>Tutorials</h2>
+            <div class="tutorial-stats">
+                <span><strong>{tutorials.length + legacyTutorials.length}</strong> tutorials</span>
+                <span class="stat-dot" aria-hidden="true">·</span>
+                <span><strong>{legacyTutorials.filter(t => t.status === "Published").length}</strong> published</span>
+                <span class="stat-dot" aria-hidden="true">·</span>
+                <span><strong>{tutorials.filter(t => t.status === "Draft").length}</strong> in progress</span>
+            </div>
+        </div>
+
+        <h3 class="subhead">Featured</h3>
+        <div class="tutorial-grid">
+            {featuredTutorials.map(t => <TutorialCard {...t} />)}
+        </div>
+
+        <h3 class="subhead">More tutorials</h3>
+        <div class="tutorial-grid">
+            {otherTutorials.map(t => <TutorialCard {...t} />)}
+        </div>
+
+        <h3 class="subhead">Published guides</h3>
+        <div class="tutorial-grid">
+            {legacyTutorials.map(t => <TutorialCard {...t} />)}
+        </div>
+    </section>
+
+    <section class="posts-section">
+        <h2>Notes &amp; essays</h2>
+        <p class="section-sub">Shorter-form posts on the journey, projects, and what I'm learning.</p>
         {posts.map(post => <BlogPost {...post} />)}
     </section>
 </Layout>
 
 <style>
-    .blog-header {
-        margin: 4rem 0;
+    .writing-header {
+        margin: 3rem 0 2rem;
+        max-width: 780px;
     }
-    .blog-header h1 {
+    .writing-header h1 {
         font-size: 3rem;
         margin-bottom: 1rem;
+        letter-spacing: -0.02em;
     }
-    .blog-header p {
-        color: var(--accent-color);
-        font-size: 1.2rem;
-        max-width: 600px;
+    .writing-header p {
+        color: #bbb;
+        font-size: 1.1rem;
+        line-height: 1.7;
     }
-    .posts {
-        margin: 2rem 0;
+
+    .tutorials-section { margin: 3rem 0 4rem; }
+    .posts-section { margin: 4rem 0; }
+
+    .section-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 1px solid #222;
+    }
+    .section-head h2 {
+        font-size: 1.6rem;
+        margin: 0;
+    }
+    .tutorial-stats {
+        color: #888;
+        font-size: 0.82rem;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    .tutorial-stats strong {
+        color: #eee;
+        font-weight: 600;
+    }
+    .stat-dot { color: #333; }
+
+    .subhead {
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #888;
+        margin: 1.5rem 0 0.75rem;
+    }
+    .subhead:first-of-type { margin-top: 0.5rem; }
+
+    .tutorial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1.1rem;
+    }
+
+    .posts-section h2 {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 1px solid #222;
+    }
+    .section-sub {
+        color: #888;
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
     }
 </style>
