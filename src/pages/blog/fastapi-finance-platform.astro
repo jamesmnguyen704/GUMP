@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FullBlogPost from '../../components/FullBlogPost.astro';
+---
+
+<Layout title="Building a Finance Platform with FastAPI">
+    <FullBlogPost
+        title="Building a Finance Platform with FastAPI"
+        date="Coming soon"
+        readTime="16 mins read"
+        category="Backend · Finance"
+        author="James Nguyen"
+    >
+        <p class="lede">
+            How I'm rebuilding back-office operations at Day &amp; Night Solar on FastAPI +
+            SQLAlchemy + Alembic — designed from day one to migrate off SQLite onto Postgres.
+        </p>
+
+        <h2>The problem</h2>
+        <p>
+            Commercial solar ops ran out of Excel. 170+ projects, 15 states, dozens of vendors.
+            A single source of truth the whole team could query was overdue.
+        </p>
+
+        <h2>What you'll build</h2>
+        <ul>
+            <li>A FastAPI service with SQLAlchemy models and Pydantic schemas</li>
+            <li>Alembic migrations set up to move from SQLite to Postgres without rewrites</li>
+            <li>Routes for customers, POs, invoices, and bank transactions</li>
+            <li>Clean separation: ORM layer, service layer, API layer</li>
+        </ul>
+
+        <h2>1. Project layout that scales</h2>
+        <p><em>Coming soon — the folder structure I landed on and why.</em></p>
+
+        <h2>2. Models, schemas, and the migration path</h2>
+        <p><em>Coming soon — SQLAlchemy models designed for Postgres; Alembic from day one.</em></p>
+
+        <h2>3. Services vs. controllers</h2>
+        <p><em>Coming soon — where business logic lives and why the route handlers stay thin.</em></p>
+
+        <h2>Wrap-up</h2>
+        <p><em>Coming soon — what I'd do differently starting over.</em></p>
+    </FullBlogPost>
+</Layout>
+
+<style>
+    .lede {
+        font-size: 1.2rem;
+        color: #ddd;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+        padding-left: 1rem;
+        border-left: 2px solid #3a5;
+    }
+</style>

@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FullBlogPost from '../../components/FullBlogPost.astro';
+---
+
+<Layout title="OCR Document Intelligence: Classifying Vendor Docs at Scale">
+    <FullBlogPost
+        title="OCR Document Intelligence: Classifying Vendor Docs at Scale"
+        date="Coming soon"
+        readTime="14 mins read"
+        category="AI · Automation"
+        author="James Nguyen"
+    >
+        <p class="lede">
+            How I built an OCR + classification + auto-routing pipeline for hundreds of incoming
+            vendor docs, bank statements, and cost models — turning a PDF folder into a searchable
+            operational feed.
+        </p>
+
+        <h2>The problem</h2>
+        <p>
+            Every week: 50+ vendor invoices, bank statements, internal cost models — all PDFs,
+            all in a shared drive. Needed a pipeline that reads, classifies, and routes them
+            without a human doing it.
+        </p>
+
+        <h2>What you'll build</h2>
+        <ul>
+            <li>An OCR layer that handles scanned PDFs, faxes, and mixed-quality docs</li>
+            <li>A classifier that tells invoice from statement from cost model</li>
+            <li>Auto-routing rules that drop documents into the right folder + surface metadata</li>
+            <li>An audit log so every auto-decision is reversible</li>
+        </ul>
+
+        <h2>1. Running OCR that doesn't blow up on bad scans</h2>
+        <p><em>Coming soon — EasyOCR vs. Tesseract vs. cloud, and when I use which.</em></p>
+
+        <h2>2. The classification layer</h2>
+        <p><em>Coming soon — rule-based vs. LLM-assisted, and when I combine them.</em></p>
+
+        <h2>3. Routing + metadata extraction</h2>
+        <p><em>Coming soon — the minimal metadata schema that made downstream queries simple.</em></p>
+
+        <h2>Wrap-up</h2>
+        <p><em>Coming soon — failure modes and what I watch for.</em></p>
+    </FullBlogPost>
+</Layout>
+
+<style>
+    .lede {
+        font-size: 1.2rem;
+        color: #ddd;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+        padding-left: 1rem;
+        border-left: 2px solid #3a5;
+    }
+</style>
