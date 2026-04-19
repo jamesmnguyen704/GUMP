@@ -10,12 +10,13 @@ const pillars = [
     { title: "Orchestrate AI workflows", body: "Multi-agent Claude Code setups, tiered cloud + local LLM routing, OCR + classification for document intelligence." },
 ];
 
-const currentlyBuilding: Array<{ title: string; description: string; stack: string; status: Status; outcome?: string }> = [
+const currentlyBuilding: Array<{ title: string; description: string; stack: string; status: Status; outcome?: string; href?: string }> = [
     {
         title: "Finance Platform",
         description: "Python/FastAPI + SQLAlchemy service layer designed for Postgres migration. Replaces a spreadsheet-centric close process with a query-able operational database.",
         stack: "FastAPI · SQLAlchemy · Alembic · Postgres",
         status: "In Dev",
+        href: "/blog/fastapi-finance-platform",
     },
     {
         title: "QuickBooks Automation",
@@ -23,30 +24,35 @@ const currentlyBuilding: Array<{ title: string; description: string; stack: stri
         stack: "Python · QuickBooks Enterprise · IIF",
         status: "In Production",
         outcome: "90%+ of manual QB entry eliminated",
+        href: "/blog/quickbooks-iif-automation",
     },
     {
         title: "Bank Reconciliation Engine",
         description: "Progressive fuzzy-match engine across 5 bank accounts. Tier-priority confidence scoring with review queues for ambiguous matches — surfaces discrepancies before month-end.",
         stack: "Python · pandas · rule-based matching",
         status: "In Production",
+        href: "/blog/bank-reconciliation-fuzzy-matching",
     },
     {
         title: "Executive Dashboards",
         description: "pandas + openpyxl pipeline covering P&L, cash flow, billing, margin, and schedule. Auto-regenerates — CFO reads the same data leadership does.",
         stack: "pandas · openpyxl · HTML",
         status: "Live",
+        href: "/blog/cfo-dashboards",
     },
     {
         title: "AI Orchestration Layer",
         description: "Multi-agent framework on Claude Code — reusable skill definitions, a three-stage code-quality pipeline (implement → review → resolve), tiered model routing.",
         stack: "Claude Code · Anthropic SDK · MCP · Ollama",
         status: "In Dev",
+        href: "/blog/multi-agent-orchestration-claude-code",
     },
     {
         title: "Document Intelligence",
         description: "OCR + classification + auto-routing for hundreds of incoming vendor docs, bank statements, and internal cost models.",
         stack: "EasyOCR · PyPDF2 · Python",
         status: "In Production",
+        href: "/blog/ocr-document-intelligence",
     },
 ];
 
@@ -86,6 +92,10 @@ const description = "Data & AI engineer from a 10+ year finance background. I tu
             finance, data engineering, and AI orchestration meet. Currently rebuilding back-office
             ops at Day &amp; Night Solar across 170+ commercial projects in 15 states.
         </p>
+        <span class="available-pill">
+            <span class="available-dot" aria-hidden="true"></span>
+            Available for Data Analyst · Analytics Engineer · Finance Systems roles
+        </span>
         <div class="hero-cta">
             <a href="/work" class="cta-primary">See the work <span aria-hidden="true">&rarr;</span></a>
             <a href="/projects" class="cta-secondary">Projects</a>
@@ -118,16 +128,21 @@ const description = "Data & AI engineer from a 10+ year finance background. I tu
         <ul class="systems-grid">
             {currentlyBuilding.map(system => (
                 <li class="system-card">
-                    <div class="system-top">
-                        <h3>{system.title}</h3>
-                        <span class={`status-chip status-${system.status.toLowerCase().replace(/\s+/g, "-")}`}>
-                            <span class="status-dot" aria-hidden="true"></span>
-                            {system.status}
-                        </span>
-                    </div>
-                    <p>{system.description}</p>
-                    {system.outcome && <p class="outcome">{system.outcome}</p>}
-                    <p class="stack">{system.stack}</p>
+                    <a href={system.href} class="system-link">
+                        <div class="system-top">
+                            <h3>{system.title}</h3>
+                            <span class={`status-chip status-${system.status.toLowerCase().replace(/\s+/g, "-")}`}>
+                                <span class="status-dot" aria-hidden="true"></span>
+                                {system.status}
+                            </span>
+                        </div>
+                        <p>{system.description}</p>
+                        {system.outcome && <p class="outcome">{system.outcome}</p>}
+                        <div class="system-foot">
+                            <p class="stack">{system.stack}</p>
+                            <span class="read-arrow" aria-hidden="true">Read walkthrough &rarr;</span>
+                        </div>
+                    </a>
                 </li>
             ))}
         </ul>
@@ -191,6 +206,34 @@ const description = "Data & AI engineer from a 10+ year finance background. I tu
         max-width: 720px;
         margin-bottom: 2rem;
     }
+    .available-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 0.8rem 0.4rem 0.7rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(58, 170, 85, 0.3);
+        background: rgba(58, 170, 85, 0.08);
+        border-radius: 999px;
+        color: #7fc995;
+        font-size: 0.82rem;
+        line-height: 1;
+    }
+    .available-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #3a5;
+        box-shadow: 0 0 0 0 rgba(58, 170, 85, 0.6);
+        animation: availablePulse 2.2s ease-in-out infinite;
+        flex-shrink: 0;
+    }
+    @keyframes availablePulse {
+        0% { box-shadow: 0 0 0 0 rgba(58, 170, 85, 0.55); }
+        70% { box-shadow: 0 0 0 8px rgba(58, 170, 85, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(58, 170, 85, 0); }
+    }
+
     .hero-cta {
         display: flex;
         flex-wrap: wrap;
@@ -283,10 +326,21 @@ const description = "Data & AI engineer from a 10+ year finance background. I tu
         background: #0d0d0d;
         border: 1px solid #1f1f1f;
         border-radius: 10px;
-        padding: 1.25rem;
+        transition: border-color 0.2s, transform 0.2s, background 0.2s;
+    }
+    .system-card:hover {
+        border-color: #333;
+        transform: translateY(-2px);
+        background: #101010;
+    }
+    .system-link {
         display: flex;
         flex-direction: column;
         gap: 0.6rem;
+        padding: 1.25rem;
+        color: inherit;
+        text-decoration: none;
+        height: 100%;
     }
     .system-top {
         display: flex;
@@ -298,6 +352,24 @@ const description = "Data & AI engineer from a 10+ year finance background. I tu
         font-size: 1rem;
         margin: 0;
         color: #eee;
+    }
+    .system-foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: auto;
+        padding-top: 0.5rem;
+    }
+    .read-arrow {
+        color: #666;
+        font-size: 0.74rem;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+        transition: color 0.2s, transform 0.2s;
+    }
+    .system-card:hover .read-arrow {
+        color: #d9a33e;
     }
     .status-chip {
         display: inline-flex;
@@ -326,7 +398,7 @@ const description = "Data & AI engineer from a 10+ year finance background. I tu
 
     .system-card p { color: #bbb; line-height: 1.5; font-size: 0.88rem; margin: 0; }
     .system-card .outcome { color: #7fc995; font-size: 0.8rem; font-weight: 500; }
-    .system-card .stack { color: #666; font-size: 0.76rem; margin-top: auto; padding-top: 0.25rem; }
+    .system-card .stack { color: #666; font-size: 0.76rem; margin: 0; flex: 1; min-width: 0; }
 
     .featured-grid {
         list-style: none;
