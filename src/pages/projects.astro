@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import PipelineDiagram from '../components/PipelineDiagram.astro';
+import BrowserShot from '../components/BrowserShot.astro';
 
 const tripleTenRepo = "https://github.com/jamesmnguyen704/TripleTenProgram";
 const savvyRepo = "https://github.com/jamesmnguyen704/CapstoneSavvyCoders";
@@ -250,8 +252,35 @@ const description = "What James Nguyen has built: internal finance and operation
             I'm the sole developer. The code is private, so these describe what each system does and how
             it's designed, with no company data. The <a href="/blog#lessons" class="repo-link">lessons</a> go deeper.
         </p>
+        <PipelineDiagram />
         <div class="projects-grid">
             {systems.map(p => <ProjectCard {...p} />)}
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <h2>Cinemetrics, in detail</h2>
+        <p class="section-intro">
+            The part worth seeing, not just reading about. Three features built without a
+            framework: a live countdown and cast carousel, a multi-source news feed, and a
+            release tracker grouped by date confidence.
+        </p>
+        <div class="showcase-grid">
+            <BrowserShot
+                src="/images/cinemetrics-marvel.jpg"
+                alt="Cinemetrics Marvel page with a live countdown to Avengers: Doomsday and a scrolling cast carousel"
+                caption="Live countdown timer and a horizontally scrolling cast carousel, plus a second news feed scoped just to Marvel."
+            />
+            <BrowserShot
+                src="/images/cinemetrics-news.jpg"
+                alt="Cinemetrics News page aggregating live headlines from multiple outlets"
+                caption="Aggregates live RSS from multiple outlets with per-source attribution and real timestamps — refreshed on its own schedule."
+            />
+            <BrowserShot
+                src="/images/cinemetrics-games.jpg"
+                alt="Cinemetrics Games page tracking upcoming releases grouped by date confidence"
+                caption="Groups upcoming titles by how firm the release date actually is: Dated, Window, or Rumored — not just a flat list."
+            />
         </div>
     </section>
 
@@ -310,6 +339,11 @@ const description = "What James Nguyen has built: internal finance and operation
     }
 
     .projects-section { margin: 3rem 0; }
+    .showcase-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.1rem;
+    }
     .anchor { scroll-margin-top: 6rem; display: flex; }
     .anchor > :global(*) { flex: 1; }
     .now-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }

@@ -1,0 +1,136 @@
+---
+// A generic diagram of the work-systems architecture. No real data, no company specifics —
+// just the shape described in text elsewhere on the site, made visual instead of read.
+---
+
+<div class="diagram-wrap">
+    <svg viewBox="0 0 800 260" role="img" aria-labelledby="pipeline-diagram-title pipeline-diagram-desc" class="pipeline-svg">
+        <title id="pipeline-diagram-title">Operations platform data flow</title>
+        <desc id="pipeline-diagram-desc">
+            Accounting, banking, and project sources feed a pipeline into one warehouse.
+            The accounting system stays authoritative; the warehouse and dashboards are
+            derived, dated views that can never outrank it.
+        </desc>
+
+        <!-- sources -->
+        <g class="node node-source">
+            <rect x="10" y="20" width="150" height="46" rx="8" />
+            <text x="85" y="48">Accounting system</text>
+        </g>
+        <g class="node node-source">
+            <rect x="10" y="107" width="150" height="46" rx="8" />
+            <text x="85" y="135">Bank activity</text>
+        </g>
+        <g class="node node-source">
+            <rect x="10" y="194" width="150" height="46" rx="8" />
+            <text x="85" y="222">Project &amp; procurement docs</text>
+        </g>
+
+        <!-- arrows sources -> pipeline -->
+        <path class="arrow" d="M160 43 H230" />
+        <path class="arrow" d="M160 130 H230" />
+        <path class="arrow" d="M160 217 H230" />
+
+        <!-- pipeline -->
+        <g class="node node-pipeline">
+            <rect x="232" y="90" width="140" height="80" rx="8" />
+            <text x="302" y="123">Pipeline</text>
+            <text x="302" y="143" class="sub">validate · fail closed</text>
+        </g>
+
+        <!-- arrow pipeline -> warehouse -->
+        <path class="arrow" d="M372 130 H442" />
+
+        <!-- warehouse -->
+        <g class="node node-warehouse">
+            <rect x="444" y="75" width="150" height="110" rx="8" />
+            <text x="519" y="118">Warehouse</text>
+            <text x="519" y="140" class="sub">one store,</text>
+            <text x="519" y="156" class="sub">one owner per fact</text>
+        </g>
+
+        <!-- arrows warehouse -> dashboards -->
+        <path class="arrow" d="M594 100 H664" />
+        <path class="arrow" d="M594 130 H664" />
+        <path class="arrow" d="M594 160 H664" />
+
+        <!-- operator dashboards -->
+        <g class="node node-dash">
+            <rect x="666" y="20" width="124" height="40" rx="8" />
+            <text x="728" y="45" class="small">Warehouse health</text>
+        </g>
+        <g class="node node-dash">
+            <rect x="666" y="110" width="124" height="40" rx="8" />
+            <text x="728" y="135" class="small">Agent coordination</text>
+        </g>
+        <g class="node node-dash">
+            <rect x="666" y="200" width="124" height="40" rx="8" />
+            <text x="728" y="225" class="small">Ownership board</text>
+        </g>
+    </svg>
+    <p class="diagram-caption">
+        The accounting system stays authoritative. Everything to its right is a derived,
+        dated view — it can explain the truth, but it never gets to outrank the source.
+    </p>
+</div>
+
+<style>
+    .diagram-wrap {
+        border: 1px solid #1f1f1f;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 1.25rem 1.25rem 1rem;
+        overflow-x: auto;
+    }
+    .pipeline-svg {
+        width: 100%;
+        min-width: 620px;
+        height: auto;
+        display: block;
+    }
+    .node rect {
+        fill: #0d0d0d;
+        stroke: #2a2a2a;
+        stroke-width: 1;
+    }
+    .node-warehouse rect {
+        fill: rgba(217, 163, 62, 0.08);
+        stroke: var(--accent);
+    }
+    .node text {
+        fill: #eee;
+        font-size: 13px;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        text-anchor: middle;
+        dominant-baseline: middle;
+    }
+    .node .sub {
+        fill: #888;
+        font-size: 10.5px;
+    }
+    .node .small {
+        font-size: 11.5px;
+    }
+    .node-warehouse text:not(.sub) { fill: var(--accent); font-weight: 600; }
+    .arrow {
+        stroke: #3a3a3a;
+        stroke-width: 1.5;
+        fill: none;
+        marker-end: url(#arrowhead);
+    }
+    .diagram-caption {
+        margin: 0.9rem 0 0;
+        color: #888;
+        font-size: 0.85rem;
+        line-height: 1.6;
+        max-width: 640px;
+    }
+</style>
+
+<svg width="0" height="0" style="position:absolute">
+    <defs>
+        <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="#3a3a3a" />
+        </marker>
+    </defs>
+</svg>
