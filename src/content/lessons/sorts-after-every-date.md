@@ -18,6 +18,4 @@ They sat there for weeks, hiding real records behind them whenever something joi
 
 The fix was two-part: validate the column on write, so a bad value can't get in again, and separately audit for values that are already wrong, since fixing the front door doesn't clean up what already got through. The second part is the one I'd skip if I were in a hurry, and it's the one that actually mattered here.
 
-Now when I find a type that can be wrong, my first question isn't "does it look wrong," it's "what does the wrong value sort as, relative to everything that's supposed to be there." A bad value that sorts in the middle gets noticed. A bad value that sorts off the end hides forever.
-
-When a column can hold the wrong type, check what the wrong type sorts as, not just whether it looks wrong.
+Now when I find a type that can be wrong, my first question isn't "does it look wrong," it's "what does the wrong value sort as, relative to everything that's supposed to be there." A bad value that sorts in the middle gets noticed on the next look. A bad value that sorts off the end hides until something forces you to go counting.

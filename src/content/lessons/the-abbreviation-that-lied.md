@@ -16,6 +16,4 @@ The fix wasn't clever. I renamed the file to something that describes what it ac
 
 The part that stuck with me: the confusion cost real time before anyone noticed, because a wrong belief that nobody questions doesn't announce itself. A name is a claim about what something is, and an overloaded one is a claim half the people reading it will get wrong without ever finding out.
 
-I rank renaming cheap now. If a short name collides with something else real, even just an abbreviation, the fix is to change the name, not to hope context always disambiguates it.
-
-If a short name collides with something else real, rename it before you build on top of it, not after.
+I rank renaming cheap now. Even just an abbreviation colliding with something else real is worth fixing the day someone notices, not the month it finally causes a real mistake.

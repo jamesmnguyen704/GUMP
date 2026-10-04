@@ -15,5 +15,3 @@ The same day that rule got written into the file, the file itself grew by roughl
 What caught it wasn't a feeling that the file felt long. It was measuring the actual byte size of the file, commit by commit, across one day, and watching the number climb in a way no single edit looked responsible for. I went back later and checked the exact commit history myself rather than trust anyone's memory of what happened, including my own — and the number held up almost exactly.
 
 The habit I took from this: a rule that exists to prevent a failure mode in other people's work needs to be checked against the work of the person who wrote it, not assumed exempt. Intent doesn't show up in a diff. Size does.
-
-A rule against a failure mode doesn't protect the person writing the rule. Measure the file, don't trust the intent.

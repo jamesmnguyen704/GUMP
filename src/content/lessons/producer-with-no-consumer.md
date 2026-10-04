@@ -15,5 +15,3 @@ Once I went looking, it wasn't alone. A script built on day one, to guard agains
 Every one of these passed a basic check: it ran, and it didn't crash. That's a low bar. I started breaking "does this work" into six separate questions instead of one: does it exist, is it wired to anything, does it actually run, does it produce something real, does anything read that output, and does reading it change what happens next. Most of the cases above failed at "does anything read it" or "does it change anything" — the two steps a passing test will never catch, because a test only checks that the producer did its job, not that the rest of the chain exists.
 
 I also learned the mirror-image mistake: not everything without a caller is broken. Some things are supposed to run only when I ask for them. Scheduling those just produces one more file nobody opens. The fix there isn't a wire-up, it's leaving it alone.
-
-Exists, wired, runs, produces something real, gets read, changes something — a producer is only finished at the last link.

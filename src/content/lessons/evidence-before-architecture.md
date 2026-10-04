@@ -20,4 +20,4 @@ I set one rule after that: no architectural change ships until the metric suppos
 
 I added a second rule for anything that checks a system automatically: it isn't a real safeguard unless it has a caller, a schedule, a consequence when it fails, and someone who owns it. A check nobody calls and nothing depends on is a false sense of safety, not a safeguard.
 
-A metric quoted from memory or a dashboard is a hypothesis, not an answer. Re-derive it from the source before it drives a decision.
+Eight rounds, eight wrong claims, and the system under review was fine the whole time. The thing that needed fixing was how we were checking it.

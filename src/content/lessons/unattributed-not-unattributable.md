@@ -17,5 +17,3 @@ I'd made the same mistake in a few other findings that same week, and so had the
 The fix is a reporting habit, not a tool. When a search comes back empty, I say so plainly: "I could not find a caller with this method" is the honest claim. "There is no caller" is a stronger claim that needs a second, different method behind it before I'll write it down. If I can't get that second confirmation, the finding stays labeled unknown instead of getting rounded up to a conclusion.
 
 It's a small rewording, but it's the difference between a measurement gap and a fact, and only one of those is safe to delete code over.
-
-A null in a search is "I couldn't find it," never "it doesn't exist." Report the difference.
