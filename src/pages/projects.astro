@@ -30,11 +30,11 @@ const systems = [
         outcome: "Surfaced an unlinked payment on its first run",
     },
     {
-        title: "Operations hub",
+        title: "Operator dashboards",
         associated: "Work",
-        description: "A single regenerating reporting page covering finance, project, bank, and procurement status. It replaced a set of disconnected dashboards and shows how fresh the underlying data is, not just when the page was built.",
+        description: "A warehouse health view, an agent-coordination dashboard, and an ownership board that shows every open item's owner and how long it's been waiting. All generated from the same pipeline, so they can't drift from each other the way one-off dashboards do.",
         technologies: ["Python", "HTML", "scheduled pipeline"],
-        outcome: "One operator-facing view instead of several dashboards",
+        outcome: "One generated family of operator pages, not scattered one-offs",
     },
     {
         title: "Document intelligence",
@@ -46,7 +46,7 @@ const systems = [
     {
         title: "AI agent workflow layer",
         associated: "Work · evolving",
-        description: "Specialized Claude Code agents with task handoffs, recorded decisions, verification rules, and automated tests around finance safety and pipeline freshness. Started bigger; I cut it down to what actually earned its coordination cost.",
+        description: "Specialized Claude Code agents with task handoffs, recorded decisions, and verification rules. A release gate and a growing automated test suite check every change before it ships, not just the parts that touch money. Started bigger; I cut it down to what actually earned its coordination cost.",
         technologies: ["Claude Code", "MCP", "Python", "pytest"],
         outcome: "Fewer agents, explicit handoffs, evidence before claims",
     },
