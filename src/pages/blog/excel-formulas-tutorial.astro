@@ -13,7 +13,10 @@ import FullBlogPost from '../../components/FullBlogPost.astro';
     >
         <h2>Introduction to Data Migration Validation</h2>
         <p>
-            When working with data migration projects, it's crucial to validate data accuracy and consistency. Here's a detailed look at some advanced Excel formulas I've developed for data validation during migration processes. This example i got the help of copilot to use some IFERRORS, DATEVALUE, VLOOKUPS within one cell =IF(D18 + F18 = 0, "Not In SAGE", IF(D18 <> 0, DATEVALUE(VLOOKUP(C18, 'Sage AR Acct Date'!N:P, 3, FALSE)), IF(E18 <> 0, VLOOKUP(C18, 'SAGE Retainage Aging'!A:K, 11, FALSE), "")))
+            When working with data migration projects, it's crucial to validate data accuracy and consistency. Here's a detailed look at some advanced Excel formulas I've developed for data validation during migration processes, combining IFERROR, DATEVALUE, and VLOOKUP within one cell:
+        </p>
+        <pre is:raw><code>=IF(D18 + F18 = 0, "Not In SAGE", IF(D18 &lt;&gt; 0, DATEVALUE(VLOOKUP(C18, 'Sage AR Acct Date'!N:P, 3, FALSE)), IF(E18 &lt;&gt; 0, VLOOKUP(C18, 'SAGE Retainage Aging'!A:K, 11, FALSE), "")))</code></pre>
+        <p>
         </p>
 
         <h2>Reconciliation Formula Examples</h2>
