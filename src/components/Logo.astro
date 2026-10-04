@@ -7,12 +7,12 @@ interface Props {
 const { initials = "JN", fullName = "jamesnguyen" } = Astro.props;
 ---
 
-<a href="/" class="logo-container">
+<span class="logo-container">
     <div class="logo">
         <span class="initials">{initials}</span>
     </div>
     <span class="full-name">{fullName}</span>
-</a>
+</span>
 
 <style>
     .logo-container {
