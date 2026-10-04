@@ -1,0 +1,194 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Now" description="What James Nguyen is working on, building, learning, and looking for right now.">
+    <section class="now-header">
+        <h1>Now</h1>
+        <p class="updated">Updated October 2026</p>
+        <p class="intro">
+            What I'm doing these days. Not a resume, not a project list; just where my time goes.
+        </p>
+    </section>
+
+    <section class="now">
+        <h2>Working</h2>
+        <ul class="now-list">
+            <li>
+                <span class="now-label">Role</span>
+                <span class="now-value">
+                    Finance &amp; Operations Analyst and internal developer at Day &amp; Night Solar,
+                    a commercial solar and energy-storage contractor.
+                </span>
+            </li>
+            <li>
+                <span class="now-label">Building</span>
+                <span class="now-value">
+                    I'm the sole developer of the internal operations platform (Python + SQLite):
+                    data pipelines, QuickBooks import automation that fails closed, confidence-scored
+                    reconciliation, document extraction, and a governed AI agent workflow.
+                    Concepts only; the code is private.
+                </span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="now">
+        <h2>Building on my own time</h2>
+        <ul class="now-list">
+            <li>
+                <span class="now-label">Atlas</span>
+                <span class="now-value">A local-first personal data lakehouse.</span>
+            </li>
+            <li>
+                <span class="now-label">Watt in Tarnation</span>
+                <span class="now-value">
+                    A garage solar lab. The next step is a power meter, not a battery.
+                </span>
+            </li>
+            <li>
+                <span class="now-label">Solar compute</span>
+                <span class="now-value">A solar-powered compute demonstrator. Early.</span>
+            </li>
+            <li>
+                <span class="now-label">Cinemetrics</span>
+                <span class="now-value">Still shipping to it.</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="now">
+        <h2>Learning</h2>
+        <ul class="now-list">
+            <li>
+                <span class="now-label">Measuring</span>
+                <span class="now-value">
+                    Measuring before tuning: local LLM inference on a 12 GB GPU.
+                </span>
+            </li>
+            <li>
+                <span class="now-label">Queues</span>
+                <span class="now-value">Queue semantics for AI agents.</span>
+            </li>
+            <li>
+                <span class="now-label">Electronics</span>
+                <span class="now-value">Datasheet-first electronics.</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="now">
+        <h2>Writing</h2>
+        <ul class="now-list">
+            <li>
+                <span class="now-label">Lessons</span>
+                <span class="now-value">
+                    Short <a href="/blog#lessons">lessons</a> from what breaks.
+                </span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="now">
+        <h2>Reading and using</h2>
+        <ul class="now-list">
+            <li>
+                <span class="now-label">Tools</span>
+                <span class="now-value">
+                    Claude Code, MCP, llama.cpp, Ollama, ComfyUI, SQLite, pandas, pytest.
+                </span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="now">
+        <h2>Looking for</h2>
+        <ul class="now-list">
+            <li>
+                <span class="now-label">Roles</span>
+                <span class="now-value">
+                    Full-time roles where accounting, data, and code meet: finance systems, analytics
+                    engineering, data and automation engineering, and internal tools.
+                    <a href="mailto:jamesmnguyen704@outlook.com">Email me</a>.
+                </span>
+            </li>
+        </ul>
+    </section>
+
+    <p class="now-footer">
+        This is a now page. The idea comes from
+        <a href="https://nownownow.com/about" rel="noopener">Derek Sivers</a>.
+    </p>
+</Layout>
+
+<style>
+    .now-header { margin: 4rem 0 2rem; max-width: 780px; }
+    .now-header h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+    .updated {
+        color: var(--text-muted);
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        margin-bottom: 1.5rem;
+    }
+    .intro {
+        font-size: 1.15rem;
+        line-height: 1.7;
+        color: #ddd;
+    }
+
+    section { margin: 3rem 0; max-width: 780px; }
+    section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .now-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.75rem;
+        max-width: 780px;
+    }
+    .now-list li {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #1a1a1a;
+    }
+    .now-label {
+        color: #888;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        padding-top: 0.15rem;
+    }
+    .now-value { color: #ddd; line-height: 1.6; }
+    .now-value a {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(217, 163, 62, 0.35);
+    }
+
+    .now-footer {
+        max-width: 780px;
+        margin-top: 3rem;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    .now-footer a {
+        color: var(--text-muted);
+        text-decoration: none;
+        border-bottom: 1px solid var(--border);
+    }
+    .now-footer a:hover { color: var(--text-color); }
+
+    @media (max-width: 500px) {
+        .now-list li { grid-template-columns: 1fr; gap: 0.25rem; }
+    }
+</style>

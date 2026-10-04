@@ -1,50 +1,48 @@
 # jamesnguyen.netlify.app
 
-Personal site of James Nguyen — accountant/data scientist, learning full-stack development. Built with [Astro](https://astro.build).
+James Nguyen's portfolio: projects, work history, and short lessons from building finance automation, data pipelines, and AI workflows.
 
 Live: https://jamesnguyen.netlify.app
 
-## Stack
+## Built with
 
-- Astro 4 (static SSG)
-- `@astrojs/sitemap` for `sitemap-index.xml`
-- Deployed on Netlify (config in `netlify.toml`)
+- [Astro 4](https://astro.build) (static site)
+- Astro content collections for the lessons
+- Deployed on Netlify
 
-## Project structure
+## Structure
 
-```
-├── public/            # static assets (favicon, robots.txt)
-├── src/
-│   ├── components/    # Card, BlogPost, ProjectCard, SocialStats, etc.
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       ├── index.astro
-│       ├── about.astro
-│       ├── work.astro
-│       ├── projects.astro
-│       ├── learning.astro
-│       ├── python.astro
-│       ├── favorites.astro
-│       ├── blog.astro
-│       └── blog/      # individual posts
-├── scripts/
-│   └── generate-docs.js
-├── astro.config.mjs
-└── netlify.toml
+- `src/pages/` — one `.astro` file per route (home, about, work, projects, blog, now)
+- `src/content/lessons/` — Markdown lessons rendered on the Writing page
+- `src/components/` — shared UI pieces (cards, logo, social icons)
+- `src/layouts/` — the site shell: nav, footer, meta tags, global styles
+
+## Run locally
+
+```sh
+npm install
+npm run dev     # http://localhost:4321
+npm run build   # static output in ./dist
 ```
 
-Each file under `src/pages/` maps to a route.
+## Adding a lesson
 
-## Commands
+Drop a `.md` file in `src/content/lessons/`. The frontmatter fields are validated by `src/content/config.ts`:
 
-| Command             | What it does                          |
-| :------------------ | :------------------------------------ |
-| `npm install`       | Install dependencies                  |
-| `npm run dev`       | Dev server at `localhost:4321`        |
-| `npm run build`     | Build production site to `./dist/`    |
-| `npm run preview`   | Preview the production build locally  |
+```md
+---
+title: "Fail closed before the import"
+date: 2026-06-01
+when: "Apr – Aug 2026"
+area: work
+project: "Import automation"
+summary: "One sentence on what happened and what it taught me."
+rule: "The one-line rule I took away."
+---
+```
 
-## Deploy
+`area` is `work` or `personal`. The body below the frontmatter is the lesson itself.
 
-Pushes to `main` auto-deploy via Netlify. Build settings are pinned in `netlify.toml` (Node 20, `npm run build`, publish `dist`).
+## License and contact
+
+Site content and code © James Nguyen. Questions: jamesmnguyen704@outlook.com
