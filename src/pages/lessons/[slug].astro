@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+    const lessons = await getCollection('lessons');
+    return lessons.map(lesson => ({ params: { slug: lesson.slug }, props: { lesson } }));
+}
+
+const { lesson } = Astro.props;
+const { Content } = await lesson.render();
+const { title, when, area, project, summary, rule } = lesson.data;
+---
+
+<Layout title={title} description={summary}>
+    <article class="lesson">
+        <a href="/blog#lessons" class="back">&larr; All lessons</a>
+        <p class="meta">
+            <span class={`area area-${area}`}>{area === 'work' ? 'From work' : 'Personal project'}</span>
+            <span>{project}</span>
+            <span>{when}</span>
+        </p>
+        <h1>{title}</h1>
+        <p class="summary">{summary}</p>
+        <div class="content">
+            <Content />
+        </div>
+        <aside class="rule">
+            <span class="rule-label">The rule I kept</span>
+            <p>{rule}</p>
+        </aside>
+        {area === 'work' && (
+            <p class="note">
+                Written from my work building internal systems for a commercial solar contractor.
+                Details are generalized; no company, client, or financial data.
+            </p>
+        )}
+    </article>
+</Layout>
+
+<style>
+    .lesson { max-width: 720px; margin: 2.5rem auto 0; }
+    .back { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; }
+    .back:hover { color: var(--text-color); }
+    .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 1rem;
+        margin: 1.75rem 0 0.75rem;
+        color: var(--text-muted);
+        font-size: 0.8rem;
+    }
+    .area { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.72rem; }
+    .area-work { color: var(--accent); }
+    .area-personal { color: #7fc995; }
+    h1 {
+        font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+    }
+    .summary { color: #bbb; font-size: 1.15rem; line-height: 1.6; margin-bottom: 2rem; }
+    .content :global(p),
+    .content :global(li) { color: #ddd; line-height: 1.75; font-size: 1.04rem; }
+    .content :global(p) { margin-bottom: 1.15rem; }
+    .content :global(ul),
+    .content :global(ol) { margin: 0 0 1.25rem 1.25rem; }
+    .content :global(li) { margin-bottom: 0.35rem; }
+    .content :global(strong) { color: #fff; }
+    .rule {
+        margin: 2.5rem 0 1.5rem;
+        padding: 1.25rem 1.5rem;
+        border-left: 2px solid var(--accent);
+        background: rgba(217, 163, 62, 0.06);
+        border-radius: 0 8px 8px 0;
+    }
+    .rule-label {
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.72rem;
+    }
+    .rule p { color: #eee; font-size: 1.08rem; line-height: 1.6; margin-top: 0.4rem; }
+    .note { color: #777; font-size: 0.82rem; line-height: 1.6; }
+</style>

@@ -10,14 +10,32 @@ interface Props {
 
 const {
 	title,
-	description = "James Nguyen — Data & AI Engineer with a 10+ year finance background. Turning messy operations into intelligent systems at the intersection of accounting, data, and automation.",
-	image = "/favicon.svg",
+	description = "James Nguyen — Finance & Operations Analyst and internal developer. I build reliable data pipelines, finance automation, and AI workflows for messy real-world operations.",
+	image = "/og.png",
 } = Astro.props;
 
 const siteName = "James Nguyen";
 const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 const ogImage = new URL(image, Astro.site ?? Astro.url);
+const ogImageAlt = "James Nguyen — Finance & Operations Analyst and internal developer";
+
+const personSchema = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: "James Nguyen",
+	url: "https://jamesnguyen.netlify.app",
+	jobTitle: "Finance & Operations Analyst",
+	worksFor: { "@type": "Organization", name: "Day & Night Solar" },
+	alumniOf: { "@type": "CollegeOrUniversity", name: "Belmont Abbey College" },
+	knowsAbout: ["Python", "SQL", "Data Engineering", "Financial Systems", "Process Automation", "AI Workflows"],
+	sameAs: [
+		"https://github.com/jamesmnguyen704",
+		"https://www.linkedin.com/in/jamesmnguyen704/",
+		"https://gitlab.com/jamesmnguyen704",
+			"https://www.facebook.com/jamesmnguyen704/",
+	],
+};
 ---
 
 <!doctype html>
@@ -37,13 +55,19 @@ const ogImage = new URL(image, Astro.site ?? Astro.url);
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={ogImageAlt} />
 
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={fullTitle} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image:alt" content={ogImageAlt} />
 
 		<title>{fullTitle}</title>
+
+		<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 	</head>
 	<body>
 		<header>
@@ -178,12 +202,29 @@ const ogImage = new URL(image, Astro.site ?? Astro.url);
 
 	a { color: inherit; }
 
+	:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 3px;
+		border-radius: 4px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			transition: none !important;
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			scroll-behavior: auto !important;
+		}
+	}
+
 	@media (max-width: 720px) {
 		.nav-links { gap: 0.75rem; }
 		.nav-links a { font-size: 0.85rem; }
 	}
 	@media (max-width: 500px) {
-		.nav-links > a[href="/about"],
-		.nav-links > a[href="/work"] { display: none; }
+		nav { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+		.nav-links { flex-wrap: wrap; gap: 0.6rem 1rem; }
 	}
 </style>

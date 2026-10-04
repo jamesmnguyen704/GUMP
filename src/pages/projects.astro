@@ -4,101 +4,124 @@ import ProjectCard from '../components/ProjectCard.astro';
 
 const tripleTenRepo = "https://github.com/jamesmnguyen704/TripleTenProgram";
 const savvyRepo = "https://github.com/jamesmnguyen704/CapstoneSavvyCoders";
-const personalRepo = "https://github.com/jamesmnguyen704/GUMP";
 
-// --- Systems I'm building (Day & Night Solar) ---
+// --- Work systems (Day & Night Solar). Private code, so concepts only: no company data. ---
 const systems = [
     {
-        title: "Project Waffles",
-        description: "Solar-industry operations and business intelligence platform in active development. Combines a vendor/product reference database, regulatory eligibility tracking, and ERP-style modules covering customers, jobs, products, schedules, and logistics — all built around a structured ID + schema system.",
-        technologies: ["Python", "SQL", "SQLite", "pandas", "Excel integration"],
-        outcome: "Core schema and intake/ETL pipeline live; dashboards next",
-        githubUrl: "https://github.com/jamesmnguyen704",
+        title: "Operations data platform",
+        associated: "Work · sole developer",
+        description: "A Python + SQLite platform that consolidates accounting, banking, project, and procurement data into normalized tables, exception queues, and generated reports. A strict source-of-truth hierarchy keeps the accounting system authoritative; everything else is a derived, dated view.",
+        technologies: ["Python", "SQLite", "pandas", "openpyxl", "pytest"],
+        outcome: "One governed data layer instead of competing spreadsheets",
         featured: true,
     },
     {
-        title: "Multi-Agent AI Orchestration",
-        description: "Hub-and-spoke architecture using Claude as the primary orchestrator across specialized agents for code generation, persistent memory, and desktop automation. Configured through a versioned CLAUDE.md with explicit routing rules, role declarations, and prompt contracts between agents.",
-        technologies: ["Claude Code", "Anthropic SDK", "MCP", "Python", "Prompt Engineering"],
-        outcome: "3-stage code-quality pipeline: implement → review → resolve",
-        githubUrl: "https://github.com/jamesmnguyen704",
-        featured: true,
+        title: "QuickBooks import automation",
+        associated: "Work",
+        description: "Generates QuickBooks Enterprise import files instead of hand-keying transactions. Looks up what already exists, checks for duplicates, enforces field limits, validates sources, and fails closed. A person always performs the final import.",
+        technologies: ["Python", "QuickBooks Enterprise", "IIF", "pandas"],
+        outcome: "Repetitive entry replaced by validated, reviewable files",
     },
     {
-        title: "Bank Reconciliation Engine",
-        description: "Progressive fuzzy-match engine across 5 bank accounts in a high-volume, multi-account environment. Tier-priority confidence scoring with review queues for ambiguous matches — surfaces discrepancies before month-end, not after.",
+        title: "Reconciliation engine",
+        associated: "Work",
+        description: "Matches bank activity against accounting and project records using normalized identifiers and confidence scoring. Every record lands in an explicit state (confirmed, proposed, unmatched, or needs review) instead of being forced into a match.",
         technologies: ["Python", "pandas", "rule-based matching"],
-        outcome: "Discrepancies caught mid-cycle vs. at close",
-        githubUrl: "https://github.com/jamesmnguyen704",
+        outcome: "Surfaced unlinked payments on its first run",
     },
     {
-        title: "QuickBooks Automation",
-        description: "Programmatic IIF generation for customers, POs, invoices, and deposits with anti-duplicate safety checks against tens of thousands of historical transactions.",
-        technologies: ["Python", "QuickBooks Enterprise", "IIF"],
-        outcome: "Eliminated 90%+ of manual QB entry",
-        githubUrl: "https://github.com/jamesmnguyen704",
+        title: "Operations hub",
+        associated: "Work",
+        description: "A single regenerating reporting page covering finance, project, bank, and procurement status. It replaced a set of disconnected dashboards and shows how fresh the underlying data is, not just when the page was built.",
+        technologies: ["Python", "HTML", "scheduled pipeline"],
+        outcome: "One operator-facing view instead of several dashboards",
     },
     {
-        title: "Executive Dashboards (DNS)",
-        description: "pandas + openpyxl pipeline covering P&L, cash flow, billing, margin, and schedule. Auto-regenerates; static HTML operations hubs with collapsible sections and clickable file links.",
-        technologies: ["Python", "pandas", "openpyxl", "HTML"],
-        outcome: "CFO and leadership read the same data",
-        githubUrl: "https://github.com/jamesmnguyen704",
+        title: "Document intelligence",
+        associated: "Work",
+        description: "Reads incoming PDFs, including scanned ones. Uses OCR only when native text isn't enough, extracts structured fields into a review step, preserves existing data, and fails loudly instead of treating an unreadable file as empty.",
+        technologies: ["Python", "PDF text extraction", "OCR"],
+        outcome: "Document data flows into review instead of retyping",
     },
     {
-        title: "Document Intelligence",
-        description: "OCR + classification + auto-routing for hundreds of incoming vendor docs, bank statements, and internal cost models. Outlook .msg / .eml forensics pipeline builds defensive timelines for dispute preparation.",
-        technologies: ["EasyOCR", "PyPDF2", "Python"],
-        outcome: "Hundreds of documents auto-classified and routed",
-        githubUrl: "https://github.com/jamesmnguyen704",
-    },
-    {
-        title: "Solar Compliance Reference System",
-        description: "Working reference system for tracking federal incentive eligibility, manufacturer sourcing rules, and domestic content thresholds across product categories. Built to help a commercial solar team make faster, more defensible procurement decisions.",
-        technologies: ["Excel", "Python", "Research Synthesis"],
-        outcome: "Faster, defensible procurement decisions",
-        githubUrl: "https://github.com/jamesmnguyen704",
+        title: "AI agent workflow layer",
+        associated: "Work · evolving",
+        description: "Specialized Claude Code agents with task handoffs, recorded decisions, verification rules, and automated tests around finance safety and pipeline freshness. Started bigger; I cut it down to what actually earned its coordination cost.",
+        technologies: ["Claude Code", "MCP", "Python", "pytest"],
+        outcome: "Fewer agents, explicit handoffs, evidence before claims",
     },
 ];
 
-// --- Capstones / standout applied projects ---
-const capstones = [
+// --- Personal projects ---
+const personal = [
     {
-        title: "Cinemetrics",
-        associated: "SavvyCoders Capstone",
-        description: "Full-stack Movie Data Single Page Application. Users explore trending films, upcoming releases, and box-office insights via real-time data from the TMDB API. Designed the UI, built client-side routing, reusable components, and async API integration end to end.",
-        technologies: ["JavaScript", "Node.js", "Express", "MongoDB", "Mongoose", "REST APIs", "Navigo", "Netlify"],
-        outcome: "Deployed end-to-end",
-        githubUrl: "https://github.com/jamesmnguyen704/CapstoneSavvyCoders",
-        liveUrl: "https://capstonesavvycoders.netlify.app/",
+        id: "atlas",
+        title: "Atlas",
+        associated: "Personal data lakehouse",
+        description: "A local-first data lakehouse that turns my scattered personal exports into structured, searchable data. Raw files land untouched, Python parsers normalize them into SQLite with full-text search, and curated, git-versioned records feed generated views for each AI tool. Search and summarization run on local models, and an explicit boundary rule decides what may ever reach a cloud model.",
+        technologies: ["Python", "SQLite FTS5", "Markdown", "Git", "llama.cpp", "Ollama"],
+        outcome: "Taught me idempotency, lineage, and why AI shouldn't own the data",
         featured: true,
     },
     {
+        id: "no-whey",
         title: "No-Whey",
-        associated: "Personal Project",
-        description: "A dairy-free ingredient checker built as a Progressive Web App. Lets you scan or type ingredients to spot dairy hiding in product labels — with a flashlight for reading small text, confetti for clean hits, and PWA install.",
-        technologies: ["PWA", "JavaScript", "REST API", "Render"],
-        outcome: "Shipped and live",
+        associated: "Live app",
+        description: "A dairy-ingredient checker that returns SAFE, UNSAFE, or REVIEW REQUIRED with a plain-language explanation. It catches what labels hide: casein in \"non-dairy\" products, milk-derived additives, and vague terms. Rules live in YAML so the logic stays auditable; product lookups enrich the result.",
+        technologies: ["FastAPI", "JavaScript", "PWA", "YAML", "OpenFoodFacts"],
+        outcome: "Live, with a real beta tester",
         sourceUrl: "https://gitlab.com/jamesmnguyen704/milk-lint",
         sourceLabel: "View source (GitLab)",
         liveUrl: "https://no-whey.onrender.com",
     },
     {
-        title: "Age Detection",
-        associated: "TripleTen Program",
-        description: "Computer-vision regression model for alcohol-sales compliance — estimates age from a photograph using a CNN trained on a labeled image dataset. Built for the supermarket chain Good Seed to help prevent sales to underage customers.",
-        technologies: ["Python", "TensorFlow", "Keras", "CNN", "PIL"],
-        outcome: "Regression CNN trained end-to-end",
-        githubUrl: tripleTenRepo,
+        id: "cinemetrics",
+        title: "Cinemetrics",
+        associated: "SavvyCoders capstone · still maintained",
+        description: "A movie, TV, and gaming discovery app built from scratch with no framework: native ES modules, a hand-rolled component layer, client-side routing, and an Express + MongoDB API over TMDB data. I've kept shipping to it since graduation, including security hardening for untrusted API text.",
+        technologies: ["JavaScript", "Node.js", "Express", "MongoDB", "Navigo", "TMDB API"],
+        outcome: "100+ commits and 40 merged pull requests",
+        githubUrl: savvyRepo,
+        liveUrl: "https://capstonesavvycoders.netlify.app/",
     },
     {
-        title: "jamesnguyen.netlify.app",
-        associated: "Personal Site",
-        description: "This site — an Astro static build deployed on Netlify. A place to write, log what I'm learning, and ship small web work.",
-        technologies: ["Astro", "TypeScript", "HTML", "CSS", "Netlify"],
-        outcome: "Shipped and live",
-        githubUrl: personalRepo,
-        liveUrl: "https://jamesnguyen.netlify.app/",
+        id: "bait-and-switch",
+        title: "Bait & Switch",
+        associated: "Personal project",
+        description: "A Midwest angler's map and field guide: 200+ curated lakes and rivers, a species catalog, a live overlay of Illinois lake-depth data from the state's ArcGIS service, and boat ramps and piers from OpenStreetMap with fallback across mirrors. No backend; state lives in the browser.",
+        technologies: ["React", "Vite", "Leaflet", "Tailwind", "OpenStreetMap"],
+        outcome: "Live public geodata in a working map",
+        liveUrl: "https://bait-and-switch-ruddy.vercel.app",
+    },
+    {
+        id: "garden-os",
+        title: "Garden OS",
+        associated: "Personal project",
+        description: "My garden as a data system: registries for areas, zones, and plants, observation and harvest logs, weather inputs, a generated daily hub, and a phone-friendly form backed by a small local server that writes observations back into the dataset.",
+        technologies: ["Python", "CSV", "HTML", "Open-Meteo"],
+        outcome: "Observe, decide, act, and check the outcome",
+    },
+    {
+        id: "local-ai-lab",
+        title: "Local AI lab",
+        associated: "Personal project",
+        description: "Image and language models running entirely on a 12 GB laptop GPU: LoRA training with checkpoint-by-checkpoint evaluation, a ComfyUI pipeline with face correction and 4K upscaling, and 30B-class language models on llama.cpp. Most of the work was measuring and fitting into memory, not picking models.",
+        technologies: ["ComfyUI", "SDXL", "kohya", "PyTorch", "llama.cpp", "Ollama"],
+        outcome: "Measured model quality instead of guessing",
+    },
+];
+
+// --- Building now ---
+const buildingNow = [
+    {
+        title: "Watt in Tarnation",
+        body: "A hands-on solar lab in my garage for learning DC power, MPPT, sensing, and telemetry from first principles. Every component decision is logged with its datasheet math, and nothing gets bought until the measurements exist.",
+        tech: "ESP32 · MicroPython · INA228 · solar PV",
+    },
+    {
+        title: "Solar compute demonstrator",
+        body: "The next step: putting a real computer workload behind a small solar + battery system to explore telemetry, load shedding, and energy-aware computing at miniature data-center scale.",
+        tech: "Salvaged PC hardware · ESP32 · Python · SQLite",
     },
 ];
 
@@ -209,24 +232,25 @@ const tripleten: TTProject[] = [
     },
 ];
 
-const description = "Systems James Nguyen is building at Day & Night Solar — plus capstones (Cinemetrics, Age Detection) and 16 data science projects from the TripleTen program.";
+const description = "What James Nguyen has built: internal finance and operations systems, a personal data lakehouse, live web apps, a local AI lab, and 16 data science projects.";
 ---
 
 <Layout title="Projects" description={description}>
     <section class="projects-header">
         <h1>Projects</h1>
         <p>
-            Systems I'm shipping at work, capstones from SavvyCoders and TripleTen, and the full
-            16-project data science portfolio. Each card is honest about what it tried to do, what
-            came out, and the stack that got it there.
+            Systems I run at work, things I build on my own time, and where I started. Each card
+            says what it does, what came out of it, and the stack. Nothing here is a mockup.
+
         </p>
     </section>
 
     <section class="projects-section">
-        <h2>Systems I'm building <span class="badge">Day &amp; Night Solar</span></h2>
+        <h2>Built at work <span class="badge">Day &amp; Night Solar</span></h2>
         <p class="section-intro">
-            The internal operating system behind a 170-project, 15-state commercial solar portfolio.
-            Each one replaces a spreadsheet, a folder of PDFs, or a manual QuickBooks workflow.
+            The internal systems a commercial solar and energy-storage contractor runs its back office on.
+            I'm the sole developer. The code is private, so these describe what each system does and how
+            it's designed, with no company data. The <a href="/blog#lessons" class="repo-link">lessons</a> go deeper.
         </p>
         <div class="projects-grid">
             {systems.map(p => <ProjectCard {...p} />)}
@@ -234,18 +258,36 @@ const description = "Systems James Nguyen is building at Day & Night Solar — p
     </section>
 
     <section class="projects-section">
-        <h2>Capstones &amp; standouts</h2>
+        <h2>Personal projects</h2>
+        <p class="section-intro">Things I build to learn, and keep using.</p>
         <div class="projects-grid">
-            {capstones.map(p => <ProjectCard {...p} />)}
+            {personal.map(({ id, ...p }) => <div id={id} class="anchor"><ProjectCard {...p} /></div>)}
         </div>
     </section>
 
     <section class="projects-section">
-        <h2>TripleTen Data Science — 16 projects</h2>
+        <h2>Building now</h2>
+        <div class="now-grid">
+            {buildingNow.map(b => (
+                <article class="now-card">
+                    <span class="now-tag">In progress</span>
+                    <h3>{b.title}</h3>
+                    <p>{b.body}</p>
+                    <p class="tt-tech">{b.tech}</p>
+                </article>
+            ))}
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <h2>Data science foundations</h2>
         <p class="section-intro">
-            The end-to-end DS portfolio: churn, pricing, forecasting, NLP, computer vision, and classical
-            analytics. Full code and notebooks in the <a href={tripleTenRepo} target="_blank" rel="noopener" class="repo-link">TripleTenProgram</a> repo.
+            16 end-to-end projects from the TripleTen program: churn, pricing, forecasting, NLP, and computer
+            vision. Highlights: telecom churn with CatBoost (AUC-ROC 0.844) and a CNN that estimates age from photos.
+            Code and notebooks are in the <a href={tripleTenRepo} target="_blank" rel="noopener" class="repo-link">TripleTenProgram</a> repo.
         </p>
+        <details class="tt-details">
+            <summary>Show all 16 projects</summary>
         <div class="tt-grid">
             {tripleten.map(p => (
                 <article class="tt-card">
@@ -256,6 +298,7 @@ const description = "Systems James Nguyen is building at Day & Night Solar — p
                 </article>
             ))}
         </div>
+        </details>
     </section>
 </Layout>
 
@@ -269,6 +312,28 @@ const description = "Systems James Nguyen is building at Day & Night Solar — p
     }
 
     .projects-section { margin: 3rem 0; }
+    .anchor { scroll-margin-top: 6rem; display: flex; }
+    .anchor > :global(*) { flex: 1; }
+    .now-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+    .now-card {
+        padding: 1.25rem;
+        border: 1px dashed #333;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .now-tag { color: var(--accent); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .now-card h3 { font-size: 1.05rem; color: #eee; }
+    .now-card p { color: #aaa; font-size: 0.9rem; line-height: 1.55; }
+    .tt-details summary {
+        cursor: pointer;
+        color: #ddd;
+        font-size: 0.9rem;
+        padding: 0.6rem 0;
+        margin-bottom: 0.75rem;
+    }
+    .tt-details summary:hover { color: #fff; }
     .projects-section h2 {
         font-size: 1.5rem;
         margin-bottom: 0.75rem;

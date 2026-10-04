@@ -111,22 +111,22 @@ const groups: SkillGroup[] = [
 ];
 
 const principles = [
-    "Build once, reuse forever. Prefer automation over repetition.",
-    "Think in systems, not tasks — then make the system legible to the next person.",
-    "A result you can't explain isn't a result yet. Write it down.",
-    "CPA-grade mindset: controls, audit trails, and reversible operations by default.",
+    "One fact, one owner. Reports explain the truth; they don't get to own it.",
+    "Fail closed near money. Automation prepares the work; a person approves it.",
+    "Unknown is a real state. Missing is not zero, and stale is not current.",
+    "Check the grant, not the description. A claim needs evidence before I build on it.",
+    "Controls, audit trails, and reversible operations by default.",
 ];
 ---
 
-<Layout title="About" description="Data & AI engineer with a 10+ year finance background. Builder of internal operating systems at the intersection of accounting, data, and automation.">
+<Layout title="About" description="James Nguyen: finance and operations analyst who builds software. A decade of accounting and reconciliation, now building data pipelines, finance automation, and AI workflows.">
     <section class="about-header">
         <h1>About</h1>
         <p class="intro">
-            I'm a Data Scientist and AI engineer with a background in accounting and operations
-            analysis — a blend of financial expertise, technical depth, and applied AI experience
-            focused on solving real business problems. The path from certified accountant to
-            data scientist to AI systems builder shaped how I work: with business acumen,
-            analytical capabilities, and hands-on skill at building automated, agent-driven workflows.
+            I'm a finance and operations analyst who builds software. I spent a decade reconciling
+            data across messy enterprise systems, learned data science and full-stack development,
+            and now build the internal tools a commercial solar contractor runs its back office on.
+            I understand the accounting well enough to know where automation should stop and ask a person.
         </p>
     </section>
 
@@ -136,29 +136,29 @@ const principles = [
             <li>
                 <span class="now-label">Building</span>
                 <span class="now-value">
-                    Internal operations platform at Day &amp; Night Solar — finance system, QuickBooks
-                    automation, reconciliation engine, document intelligence, AI-integrated workflows.
+                    The internal operations platform at Day &amp; Night Solar: data pipelines, QuickBooks
+                    automation, reconciliation, document extraction, and a governed AI agent workflow.
                 </span>
             </li>
             <li>
-                <span class="now-label">Shipping</span>
+                <span class="now-label">On my own time</span>
                 <span class="now-value">
-                    Cinemetrics — full-stack SavvyCoders capstone (Node · Express · MongoDB · REST APIs),
-                    deployed end-to-end.
+                    Atlas, my local-first personal data lakehouse · a solar lab in the garage ·
+                    still shipping updates to Cinemetrics.
                 </span>
             </li>
             <li>
-                <span class="now-label">Exploring</span>
+                <span class="now-label">Writing</span>
                 <span class="now-value">
-                    Multi-agent orchestration · local LLMs (Ollama) · document forensics · Postgres migration ·
-                    reproducible finance pipelines.
+                    Short <a href="/blog#lessons">lessons</a> from what breaks: source of truth, failing closed,
+                    stale data, and keeping AI agents honest.
                 </span>
             </li>
             <li>
                 <span class="now-label">Open to</span>
                 <span class="now-value">
-                    Data Analyst, Analytics Engineer, Data Scientist, Junior Software Engineer, or
-                    Finance/Operations roles where accounting, data, and code intersect.
+                    Full-time roles where accounting, data, and code meet: finance systems, analytics
+                    engineering, data and automation engineering, and internal tools.
                 </span>
             </li>
         </ul>
@@ -185,6 +185,17 @@ const principles = [
             My current focus: using AI orchestration and data engineering to streamline complex back-office
             operations — combining traditional analytics with agent-based systems to deliver results that
             would otherwise require much larger teams.
+        </p>
+    </section>
+
+    <section class="learning">
+        <h2>How I learn</h2>
+        <p class="learn">
+            I learn best by building something real enough to break. Usually a real problem comes first.
+            I research enough to build, use AI to shorten the feedback loop, and when the AI's explanation
+            doesn't match what the system actually does, I go inspect the system. I make a prediction,
+            measure what happened, and turn the difference into a rule I can reuse. I keep the original
+            data so I can re-check an answer instead of trusting it because it sounds right.
         </p>
     </section>
 
@@ -267,6 +278,9 @@ const principles = [
 
     .journey { max-width: 780px; }
     .journey p { line-height: 1.7; color: #ccc; margin-bottom: 1rem; }
+    .learning { max-width: 780px; }
+    .learn { line-height: 1.75; color: #ccc; }
+    .now-value a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(217,163,62,0.35); }
 
     .principles-list {
         list-style: none;
