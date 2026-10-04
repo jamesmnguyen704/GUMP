@@ -22,5 +22,3 @@ The fix was to stage it:
 Each model gets a pass where it is the only thing talking, and the results stopped fighting.
 
 The broader lesson isn't about image models. Two individually correct components can interact badly when they share state or compete for the same control surface. Each one passes its own test. The failure only shows up in the combination. Adding instructions to the shared surface doesn't help, because the instructions are the thing being fought over. The fix is changing the boundaries so they stop sharing it.
-
-Separate composition from refinement when models compete for the same attention.

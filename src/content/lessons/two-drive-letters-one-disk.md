@@ -21,5 +21,3 @@ Benchmarks reinforced the point:
 - One USB drive was noticeably slower than its twin, which gave me a concrete device to investigate instead of a vague sense that backups are slow.
 
 The operating system's view is a convenience layer. Drive letters are labels on volumes, and volumes are slices of devices. Failure, redundancy, and speed are properties of the device. If I want to reason about any of them, I have to start there.
-
-Inventory the physical device first, then map partitions and drive letters onto it.

@@ -22,5 +22,3 @@ Those should land on the same number. When they don't, something upstream is wro
 The reason this works is that the two paths depend on different inputs. A transposed quantity moves one total and not the other. A wattage mismatch moves one and not the other. A single check can be fooled by a single error. Two independent checks have to be fooled by two errors that happen to cancel, which is far rarer.
 
 This is now my default on anything with money attached. It costs almost nothing, and "looks right" turned out to be a much weaker test than I thought.
-
-Compute every money total two independent ways. "Looks right" is not "agrees with itself."

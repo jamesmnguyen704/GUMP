@@ -5,7 +5,7 @@ when: "Sep 2026"
 area: personal
 project: "Watt in Tarnation (solar lab)"
 summary: "The common sensor for my off-grid solar build was rated below what my panel can put out on a cold morning."
-rule: "Design to the worst case on the datasheet, not the number on the label. Datasheets first, AI suggestions last."
+rule: "Design to the worst case the datasheet allows, not the number on the label."
 ---
 
 For my off-grid solar build I needed a sensor to measure the panel's voltage and current. A common choice is rated for 36 volts. My panel's label says about 37.5 volts open-circuit, so that already looked tight.

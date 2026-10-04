@@ -21,5 +21,3 @@ Instead I reconstructed the compatibility graph before shopping:
 Once I drew it out, the realization was that a parts inventory is not a build plan. The build lives in the relationships. A part is only "good" relative to the parts it has to connect to and the job the machine is for.
 
 This is the same shape as software dependencies. Fix the interfaces first. Mark what is already locked by the parts I own. Find the unresolved edges, the constraints nothing on the table satisfies yet. Then shop for exactly those, and nothing else.
-
-Validate the relationships before buying the missing pieces.

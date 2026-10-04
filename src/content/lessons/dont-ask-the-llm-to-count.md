@@ -23,5 +23,3 @@ Two smaller lessons from the same build:
 
 - BM25 worked well on identifier-heavy text, so I didn't need embeddings first. Keyword matching is a fine baseline when the queries are full of codes and names.
 - Chunk by document structure, sections and records, not every N characters. A chunk that splits a record in half is a chunk the model can't use.
-
-If the answer is a number, it should come from code.
